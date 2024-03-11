@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import LogOut from '@/assets/logo/logOut'
+
 import { Button } from './'
 
 const meta = {
@@ -39,5 +41,23 @@ export const FullWidth: Story = {
     disabled: false,
     fullWidth: true,
     variant: 'primary',
+  },
+}
+
+export const PrimaryWithIcon: Story = {
+  args: {
+    // eslint-disable-next-line react/jsx-key
+    children: [<LogOut />, 'some'],
+    disabled: false,
+    variant: 'primary',
+  },
+}
+
+export const SecondaryWithIcon: Story = {
+  args: {
+    // eslint-disable-next-line react/jsx-key
+    children: [<LogOut />, 'some'],
+    disabled: false,
+    variant: 'secondary',
   },
 }

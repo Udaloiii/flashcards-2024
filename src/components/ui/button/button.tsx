@@ -1,16 +1,25 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import s from './button.module.scss'
 
 type ButtonProps = {
+  children?: ReactNode
   fullWidth?: boolean
-  variant?: 'link' | 'primary' | 'secondary' | 'tertiary'
+  variant?: 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<'button'>
-export const Button = ({ className, fullWidth, variant = 'primary', ...rest }: ButtonProps) => {
+export const Button = ({
+  children,
+  className,
+  fullWidth,
+  variant = 'primary',
+  ...rest
+}: ButtonProps) => {
   return (
     <button
       className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`}
       {...rest}
-    ></button>
+    >
+      {children}
+    </button>
   )
 }

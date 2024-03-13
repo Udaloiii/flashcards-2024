@@ -46,8 +46,11 @@ export const FullWidth: Story = {
 
 export const PrimaryWithIcon: Story = {
   args: {
-    // eslint-disable-next-line react/jsx-key
-    children: [<LogOut />, 'some'],
+    children: (
+      <>
+        <LogOut /> some button
+      </>
+    ),
     disabled: false,
     variant: 'primary',
   },
@@ -55,8 +58,11 @@ export const PrimaryWithIcon: Story = {
 
 export const SecondaryWithIcon: Story = {
   args: {
-    // eslint-disable-next-line react/jsx-key
-    children: [<LogOut />, 'some'],
+    children: (
+      <>
+        <LogOut /> some button
+      </>
+    ),
     disabled: false,
     variant: 'secondary',
   },

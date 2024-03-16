@@ -81,9 +81,6 @@
   }
 
   button {
-    span {
-      color: var(--color-dark-100);
-      background-color: var(--color-light-700);
-    }
+    border-color: var(--color-dark-100);
   }
 }

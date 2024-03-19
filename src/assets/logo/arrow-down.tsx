@@ -18,7 +18,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     </g>
     <defs>
       <clipPath id={'a'}>
-        <path d={'M0 0h24v24H0z'} fill={'#fff'} />
+        <path d={'M0 0h24v24H0z'} fill={'currentColor'} />
       </clipPath>
     </defs>
   </svg>

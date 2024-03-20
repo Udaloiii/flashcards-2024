@@ -16,3 +16,10 @@ export const RadioExample: Story = {
     items: ['hello', 'goodbye', 'zdarova'],
   },
 }
+
+export const RadioDisable: Story = {
+  args: {
+    disabled: true,
+    items: ['hello', 'goodbye', 'zdarova'],
+  },
+}

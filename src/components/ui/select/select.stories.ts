@@ -14,7 +14,8 @@ type Story = StoryObj<typeof meta>
 export const SelectExample: Story = {
   args: {
     items: ['apple', 'banana', 'cherry'],
-    placeholder: 'Radio your favorite fruits',
+    label: 'Some label',
+    placeholder: 'Choice your favorite fruits',
   },
 }
 
@@ -36,6 +37,7 @@ export const SelectDisable: Story = {
   args: {
     disabled: true,
     items: ['apple', 'banana', 'cherry', 'potato', 'ginger', 'lemon'],
+    label: 'Some label',
     placeholder: 'change some one',
   },
 }

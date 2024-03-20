@@ -3,7 +3,18 @@ button {
   all: unset;
 }
 
-.SelectTrigger {
+.selectLabel {
+  display: flex;
+  padding-bottom: 5px;
+  color: var(--color-dark-100);
+}
+
+.labelDisabled {
+  user-select: none;
+  color: var(--color-dark-300);
+}
+
+.selectTrigger {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -17,14 +28,16 @@ button {
   border: 1px solid var(--color-dark-300);
   border-radius: 2px;
   outline: none;
+
   transition: 0.3s;
 
   &:hover {
-    //background-color: var(--mauve-3);
+    background-color: var(--color-dark-500);
+    border-color: var(--color-dark-100);
   }
 
-  &:focus {
-    border-color: var(--color-info-500);
+  &:focus-visible {
+    border-color: var(--color-info-700);
   }
 
   &:active {
@@ -35,7 +48,7 @@ button {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
-    & .SelectIcon {
+    & .selectIcon {
       transform: rotate(180deg);
     }
   }
@@ -43,80 +56,70 @@ button {
   &[data-disabled] {
     pointer-events: none;
     user-select: none;
-    opacity: 0.5;
+    color: var(--color-dark-300);
+
+    svg {
+      color: var(--color-dark-300);
+    }
   }
 }
 
-.SelectIcon {
-  transition: 0.3s;
+.selectIcon {
   display: flex;
   align-items: center;
   color: var(--color-light-100);
+  transition: 0.3s;
 }
 
-.SelectContent {
+.selectContent {
   overflow: hidden;
-
   width: var(
-                  --radix-select-trigger-width
+    --radix-select-trigger-width
   ); // в доке radix-select (для того, чтобы был на ширину элемента триггера)
 
   background-color: transparent;
   outline: none;
 }
 
-.SelectViewport {
+.selectViewport {
   border: 1px solid var(--color-dark-300);
   border-top: none;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
   outline: none;
+
+  &:active {
+    border-color: var(--color-dark-100);
+  }
 }
 
-.SelectItem {
-  height: var(--radix-select-trigger-height);
+.selectItem {
   user-select: none;
 
   display: flex;
   align-items: center;
 
+  height: var(--radix-select-trigger-height);
   padding: 6px 12px;
-
-  color: var(--color-light-100);
 
   background-color: transparent;
   outline: none;
+
   transition: 0.3s;
 
   &:hover {
+    transform: scale(1.05);
     color: var(--color-primary-300);
     background-color: var(--color-primary-900);
   }
 
   &[data-state='checked'] {
-    background-color: var(--color-primary-300);
+    background-color: var(--color-primary-700);
   }
 
   &[data-highlighted] {
-    background-color: var(--color-primary-700);
+    transform: scale(1.05);
+    color: var(--color-primary-300);
+    background-color: var(--color-primary-900);
   }
-}
-
-.SelectLabel {
-  padding: 0 25px;
-  font-size: 12px;
-  line-height: 25px;
-}
-
-.SelectItemIndicator {
-  position: absolute;
-  right: 10px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 25px;
-
-  color: var(--color-light-100);
 }

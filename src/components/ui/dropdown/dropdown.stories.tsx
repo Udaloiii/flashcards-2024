@@ -1,6 +1,8 @@
 import { Dropdown } from '@/components/ui/dropdown/dropdown'
 import { Meta, StoryObj } from '@storybook/react'
 
+import userIcon from '../../../assets/img/user-avatar.webp'
+
 const meta = {
   argTypes: {},
   component: Dropdown,
@@ -11,8 +13,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const CardWithButton: Story = {
+export const DropdownWithUserImg: Story = {
   args: {
-    items: ['example', 'example', 'example'],
+    iconTrigger: userIcon,
+    items: ['item 1', 'item 2', 'item 3'],
   },
 }

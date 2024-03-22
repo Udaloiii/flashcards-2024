@@ -27,7 +27,9 @@
 }
 
 .content {
+  position: absolute;
   z-index: 0;
+  right: -30px;
 
   width: 200px;
   height: max-content;
@@ -37,13 +39,49 @@
   background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
   border-radius: 4px;
+
+  animation-duration: 0.3s;
+
+  &[data-state='open'] {
+    animation-name: open;
+  }
+
+  &[data-state='closed'] {
+    animation-name: closed;
+    animation-duration: 0.2s;
+  }
+
+  @keyframes open {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes closed {
+    from {
+      transform: translateY(0);
+      scale: 1;
+      opacity: 1;
+    }
+
+    to {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+  }
 }
 
 .triangle {
   position: absolute;
   z-index: 1;
-  top: 8px;
-  right: 26px;
+  top: -8px;
+  right: 14px;
   transform: translateX(-50%) rotate(45deg);
 
   width: 16px;

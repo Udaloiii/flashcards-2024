@@ -1,5 +1,6 @@
 import { DropdownItem } from '@/components/ui/dropdown/dropdown-item/dropdown-item'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import { AnimatePresence } from 'framer-motion'
 
 import s from './dropdown.module.scss'
 
@@ -9,24 +10,30 @@ import s from './dropdown.module.scss'
 // } // потом использовать в items
 
 type DropdownType = {
+  iconTrigger: string
   items?: string[]
 }
-export const Dropdown = ({ items }: DropdownType) => (
+export const Dropdown = ({ iconTrigger, items }: DropdownType) => (
   <DropdownMenu.Root>
-    <DropdownMenu.Trigger className={s.trigger}></DropdownMenu.Trigger>
-
-    <DropdownMenu.Portal>
-      <DropdownMenu.Content className={s.content}>
-        <DropdownMenu.Label />
-        <DropdownMenu.Group>
-          {items?.map((el, index) => (
-            <>
-              <DropdownItem key={index}>{el}</DropdownItem>
-              {index < items.length - 1 && <DropdownMenu.Separator className={s.separator} />}
-            </>
-          ))}
-        </DropdownMenu.Group>
-      </DropdownMenu.Content>
-    </DropdownMenu.Portal>
+    <div className={s.container}>
+      <DropdownMenu.Trigger className={s.trigger}>
+        <img alt={'user'} src={iconTrigger} />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content className={s.content}>
+          <div className={s.triangle}></div>
+          <DropdownMenu.Group>
+            <AnimatePresence>
+              {items?.map((el, index) => (
+                <div key={index}>
+                  <DropdownItem>{el}</DropdownItem>
+                  {index < items.length - 1 && <DropdownMenu.Separator className={s.separator} />}
+                </div>
+              ))}
+            </AnimatePresence>
+          </DropdownMenu.Group>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </div>
   </DropdownMenu.Root>
 )

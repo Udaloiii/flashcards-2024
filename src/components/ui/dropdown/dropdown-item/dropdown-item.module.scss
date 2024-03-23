@@ -9,6 +9,12 @@
   transition: 0.3s;
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.1);
   }
+}
+
+.wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }

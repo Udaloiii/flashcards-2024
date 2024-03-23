@@ -1,3 +1,9 @@
+import Delete from '@/assets/logo/delete'
+import Edit from '@/assets/logo/edit'
+import LogOut from '@/assets/logo/log-out'
+import Person from '@/assets/logo/person'
+import PlayCircle from '@/assets/logo/play-circle'
+import VerticalDots from '@/assets/logo/vertical-dots'
 import { Dropdown } from '@/components/ui/dropdown/dropdown'
 import { Meta, StoryObj } from '@storybook/react'
 
@@ -16,6 +22,20 @@ type Story = StoryObj<typeof meta>
 export const DropdownWithUserImg: Story = {
   args: {
     iconTrigger: userIcon,
-    items: ['item 1', 'item 2', 'item 3'],
+    items: [
+      { icon: <Person />, title: 'My Profile' },
+      { icon: <LogOut />, title: 'Sign Out' },
+    ],
+  },
+}
+
+export const DropdownWithDots: Story = {
+  args: {
+    dotsTrigger: <VerticalDots />,
+    items: [
+      { icon: <PlayCircle />, title: 'Learn' },
+      { icon: <Edit />, title: 'Edit' },
+      { icon: <Delete />, title: 'Delete' },
+    ],
   },
 }

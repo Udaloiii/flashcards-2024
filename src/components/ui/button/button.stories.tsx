@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import LogOut from '@/assets/logo/logOut'
+import LogOut from '@/assets/logo/log-out'
 
 import { Button } from './'
 

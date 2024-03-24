@@ -50,10 +50,6 @@
     background-color: var(--color-dark-500);
   }
 
-  &:hover {
-    background-color: var(--color-dark-100);
-  }
-
   &:focus-visible {
     outline: 2px solid var(--color-info-700);
     transition: 0.1s;
@@ -62,6 +58,20 @@
   &:disabled {
     color: var(--color-light-900);
     background-color: var(--color-dark-300);
+  }
+}
+
+.icon {
+  padding: 0;
+  background-color: transparent;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 }
 

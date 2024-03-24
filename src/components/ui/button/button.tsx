@@ -5,7 +5,7 @@ import s from './button.module.scss'
 type ButtonProps = {
   children?: ReactNode
   fullWidth?: boolean
-  variant?: 'primary' | 'secondary'
+  variant?: 'icon' | 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<'button'>
 export const Button = ({
   children,

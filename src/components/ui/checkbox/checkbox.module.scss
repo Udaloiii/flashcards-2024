@@ -38,6 +38,7 @@
 }
 
 .checkbox {
+  position: relative;
   z-index: 1;
 
   display: flex;
@@ -51,13 +52,22 @@
   border: 1px solid var(--color-light-900);
   border-radius: 2px;
   outline: none;
+
+  &[data-state='checked'] {
+    border-color: var(--color-light-100);
+  }
 }
 
 .indicator {
-  width: 18px;
-  height: 18px;
-  background-color: black;
+  position: absolute;
+  top: -1px;
+  background-color: transparent;
   border-radius: 2px;
+
+  & svg {
+    width: 19px;
+    height: 20px;
+  }
 }
 
 .label {

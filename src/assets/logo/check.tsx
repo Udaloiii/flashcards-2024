@@ -4,6 +4,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     fill={'none'}
     height={18}
     ref={ref}
+    viewBox={'0 0 18 18'}
     width={18}
     xmlns={'http://www.w3.org/2000/svg'}
     {...props}

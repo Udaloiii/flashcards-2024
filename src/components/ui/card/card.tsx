@@ -7,7 +7,7 @@ type CardProps<T extends ElementType = 'div'> = {
   children?: ReactNode
 } & ComponentPropsWithoutRef<T>
 export const Card = <T extends ElementType = 'div'>(props: CardProps<T>) => {
-  const { as: Component = 'div', children } = props
+  const { as: Component = 'div', children, className } = props
 
-  return <Component className={`${s.container}`}>{children}</Component>
+  return <Component className={`${s.container} ${className}`}>{children}</Component>
 }

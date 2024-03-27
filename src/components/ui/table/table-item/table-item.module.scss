@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.image {
+  width: 118px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+}

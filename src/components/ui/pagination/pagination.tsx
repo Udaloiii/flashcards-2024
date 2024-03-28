@@ -1,4 +1,9 @@
+import ArrowBack from '@/assets/logo/arrow-back'
+import ArrowForward from '@/assets/logo/arrow-forward'
+import { Button } from '@/components/ui/button'
 import { DOTS, usePagination } from '@/components/ui/pagination/usePagination'
+import { Select } from '@/components/ui/select'
+import { Typography } from '@/components/ui/typography'
 
 import s from './pagination.module.scss'
 
@@ -24,7 +29,6 @@ export const Pagination = ({
     totalCount,
   })
 
-  // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
     return null
   }
@@ -44,37 +48,58 @@ export const Pagination = ({
   const disabledRightCondition = currentPage === lastPage && s.disabled
 
   return (
-    <ul className={s.container}>
-      {/* Left navigation arrow */}
-      <li className={`${disabledLeftCondition}`} onClick={onPrevious}>
-        <div className={s.arrowLeft}></div>
-      </li>
-      {paginationRange?.map((pageNumber, index) => {
-        // If the pageItem is a DOT, render the DOTS unicode character
-        if (`${pageNumber}` === DOTS) {
-          return (
-            <li className={s.styleDots} key={index}>
-              &#8230;
-            </li>
-          )
-        }
+    <div className={s.container}>
+      <ul className={s.numbersWrap}>
+        {/* Left navigation arrow */}
+        <li className={`${disabledLeftCondition}`} onClick={onPrevious}>
+          <Button className={s.arrow} variant={'icon'}>
+            <ArrowBack />
+          </Button>
+        </li>
+        {paginationRange?.map((pageNumber, index) => {
+          // If the pageItem is a DOT, render the DOTS unicode character
+          if (`${pageNumber}` === DOTS) {
+            return (
+              <li className={s.styleDots} key={index}>
+                &#8230;
+              </li>
+            )
+          }
 
-        // Render our Page Pills
-        return (
-          <li
-            className={s.paginationItem}
-            // condition={pageNumber === currentPage}
-            key={index}
-            onClick={() => onPageChange(Number(pageNumber))}
-          >
-            {pageNumber}
-          </li>
-        )
-      })}
-      {/*  Right Navigation arrow */}
-      <li className={`${disabledRightCondition}`} onClick={onNext}>
-        <div className={s.arrowRight}></div>
-      </li>
-    </ul>
+          // Render our Page Pills
+          const activeCondition = currentPage === pageNumber && s.active
+
+          return (
+            <Typography
+              as={'li'}
+              className={`${s.paginationItem} ${activeCondition}`}
+              // condition={pageNumber === currentPage}
+              key={index}
+              onClick={() => onPageChange(Number(pageNumber))}
+              tabIndex={0}
+              variant={'body2'}
+            >
+              {pageNumber}
+            </Typography>
+          )
+        })}
+        {/*  Right Navigation arrow */}
+        <li className={`${disabledRightCondition}`} onClick={onNext}>
+          <Button className={s.arrow} variant={'icon'}>
+            <ArrowForward />
+          </Button>
+        </li>
+      </ul>
+      <Typography as={'p'} className={s.selectWrap} variant={'body2'}>
+        Показать
+        <Select
+          className={s.select}
+          defaultValue={'10'}
+          items={['10', '20', ' 50']}
+          placeholder={'10'}
+        />
+        на странице
+      </Typography>
+    </div>
   )
 }

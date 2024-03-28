@@ -7,8 +7,9 @@ import s from './select.module.scss'
 
 type SelectType = {
   className?: string
+  defaultValue: string
   disabled?: boolean
-  items?: string[]
+  items: string[]
   label?: string
   onChange?: () => void
   placeholder?: string
@@ -16,6 +17,7 @@ type SelectType = {
 }
 export const Select = ({
   className,
+  defaultValue,
   disabled,
   items,
   label,
@@ -38,8 +40,8 @@ export const Select = ({
         </Typography>
       )}
       <RadixSelect.Root disabled={disabled} onValueChange={onChangeHandler} value={value}>
-        <RadixSelect.Trigger aria-label={'Food'} className={`${s.selectTrigger} ${className}`}>
-          <RadixSelect.Value placeholder={placeholder} />
+        <RadixSelect.Trigger className={`${s.selectTrigger} ${className}`}>
+          <RadixSelect.Value defaultValue={defaultValue} placeholder={placeholder} />
           <RadixSelect.Icon className={s.selectIcon}>
             <ArrowDown />
           </RadixSelect.Icon>

@@ -5,7 +5,7 @@ import s from '@/components/ui/select/select.module.scss'
 
 type ItemType = {
   className?: string
-  value?: string
+  value?: string // именно стринг в документации Radix
 }
 export const SelectItem = ({ className, value = '' }: ItemType) => {
   return (

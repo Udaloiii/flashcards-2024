@@ -1,3 +1,7 @@
+button {
+  all: unset;
+}
+
 .wrap {
   display: flex;
   gap: 10px;
@@ -38,15 +42,14 @@
 }
 
 .checkbox {
-  position: relative;
   z-index: 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 
   background-color: transparent;
   border: 1px solid var(--color-light-900);
@@ -54,16 +57,26 @@
   outline: none;
 
   &[data-state='checked'] {
-    border-color: var(--color-light-100);
+    border: transparent;
   }
 }
 
 .indicator {
-  position: absolute;
-  top: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border-radius: 2px;
 
+  &[data-state='checked'] {
+    box-shadow: 0 0 10px 0 white;
+  }
+
+  svg {
+    width: 19px;
+    height: 19px;
+  }
 }
 
 .label {

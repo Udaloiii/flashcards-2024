@@ -1,0 +1,115 @@
+button,
+fieldset,
+input {
+  all: unset;
+}
+
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+
+  opacity: 0.7;
+  background-color: var(--color-dark-900);
+
+  //animation: overlayShow;
+  animation-duration: 0.3s;
+
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes overlayHidden {
+    from {
+      opacity: 0.7;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  &[data-state='open'] {
+    animation-name: overlayShow;
+  }
+
+  &[data-state='closed'] {
+    animation-name: overlayHidden;
+  }
+}
+
+.dialogContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90vw;
+  max-width: 450px;
+  max-height: 85vh;
+  padding: 25px;
+
+  background-color: var(--color-dark-700);
+  border: 1px solid var(--color-dark-500);
+  border-radius: 2px;
+  box-shadow:
+    hsl(206deg 22% 7% / 35%) 0 10px 38px -10px,
+    hsl(206deg 22% 7% / 20%) 0 10px 20px -15px;
+
+  animation-duration: 0.5s;
+
+  &[data-state='open'] {
+    animation-name: open;
+  }
+
+  &[data-state='closed'] {
+    animation-name: closed;
+    animation-duration: 0.2s;
+  }
+
+  @keyframes open {
+    from {
+      transform: translate(-50%, -100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes closed {
+    from {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+
+    to {
+      transform: translate(-50%, 100%);
+      opacity: 0;
+    }
+  }
+}
+
+.DialogTitle {
+}
+
+.close {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+
+  svg {
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+}

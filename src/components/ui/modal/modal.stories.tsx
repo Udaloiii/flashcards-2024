@@ -27,6 +27,16 @@ export const ModalExample: Story = {
   },
 }
 
+export const ModalWithOneButton: Story = {
+  args: {
+    children:
+      'asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd ',
+    showCloseBtn: true,
+    title: 'Create new pack',
+    titlePrimary: 'Title primary',
+  },
+}
+
 export const ModalCreateNewPack: Story = {
   args: {
     children: (

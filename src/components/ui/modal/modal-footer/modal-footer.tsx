@@ -10,7 +10,9 @@ export const ModalFooter = ({ titlePrimary, titleSecondary }: ModalHeaderProps) 
   return (
     <footer className={s.container}>
       {titleSecondary && <Button variant={'secondary'}>{titleSecondary}</Button>}
-      <Button variant={'primary'}>{titlePrimary}</Button>
+      <Button className={s.primaryButton} variant={'primary'}>
+        {titlePrimary}
+      </Button>
     </footer>
   )
 }

@@ -20,3 +20,13 @@ export const PaginationExample: Story = {
     totalCount: 50,
   },
 }
+
+export const PaginationExample2: Story = {
+  args: {
+    currentPage: 5,
+    onPageChange: () => {},
+    pageSize: 10,
+    siblingCount: 3,
+    totalCount: 150,
+  },
+}

@@ -18,7 +18,7 @@ export const TableExample: Story = {
 }
 export const TableMyPacks: Story = {
   args: {
-    items: ['name', 'name', 'name', 'name'],
+    items: ['name', 'name', 'name', 'name', 'name', 'name', 'name', 'name', 'name'],
     myCards: true,
   },
 }

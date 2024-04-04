@@ -27,3 +27,11 @@ export const CheckBoxDisabled: Story = {
     label: 'Some label',
   },
 }
+
+export const CheckBoxTrueDisabled: Story = {
+  args: {
+    checked: true,
+    disabled: true,
+    label: 'Some label',
+  },
+}

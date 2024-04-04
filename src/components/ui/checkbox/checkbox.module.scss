@@ -4,91 +4,94 @@ button {
 
 .wrap {
   display: flex;
-  gap: 10px;
+  gap: 11px;
   align-items: center;
-}
-
-.wrapForCheckbox {
-  z-index: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 36px;
-  height: 36px;
-
-  background-color: transparent;
-  outline: none;
-
-  transition: 0.2s ease-in-out;
-
-  &:hover {
-    background-color: var(--color-dark-500);
-    border-radius: 50%;
-  }
-
-  &:active {
-    color: var(--color-light-900);
-    background-color: var(--color-dark-100);
-    border-radius: 50%;
-  }
-
-  &:focus {
-    background-color: var(--color-dark-100);
-    border-radius: 50%;
-    outline: none;
-  }
 }
 
 .checkbox {
+  position: relative;
   z-index: 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
+
+  color: var(--color-light-900);
 
   background-color: transparent;
-  border: 1px solid var(--color-light-900);
   border-radius: 2px;
   outline: none;
 
-  &[data-state='checked'] {
-    border: transparent;
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    top: -50%;
+    left: -50%;
+    transform: scale(0);
+
+    display: block;
+
+    width: 36px;
+    height: 36px;
+
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+
+    transition: 0.3s;
+  }
+
+  &:focus-visible {
+    &::before {
+      transform: scale(1);
+      background-color: var(--color-dark-100);
+    }
+  }
+
+  &:hover {
+    &::before {
+      transform: scale(1);
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  &:active {
+    &::before {
+      transform: scale(1);
+      background-color: var(--color-dark-100);
+    }
   }
 }
 
 .indicator {
+  z-index: 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: transparent;
+  width: 18px;
+  height: 18px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
   border-radius: 2px;
 
   &[data-state='checked'] {
     box-shadow: 0 0 10px 0 white;
   }
-
-  svg {
-    width: 19px;
-    height: 19px;
-  }
 }
 
-.label {
+label {
+  cursor: pointer;
   transition: 0.1s;
-
-  &:hover {
-    transform: scale(1.01);
-  }
-
-  &:active {
-    transform: scale(0.99);
-  }
 }
 
 .disabled {
@@ -99,7 +102,15 @@ button {
     color: var(--color-dark-100);
   }
 
-  button {
-    border-color: var(--color-dark-100);
+  .checkbox {
+    &[data-disabled] {
+      color: var(--color-dark-100);
+    }
+  }
+
+  .indicator {
+    color: var(--color-dark-100);
+    background-color: var(--color-light-900);
+    box-shadow: none;
   }
 }

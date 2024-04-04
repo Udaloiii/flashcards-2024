@@ -1,43 +1,40 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 import Check from '@/assets/logo/check'
-import { Typography } from '@/components/ui/typography'
+import Uncheck from '@/assets/logo/uncheck'
 import * as CheckBox from '@radix-ui/react-checkbox'
+import * as LabelRadix from '@radix-ui/react-label'
 
 import s from './checkbox.module.scss'
 
 type CheckboxProps = {
+  checked?: boolean
   disabled?: boolean
   label?: string
 }
-export const Checkbox = ({ disabled, label }: CheckboxProps) => {
-  const [checked, setChecked] = useState(false)
-  const checkHandler = () => setChecked(prevState => !prevState)
+export const Checkbox = ({ checked, disabled, label }: CheckboxProps) => {
+  const id = useId()
+  const [check, setCheck] = useState(checked)
+  const checkHandler = () => setCheck(prevState => !prevState)
   const disableCondition = disabled && s.disabled
 
   return (
-    <form>
-      <div className={`${s.wrap} ${disableCondition}`}>
-        <div className={s.wrapForCheckbox} tabIndex={0}>
-          <CheckBox.Root
-            className={s.checkbox}
-            disabled={disabled}
-            id={'c1'}
-            onCheckedChange={checkHandler}
-          >
-            {checked && (
-              <CheckBox.Indicator className={s.indicator}>
-                <Check />
-              </CheckBox.Indicator>
-            )}
-          </CheckBox.Root>
-        </div>
-        {label && (
-          <Typography as={'label'} className={s.label} htmlFor={'c1'} variant={'body2'}>
-            {label}
-          </Typography>
-        )}
-      </div>
-    </form>
+    <div className={`${s.wrap} ${disableCondition}`}>
+      <LabelRadix.Root className={s.wrap} htmlFor={id}>
+        <CheckBox.Root
+          checked={check}
+          className={s.checkbox}
+          disabled={disabled}
+          id={id}
+          onCheckedChange={checkHandler}
+        >
+          <Uncheck />
+          <CheckBox.Indicator className={s.indicator}>
+            <Check />
+          </CheckBox.Indicator>
+        </CheckBox.Root>
+        <div>{label}</div>
+      </LabelRadix.Root>
+    </div>
   )
 }

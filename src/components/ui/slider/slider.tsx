@@ -6,9 +6,10 @@ import s from './slider.module.scss'
 
 type SliderProps = {
   onChange?: (value: number[]) => void
+  step?: number
   value: number[]
 }
-export const Slider = ({ value }: SliderProps) => {
+export const Slider = ({ step = 1, value }: SliderProps) => {
   const [arrValue, setArrValue] = useState(value)
   const onChangeHandler = (e: number[]) => {
     setArrValue(e)
@@ -25,7 +26,7 @@ export const Slider = ({ value }: SliderProps) => {
         max={100}
         min={0}
         onValueChange={onChangeHandler}
-        step={1}
+        step={step}
       >
         <RadixSlider.Track className={s.sliderTrack}>
           <RadixSlider.Range className={s.sliderRange} />

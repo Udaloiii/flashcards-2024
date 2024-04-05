@@ -1,6 +1,6 @@
-import { ComponentPropsWithoutRef, useState } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, useState } from 'react'
 
-import ClosedEye from '@/assets/logo/closedEye'
+import ClosedEye from '@/assets/logo/closed-eye'
 import Eye from '@/assets/logo/eye'
 import Search from '@/assets/logo/search'
 import { Button } from '@/components/ui/button'
@@ -16,9 +16,11 @@ export const Textfield = ({
   className,
   disabled,
   error,
+  value,
   variant = 'text',
   ...rest
 }: InputProps) => {
+  const [localValue, setLocalValue] = useState(value)
   const [show, setShow] = useState(false)
   const [inputType, setInputType] = useState(variant)
   const showPasswordHandler = () => {
@@ -32,6 +34,9 @@ export const Textfield = ({
     // eslint-disable-next-line no-nested-ternary
     variant === 'password' ? s.password : variant === 'search' ? s.search : ''
 
+  // handlers
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setLocalValue(e.currentTarget.value)
+
   return (
     <Typography as={'div'} variant={'body1'}>
       <div className={`${s.wrap} ${className}`}>
@@ -39,8 +44,10 @@ export const Textfield = ({
         <input
           className={`${s.input} ${iconStyleCondition} ${errCondition}`}
           disabled={disabled}
+          onChange={onChangeHandler}
           placeholder={variant}
           type={inputType}
+          value={localValue}
           {...rest}
         />
         {error && <span className={s.errorMessage}>{error}</span>}

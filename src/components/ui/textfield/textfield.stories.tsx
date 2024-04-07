@@ -21,6 +21,12 @@ export const InputText: Story = {
     variant: 'text',
   },
 }
+export const InputWithLabel: Story = {
+  args: {
+    label: 'Some label',
+    variant: 'text',
+  },
+}
 
 export const InputPassword: Story = {
   args: {

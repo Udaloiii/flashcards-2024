@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   gap: 20px;
   align-items: center;
@@ -9,4 +10,15 @@
   height: 48px;
   object-fit: cover;
   border-radius: 4px;
+}
+
+.sort {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: 0.3s;
+}
+
+.sortUp {
+  transform: rotate(180deg) !important;
 }

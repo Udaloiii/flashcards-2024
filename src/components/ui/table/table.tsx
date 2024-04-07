@@ -40,7 +40,7 @@ export const Table = ({ items = [], myCards }: TableProps) => {
           <TableItem
             as={'th'}
             onClick={() => handleSort('Name')}
-            sortBy={sortByColumn}
+            sortByColumn={sortByColumn}
             sortDirection={sortDirection}
             title={'Name'}
           />
@@ -48,7 +48,7 @@ export const Table = ({ items = [], myCards }: TableProps) => {
           <TableItem
             as={'th'}
             onClick={() => handleSort('Last update')}
-            sortBy={sortByColumn}
+            sortByColumn={sortByColumn}
             sortDirection={sortDirection}
             title={'Last update'}
           />

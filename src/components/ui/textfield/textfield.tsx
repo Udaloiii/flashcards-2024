@@ -59,7 +59,12 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
           />
           {error && <span className={s.errorMessage}>{error}</span>}
           {openEyeCondition && (
-            <Button className={s.passwordIcon} onClick={showPasswordHandler} variant={'icon'}>
+            <Button
+              className={s.passwordIcon}
+              onClick={showPasswordHandler}
+              type={'button'}
+              variant={'icon'}
+            >
               {openEyeCondition}
             </Button>
           )}

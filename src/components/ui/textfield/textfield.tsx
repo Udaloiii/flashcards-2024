@@ -62,6 +62,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
             <Button
               className={s.passwordIcon}
               onClick={showPasswordHandler}
+              tabIndex={-1} // для отключения фокуса при переключении на Tab
               type={'button'}
               variant={'icon'}
             >

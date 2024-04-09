@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useId } from 'react'
 
 import Check from '@/assets/logo/check'
 import Uncheck from '@/assets/logo/uncheck'
@@ -11,22 +11,23 @@ type CheckboxProps = {
   checked?: boolean
   disabled?: boolean
   label?: string
+  onValueChange?: () => void
 }
-export const Checkbox = ({ checked, disabled, label }: CheckboxProps) => {
+export const Checkbox = ({ checked, disabled, label, onValueChange }: CheckboxProps) => {
   const id = useId()
-  const [check, setCheck] = useState(checked)
-  const checkHandler = () => setCheck(prevState => !prevState)
+  // const [check, setCheck] = useState(checked)
+  // const checkHandler = () => setCheck(prevState => !prevState)
   const disableCondition = disabled && s.disabled
 
   return (
     <div className={`${s.wrap} ${disableCondition}`}>
       <LabelRadix.Root className={s.wrap} htmlFor={id}>
         <CheckBox.Root
-          checked={check}
+          checked={checked}
           className={s.checkbox}
           disabled={disabled}
           id={id}
-          onCheckedChange={checkHandler}
+          onCheckedChange={onValueChange}
         >
           <Uncheck />
           <CheckBox.Indicator className={s.indicator}>

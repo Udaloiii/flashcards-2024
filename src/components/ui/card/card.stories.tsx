@@ -15,7 +15,6 @@ type Story = StoryObj<typeof meta>
 
 export const CardWithButton: Story = {
   args: {
-    as: 'article',
     children: (
       <>
         <Button> some button</Button>
@@ -26,7 +25,6 @@ export const CardWithButton: Story = {
 
 export const CardWithTypography: Story = {
   args: {
-    as: 'div',
     children: (
       <>
         <Typography variant={'h1'}> some text</Typography>

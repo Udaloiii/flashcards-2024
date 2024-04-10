@@ -57,7 +57,11 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
             value={localValue}
             {...rest}
           />
-          {error && <span className={s.errorMessage}>{error}</span>}
+          {error && (
+            <Typography className={s.errorMessage} variant={'caption'}>
+              {error}
+            </Typography>
+          )}
           {openEyeCondition && (
             <Button
               className={s.passwordIcon}

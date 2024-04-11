@@ -1,0 +1,19 @@
+.table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    cursor: pointer;
+  }
+
+  & th,
+  td {
+    padding: 5px 10px;
+    text-align: left;
+    border: 1px solid var(--color-dark-500);
+  }
+
+  & thead {
+    background-color: var(--color-dark-500);
+  }
+}

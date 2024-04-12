@@ -1,17 +1,17 @@
-import { Table } from '@/components/ui/table/table'
+import { TableExample } from '@/components/ui/table/tableExample/tableExample'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
   argTypes: {},
-  component: Table,
+  component: TableExample,
   tags: ['autodocs'],
   title: 'Components/Table',
-} satisfies Meta<typeof Table>
+} satisfies Meta<typeof TableExample>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const TableExample: Story = {
+export const TableExam: Story = {
   args: {
     items: ['name 1', 'name 2', 'name 3', 'name 4'],
   },

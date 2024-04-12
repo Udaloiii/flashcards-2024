@@ -1,4 +1,4 @@
-.table {
+.container {
   border-collapse: collapse;
   width: 100%;
 
@@ -16,4 +16,13 @@
   & thead {
     background-color: var(--color-dark-500);
   }
+}
+
+.wrapStarsOptions {
+  display: flex;
+  gap: 130px;
+}
+
+.big {
+  width: 350px;
 }

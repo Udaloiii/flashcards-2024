@@ -10,22 +10,20 @@ type ControlItemsProps = {
 }
 export const ControlItems = ({ myCards }: ControlItemsProps) => {
   return (
-    <td>
-      <div className={s.container}>
-        <Button variant={'icon'}>
-          <PlayCircle />
-        </Button>
-        {myCards && (
-          <>
-            <Button variant={'icon'}>
-              <Edit />
-            </Button>
-            <Button variant={'icon'}>
-              <Delete />
-            </Button>
-          </>
-        )}
-      </div>
-    </td>
+    <div className={s.container}>
+      <Button variant={'icon'}>
+        <PlayCircle />
+      </Button>
+      {myCards && (
+        <>
+          <Button variant={'icon'}>
+            <Edit />
+          </Button>
+          <Button variant={'icon'}>
+            <Delete />
+          </Button>
+        </>
+      )}
+    </div>
   )
 }

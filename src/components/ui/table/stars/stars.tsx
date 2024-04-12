@@ -6,10 +6,10 @@ export const Stars = () => {
   const item = [1, 2, 3, 4, 5]
 
   return (
-    <td className={s.container}>
+    <span className={s.container}>
       {item.map(el => (
         <Star key={el} />
       ))}
-    </td>
+    </span>
   )
 }

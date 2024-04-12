@@ -1,49 +1,22 @@
-import {
-  MainTable,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table/mainTable/mainTable'
-import { Typography } from '@/components/ui/typography'
+import { DecksTableBody } from '@/components/ui/table/decks-table/decks-table-body/decks-table-body'
+import { DecksTableHead } from '@/components/ui/table/decks-table/decks-table-head/decks-table-head'
+import { Table, TableBody, TableHeader } from '@/components/ui/table/table'
 
 import s from './decks-table.module.scss'
 
 type DecksTableProps = {
-  items?: string[]
+  items: string[]
+  myCards?: boolean
 }
-export const DecksTable = ({ items }: DecksTableProps) => {
+export const DecksTable = ({ items, myCards }: DecksTableProps) => {
   return (
-    <MainTable className={s.container}>
+    <Table className={s.container}>
       <TableHeader>
-        <TableRow>
-          <TableHead>
-            <Typography variant={'subtitle2'}>Name</Typography>
-          </TableHead>
-          <TableHead>
-            <Typography variant={'subtitle2'}>Cards</Typography>
-          </TableHead>
-          <TableHead>
-            <Typography variant={'subtitle2'}>Last updated</Typography>
-          </TableHead>
-          <TableHead>
-            <Typography variant={'subtitle2'}>Created by</Typography>
-          </TableHead>
-        </TableRow>
+        <DecksTableHead />
       </TableHeader>
       <TableBody>
-        {items?.map((el, ind) => (
-          <TableRow key={ind}>
-            <TableCell>
-              <Typography variant={'body2'}>{el}</Typography>
-            </TableCell>
-            <TableCell>
-              <Typography variant={'body2'}>{el}</Typography>
-            </TableCell>
-          </TableRow>
-        ))}
+        <DecksTableBody items={items} myCards={myCards} />
       </TableBody>
-    </MainTable>
+    </Table>
   )
 }

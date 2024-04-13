@@ -1,9 +1,11 @@
 import { TableHead, TableRow } from '@/components/ui/table/table'
 import { Typography } from '@/components/ui/typography'
 
+import s from './cards-table-head.module.scss'
+
 export const CardsTableHead = () => {
   return (
-    <TableRow>
+    <TableRow className={s.container}>
       <TableHead>
         <Typography variant={'subtitle2'}>Question</Typography>
       </TableHead>

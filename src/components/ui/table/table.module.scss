@@ -1,6 +1,12 @@
-.container {
+.table {
   border-collapse: collapse;
   width: 100%;
+  border: 1px solid var(--color-dark-500);
+
+  tr {
+    border: 1px solid var(--color-dark-500);
+    transition: 0.3s;
+  }
 
   th {
     cursor: pointer;
@@ -8,9 +14,9 @@
 
   & th,
   td {
-    padding: 5px 10px;
+    padding: 6px 24px;
     text-align: left;
-    border: 1px solid var(--color-dark-500);
+    border: none;
   }
 
   & thead {
@@ -18,11 +24,8 @@
   }
 }
 
-.wrapStarsOptions {
-  display: flex;
-  gap: 130px;
-}
-
-.big {
-  width: 350px;
+tbody tr {
+  &:hover {
+    background-color: var(--color-dark-700);
+  }
 }

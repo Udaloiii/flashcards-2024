@@ -1,5 +1,5 @@
 import { TabSwitcher } from '@/components/ui/tab-switcher/tab-switcher'
-import { Table } from '@/components/ui/table'
+import { DecksTable } from '@/components/ui/table/decks-table/decks-table'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -16,12 +16,12 @@ export const TabSwitcherExample: Story = {
   args: {
     contentLeft: (
       <>
-        <Table items={['some', 'some', 'some', 'some']} />
+        <DecksTable items={['some', '25', '25.05.2025', 'Some']} />
       </>
     ),
     contentRight: (
       <>
-        <Table items={['some', 'some', 'some', 'some']} myCards />
+        <DecksTable items={['some', '25', '25.05.2025', 'Some']} myCards />
       </>
     ),
   },

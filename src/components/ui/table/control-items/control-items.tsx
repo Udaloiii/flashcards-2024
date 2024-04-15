@@ -6,11 +6,12 @@ import { Button } from '@/components/ui/button'
 import s from './control-items.module.scss'
 
 type ControlItemsProps = {
+  className?: string
   myCards?: boolean
 }
-export const ControlItems = ({ myCards }: ControlItemsProps) => {
+export const ControlItems = ({ className, myCards }: ControlItemsProps) => {
   return (
-    <div className={s.container}>
+    <div className={`${s.container} ${className}`}>
       <Button variant={'icon'}>
         <PlayCircle />
       </Button>

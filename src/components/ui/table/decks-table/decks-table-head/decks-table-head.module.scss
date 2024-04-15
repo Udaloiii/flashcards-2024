@@ -1,0 +1,39 @@
+.container {
+  th:first-child {
+    width: 300px;
+  }
+
+  th:nth-child(2) {
+    width: 100px;
+  }
+
+  th:nth-child(3) {
+    width: 120px;
+  }
+
+  th:nth-child(4) {
+    width: 120px;
+  }
+
+  th:last-child {
+    cursor: auto;
+    width: 80px;
+  }
+}
+
+.tableHead {
+  position: relative;
+}
+
+.sort {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) !important;
+
+  transition: 0.3s;
+}
+
+.sortUp {
+  transform: rotate(180deg) translateY(50%) !important;
+}

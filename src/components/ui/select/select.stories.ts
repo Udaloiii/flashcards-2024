@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>
 
 export const SelectExample: Story = {
   args: {
+    defaultValue: 'apple',
     items: ['apple', 'banana', 'cherry'],
     label: 'Some label',
     placeholder: 'Choice your favorite fruits',
@@ -21,6 +22,7 @@ export const SelectExample: Story = {
 
 export const SelectExampleMore: Story = {
   args: {
+    defaultValue: 'apple',
     items: [
       'apasdasdas asdasd asdasd ple',
       'bananasd as asd asd asdasdasd asdasd a',
@@ -35,6 +37,7 @@ export const SelectExampleMore: Story = {
 
 export const SelectDisable: Story = {
   args: {
+    defaultValue: 'apple',
     disabled: true,
     items: ['apple', 'banana', 'cherry', 'potato', 'ginger', 'lemon'],
     label: 'Some label',

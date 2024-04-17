@@ -1,0 +1,65 @@
+h1 {
+  all: unset;
+}
+
+.wrap {
+  padding: 36px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.forgotButton {
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.createAcc {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  align-items: center;
+
+  margin-top: 20px;
+
+  & span {
+    color: var(--color-light-900);
+  }
+
+  & span ~ a {
+    cursor: pointer;
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

@@ -8,7 +8,7 @@ import { Typography } from '@/components/ui/typography'
 
 import s from './textfield.module.scss'
 
-type InputProps = {
+export type InputProps = {
   error?: null | string
   label?: string
   variant?: 'password' | 'search' | 'text'

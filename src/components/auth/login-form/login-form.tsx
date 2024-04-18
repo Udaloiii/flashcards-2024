@@ -53,7 +53,7 @@ export const LoginForm = () => {
           </Typography>
         </div>
         <Button fullWidth type={'submit'}>
-          Sign In
+          <Typography variant={'subtitle2'}>Sign In</Typography>
         </Button>
       </form>
       <div className={s.createAcc}>

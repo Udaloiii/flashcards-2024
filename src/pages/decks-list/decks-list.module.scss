@@ -1,0 +1,35 @@
+h1 {
+  all: unset;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+
+  width: 1010px;
+  margin: 0 auto;
+}
+
+.titleBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.clearButton {
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.changeCardBlock {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.textfield {
+  width: 300px;
+}

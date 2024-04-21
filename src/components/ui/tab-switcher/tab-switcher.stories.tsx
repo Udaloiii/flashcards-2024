@@ -1,3 +1,4 @@
+import { TabContent } from '@/components/ui/tab-switcher/tab-content'
 import { TabSwitcher } from '@/components/ui/tab-switcher/tab-switcher'
 import { DecksTable } from '@/components/ui/table/decks-table/decks-table'
 import { Meta, StoryObj } from '@storybook/react'
@@ -14,15 +15,20 @@ type Story = StoryObj<typeof meta>
 
 export const TabSwitcherExample: Story = {
   args: {
-    contentLeft: (
+    children: (
       <>
-        <DecksTable items={['some', '25', '25.05.2025', 'Some']} />
+        <TabContent value={'asd'}>
+          <DecksTable items={['some', '25', '25.05.2025', 'Some']} myCards />
+        </TabContent>
+        <TabContent value={'dsa'}>
+          <DecksTable items={['some', '25', '25.05.2025', 'Some']} />
+        </TabContent>
       </>
     ),
-    contentRight: (
-      <>
-        <DecksTable items={['some', '25', '25.05.2025', 'Some']} myCards />
-      </>
-    ),
+    defaultValue: 'asd',
+    trigger: [
+      { title: '5', value: 'asd' },
+      { title: '10', value: 'dsa' },
+    ],
   },
 }

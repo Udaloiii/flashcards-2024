@@ -47,10 +47,10 @@ export const DecksTableHead = ({ onclick, sortByColumn, sortDirection }: DecksTa
           )}
         </Typography>
       </TableHead>
-      <TableHead>
+      <TableHead className={s.tableHead}>
         <Typography variant={'subtitle2'}>Created by</Typography>
       </TableHead>
-      <TableHead />
+      <TableHead className={s.tableHead} />
     </TableRow>
   )
 }

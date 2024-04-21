@@ -7,10 +7,11 @@ import { Table, TableBody, TableHeader } from '@/components/ui/table/table'
 import s from './decks-table.module.scss'
 
 type DecksTableProps = {
+  className?: string
   items: string[]
   myCards?: boolean
 }
-export const DecksTable = ({ items, myCards }: DecksTableProps) => {
+export const DecksTable = ({ className, items, myCards }: DecksTableProps) => {
   const [sortByColumn, setSortByColumn] = useState<string>('')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
 
@@ -35,7 +36,7 @@ export const DecksTable = ({ items, myCards }: DecksTableProps) => {
   })
 
   return (
-    <Table className={s.container}>
+    <Table className={`${s.container} ${className}`}>
       <TableHeader>
         <DecksTableHead
           onclick={handleSort}

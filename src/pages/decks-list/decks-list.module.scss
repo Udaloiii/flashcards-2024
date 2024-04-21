@@ -28,8 +28,18 @@ h1 {
   display: flex;
   gap: 10px;
   justify-content: space-between;
+  height: 36px;
 }
 
 .textfield {
   width: 300px;
+}
+
+.tabContent {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-width: 1010px;
+  margin-top: 36px;
 }

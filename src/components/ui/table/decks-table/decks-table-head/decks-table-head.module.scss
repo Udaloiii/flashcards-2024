@@ -1,4 +1,6 @@
 .container {
+  background-color: var(--color-dark-500);
+
   th:first-child {
     width: 300px;
   }
@@ -23,12 +25,21 @@
 
 .tableHead {
   position: relative;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--color-dark-300);
+  }
+
+  &:empty:hover {
+    background-color: var(--color-dark-500);
+  }
 }
 
 .sort {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 5px;
   transform: translateY(-50%) !important;
 
   transition: 0.3s;

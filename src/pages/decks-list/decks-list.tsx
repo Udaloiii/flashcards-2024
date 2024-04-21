@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Header } from '@/components/ui/header'
 import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
+import { TabContent } from '@/components/ui/tab-switcher/tab-content/tab-content'
 import { DecksTable } from '@/components/ui/table/decks-table/decks-table'
 import { Textfield } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
@@ -30,9 +31,19 @@ export const DecksList = ({ allItems, isLoggedIn, myItems }: DecksListProps) => 
         <div className={s.changeCardBlock}>
           <Textfield className={s.textfield} variant={'search'} />
           <TabSwitcher
-            contentLeft={<DecksTable items={allItems} />}
-            contentRight={<DecksTable items={myItems} myCards />}
-          />
+            defaultValue={'all card'}
+            trigger={[
+              { title: 'All Card', value: 'all card' },
+              { title: 'My Card', value: 'my card' },
+            ]}
+          >
+            <TabContent value={'all card'}>
+              <DecksTable className={s.tabContent} items={allItems} />
+            </TabContent>
+            <TabContent value={'my card'}>
+              <DecksTable className={s.tabContent} items={myItems} myCards />
+            </TabContent>
+          </TabSwitcher>
           <Slider value={[0, 20]} />
           <Button className={s.clearButton} variant={'secondary'}>
             <Delete />

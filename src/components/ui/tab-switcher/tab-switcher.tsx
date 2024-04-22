@@ -8,13 +8,14 @@ export type TriggerType = {
   value: string
 }
 type TabSwitcherProps = {
-  children: ReactNode
+  children?: ReactNode
   defaultValue: string
   trigger: TriggerType[]
+  value?: string
 }
-export const TabSwitcher = ({ children, defaultValue, trigger }: TabSwitcherProps) => {
+export const TabSwitcher = ({ children, defaultValue, trigger, value }: TabSwitcherProps) => {
   return (
-    <Tabs.Root defaultValue={defaultValue}>
+    <Tabs.Root defaultValue={defaultValue} value={value}>
       <Tabs.List>
         {trigger.map(el => (
           <TabTrigger key={el.value} title={el.title} value={el.value} />

@@ -36,10 +36,9 @@ h1 {
 }
 
 .tabContent {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
   max-width: 1010px;
-  margin-top: 36px;
+}
+
+.paginationBlock {
+  margin-top: -20px;
 }

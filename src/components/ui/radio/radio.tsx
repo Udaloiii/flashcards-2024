@@ -6,7 +6,7 @@ import s from './radio.module.scss'
 type RadioType = {
   disabled?: boolean
   items?: string[]
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
 }
 export const Radio = ({ disabled, items }: RadioType) => {
   // const onChangeHandler = () => onChange('radio-handler called')

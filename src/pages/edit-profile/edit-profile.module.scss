@@ -1,0 +1,54 @@
+h1,
+h2 {
+  all: unset;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+
+  padding: 33px 80px;
+}
+
+.avatarBlock {
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: var(--color-dark-500);
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
+
+.name {
+  display: flex;
+  gap: 10px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+  }
+}
+
+.email {
+  color: var(--color-dark-100);
+}

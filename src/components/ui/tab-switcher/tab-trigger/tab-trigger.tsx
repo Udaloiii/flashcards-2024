@@ -9,7 +9,7 @@ type TabTriggerProps = {
 }
 export const TabTrigger = ({ title, value }: TabTriggerProps) => {
   return (
-    <Tabs.Trigger className={s.container} value={value}>
+    <Tabs.Trigger className={s.container} tabIndex={0} value={value}>
       <Typography variant={'body1'}>{title}</Typography>
     </Tabs.Trigger>
   )

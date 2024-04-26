@@ -1,6 +1,5 @@
 .container {
   cursor: pointer;
-
   padding: 6px 24px;
 
   background-color: transparent;
@@ -9,31 +8,27 @@
 
   transition: 0.3s;
 
+  &:first-child {
+    border-right: 1px solid var(--color-dark-500);
+    border-left: 1px solid var(--color-dark-500);
+    border-radius: 2px 0 0 2px;
+  }
+
+  &[data-state='inactive']:hover {
+    background-color: var(--color-dark-700);
+    border-color: var(--color-dark-300);
+  }
+
+  &:not(:last-child) {
+    border-right-color: transparent;
+  }
+
   &[data-state='active'] {
     background-color: var(--color-primary-500);
     border-color: var(--color-primary-500);
   }
 
-  &:first-child {
-    border-right: none;
-
-    &[data-state='active'] {
-      border-radius: 2px 0 0 2px;
-    }
-  }
-
-  &:nth-child(2) {
-    border-left: none;
-
-    &[data-state='active'] {
-      border-radius: 0 2px 2px 0;
-    }
-  }
-
-  &[data-state='inactive'] {
-    &:hover {
-      background-color: var(--color-dark-300);
-      border-color: var(--color-dark-100);
-    }
+  &:last-child {
+    border-radius: 0 2px 2px 0;
   }
 }

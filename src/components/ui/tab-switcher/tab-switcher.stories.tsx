@@ -23,12 +23,83 @@ export const TabSwitcherExample: Story = {
         <TabContent value={'dsa'}>
           <DecksTable items={['some', '25', '25.05.2025', 'Some']} />
         </TabContent>
+        <TabContent value={'aaa'}>
+          <DecksTable
+            items={[
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+            ]}
+          />
+        </TabContent>
+        <TabContent value={'dda'}>
+          <DecksTable
+            items={[
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+              'some',
+              '25',
+              '25.05.2025',
+              'Some',
+            ]}
+            myCards
+          />
+        </TabContent>
       </>
     ),
     defaultValue: 'asd',
     trigger: [
       { title: '5', value: 'asd' },
       { title: '10', value: 'dsa' },
+      { title: '15', value: 'aaa' },
+      { title: '20', value: 'dda' },
     ],
   },
 }

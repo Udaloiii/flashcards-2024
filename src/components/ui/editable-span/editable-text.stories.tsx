@@ -1,20 +1,24 @@
 import Edit from '@/assets/logo/edit'
-import { EditableSpan } from '@/components/ui/editable-span/editable-span'
+import { EditableText } from '@/components/ui/editable-span/editable-text'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
   argTypes: {},
-  component: EditableSpan,
+  component: EditableText,
   tags: ['autodocs'],
-  title: 'Components/EditableSpan',
-} satisfies Meta<typeof EditableSpan>
+  title: 'Components/EditableText',
+} satisfies Meta<typeof EditableText>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const EditableSpanExample: Story = {
   args: {
+    changeOn: false,
+    label: 'Nickname',
+    setChangeOn: () => {},
     title: 'Eugene',
+    toggleMode: () => {},
     trigger: <Edit />,
   },
 }

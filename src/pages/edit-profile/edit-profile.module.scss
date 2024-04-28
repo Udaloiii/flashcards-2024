@@ -9,7 +9,7 @@ h2 {
   gap: 25px;
   align-items: center;
 
-  padding: 33px 80px;
+  padding: 33px;
 }
 
 .avatarBlock {
@@ -41,6 +41,8 @@ h2 {
 .name {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  width: 100%;
 
   svg {
     width: 16px;

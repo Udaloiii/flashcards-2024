@@ -34,7 +34,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
       setLocalValue(e.currentTarget.value)
 
     return (
-      <Typography as={'div'} variant={'body1'}>
+      <Typography as={'div'} className={className} variant={'body1'}>
         {label && (
           <Typography
             as={'label'}
@@ -45,7 +45,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </Typography>
         )}
-        <div className={`${s.wrap} ${className}`}>
+        <div className={s.wrap}>
           {variant === 'search' && <span className={s.searchIcon}>{searchCondition}</span>}
           <input
             className={`${s.input} ${iconStyleCondition} ${errCondition}`}

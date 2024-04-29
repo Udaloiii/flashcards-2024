@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export const useEditableSpan = () => {
   const [changeOn, setChangeOn] = useState<boolean>(false)
-  const toggleModeHandler = () => setChangeOn(prevState => !prevState)
+  const toggleMode = () => setChangeOn(prevState => !prevState)
 
-  return { changeOn, setChangeOn, toggleModeHandler } as const
+  return { changeOn, setChangeOn, toggleMode } as const
 }

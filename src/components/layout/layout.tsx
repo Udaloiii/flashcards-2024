@@ -11,7 +11,7 @@ export const Layout = forwardRef<ElementRef<'div'>, LayoutProps>(
     return (
       <div className={className} ref={ref} {...rest}>
         <Header />
-        {children}
+        <main className={s.main}>{children}</main>
       </div>
     )
   }

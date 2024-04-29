@@ -34,7 +34,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
       setLocalValue(e.currentTarget.value)
 
     return (
-      <Typography as={'div'} className={className} variant={'body1'}>
+      <Typography as={'div'} className={`${s.container} ${className}`} variant={'body1'}>
         {label && (
           <Typography
             as={'label'}

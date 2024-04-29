@@ -50,14 +50,12 @@ export const Pagination = ({
   return (
     <div className={s.container}>
       <ul className={s.numbersWrap}>
-        {/* Left navigation arrow */}
         <li className={`${disabledLeftCondition}`} onClick={onPrevious}>
           <Button className={s.arrow} variant={'icon'}>
             <ArrowBack />
           </Button>
         </li>
         {paginationRange?.map((pageNumber, index) => {
-          // If the pageItem is a DOT, render the DOTS unicode character
           if (`${pageNumber}` === DOTS) {
             return (
               <li className={s.styleDots} key={index}>
@@ -66,7 +64,6 @@ export const Pagination = ({
             )
           }
 
-          // Render our Page Pills
           const activeCondition = currentPage === pageNumber && s.active
 
           return (
@@ -83,7 +80,6 @@ export const Pagination = ({
             </Typography>
           )
         })}
-        {/*  Right Navigation arrow */}
         <li className={`${disabledRightCondition}`} onClick={onNext}>
           <Button className={s.arrow} variant={'icon'}>
             <ArrowForward />

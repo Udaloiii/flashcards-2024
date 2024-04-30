@@ -14,7 +14,7 @@ export type DropdownItemsType = {
 }
 
 type DropdownType = {
-  dotsTrigger?: ReactNode
+  dotsTrigger?: boolean
   iconTrigger?: string
   items?: DropdownItemsType[]
 }

@@ -3,7 +3,6 @@ import Edit from '@/assets/logo/edit'
 import LogOut from '@/assets/logo/log-out'
 import Person from '@/assets/logo/person'
 import PlayCircle from '@/assets/logo/play-circle'
-import VerticalDots from '@/assets/logo/vertical-dots'
 import { Dropdown } from '@/components/ui/dropdown/dropdown'
 import { Meta, StoryObj } from '@storybook/react'
 
@@ -31,7 +30,7 @@ export const DropdownWithUserImg: Story = {
 
 export const DropdownWithDots: Story = {
   args: {
-    dotsTrigger: <VerticalDots />,
+    dotsTrigger: true,
     items: [
       { icon: <PlayCircle />, title: 'Learn' },
       { icon: <Edit />, title: 'Edit' },

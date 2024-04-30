@@ -4,13 +4,16 @@ import { Header } from '@/components/ui/header'
 
 import s from './layout.module.scss'
 
-type LayoutProps = ComponentPropsWithoutRef<'div'>
+type LayoutProps = ComponentPropsWithoutRef<'div'> & {
+  isLoggedIn?: boolean
+  userName?: string
+}
 
 export const Layout = forwardRef<ElementRef<'div'>, LayoutProps>(
-  ({ children, className, ...rest }, ref) => {
+  ({ children, className, isLoggedIn, userName, ...rest }, ref) => {
     return (
       <div className={className} ref={ref} {...rest}>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} userName={userName} />
         <main className={s.main}>{children}</main>
       </div>
     )

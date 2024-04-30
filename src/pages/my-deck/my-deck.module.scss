@@ -1,0 +1,31 @@
+h1 {
+  all: unset;
+}
+
+.myDeckContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+.backWrap {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.addCardBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

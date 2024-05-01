@@ -28,7 +28,9 @@ export const Header = ({ isLoggedIn, userName }: HeaderProps) => {
           <Dropdown iconTrigger={icon} items={items} />
         </div>
       ) : (
-        <Button variant={'secondary'}>Sign In</Button>
+        <Button variant={'secondary'}>
+          <Typography variant={'subtitle2'}>Sign In</Typography>
+        </Button>
       )}
     </header>
   )

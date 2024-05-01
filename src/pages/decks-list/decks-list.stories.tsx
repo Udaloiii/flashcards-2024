@@ -13,7 +13,6 @@ type Story = StoryObj<typeof meta>
 export const DecksListExample: Story = {
   args: {
     currentPage: 1,
-    isLoggedIn: true,
 
     items: [
       'some',
@@ -43,7 +42,6 @@ export const DecksListExample: Story = {
 export const DecksListWithDropdownExample: Story = {
   args: {
     currentPage: 1,
-    isLoggedIn: true,
     items: ['some', '25', '25.05.2025', 'Some'],
     onPageChange: () => {},
     pageSize: 5,

@@ -1,0 +1,42 @@
+.container {
+  background-color: var(--color-dark-500);
+
+  th:first-child {
+    width: 450px;
+  }
+
+  th:nth-child(2) {
+    width: 400px;
+  }
+
+  th:last-child {
+    cursor: auto;
+    width: 80px;
+  }
+}
+
+.tableHead {
+  position: relative;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--color-dark-300);
+  }
+
+  &:empty:hover {
+    background-color: var(--color-dark-500);
+  }
+}
+
+.sort {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%) !important;
+
+  transition: 0.3s;
+}
+
+.sortUp {
+  transform: rotate(180deg) translateY(50%) !important;
+}

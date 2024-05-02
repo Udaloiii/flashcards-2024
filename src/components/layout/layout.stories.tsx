@@ -83,5 +83,6 @@ export const LayoutMyDeckExample: Story = {
       </Page>
     ),
     isLoggedIn: true,
+    userName: 'Eugene',
   },
 }

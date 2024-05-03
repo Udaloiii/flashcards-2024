@@ -6,7 +6,7 @@ import s from './cards-table-head.module.scss'
 export const CardsTableHead = () => {
   return (
     <TableRow className={s.container}>
-      <TableHead>
+      <TableHead className={s.question}>
         <Typography variant={'subtitle2'}>Question</Typography>
       </TableHead>
       <TableHead>
@@ -18,6 +18,7 @@ export const CardsTableHead = () => {
       <TableHead>
         <Typography variant={'subtitle2'}>Grade</Typography>
       </TableHead>
+      <TableHead />
       <TableHead />
     </TableRow>
   )

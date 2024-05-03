@@ -26,7 +26,7 @@ export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
             <Typography variant={'body2'}>{el}</Typography>
           </TableCell>
           <TableCell>
-            <ControlItems className={s.controlItems} myCards={myCards} />
+            <ControlItems className={s.controlItems} myDecks={myCards} />
           </TableCell>
         </TableRow>
       ))}

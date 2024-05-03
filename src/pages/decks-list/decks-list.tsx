@@ -12,6 +12,7 @@ import s from './decks-list.module.scss'
 type DecksListProps = {
   currentPage: number // текущая страница
   items: string[]
+  myDecks?: boolean
   onPageChange: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
   pageSize: number //  максимальный объем данных, видимых на одной странице
   siblingCount: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
@@ -20,6 +21,7 @@ type DecksListProps = {
 export const DecksList = ({
   currentPage,
   items,
+  myDecks,
   onPageChange,
   pageSize,
   siblingCount,
@@ -51,8 +53,7 @@ export const DecksList = ({
         </Button>
       </div>
       <div>
-        <DecksTable className={s.tabContent} items={items} />
-        {/*<DecksTable className={s.tabContent} items={items} myCards />*/}
+        <DecksTable className={s.tabContent} items={items} myCards={myDecks} />
       </div>
       <div className={s.paginationBlock}>
         <Pagination

@@ -6,16 +6,19 @@ import { Button } from '@/components/ui/button'
 import s from './control-items.module.scss'
 
 type ControlItemsProps = {
+  cardPage?: boolean
   className?: string
-  myCards?: boolean
+  myDecks?: boolean
 }
-export const ControlItems = ({ className, myCards }: ControlItemsProps) => {
+export const ControlItems = ({ cardPage, className, myDecks }: ControlItemsProps) => {
   return (
     <div className={`${s.container} ${className}`}>
-      <Button variant={'icon'}>
-        <PlayCircle />
-      </Button>
-      {myCards && (
+      {!cardPage && (
+        <Button variant={'icon'}>
+          <PlayCircle />
+        </Button>
+      )}
+      {myDecks && (
         <>
           <Button variant={'icon'}>
             <Edit />

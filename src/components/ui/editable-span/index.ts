@@ -1,1 +1,1 @@
-export * from 'src/components/ui/editable-span/editable-text'
+export * from './editable-text'

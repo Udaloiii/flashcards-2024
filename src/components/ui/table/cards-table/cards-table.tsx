@@ -8,8 +8,10 @@ import s from './cards-table.module.scss'
 
 type CardsTableProps = {
   items: string[]
+  myDeck?: boolean
+  ratingValue: number
 }
-export const CardsTable = ({ items }: CardsTableProps) => {
+export const CardsTable = ({ items, myDeck, ratingValue }: CardsTableProps) => {
   const [sortByColumn, setSortByColumn] = useState<string>('')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
 
@@ -40,6 +42,7 @@ export const CardsTable = ({ items }: CardsTableProps) => {
         <ItemTableHead
           firstTitle={'Question'}
           fourthTitle={'Grade'}
+          myDeck={myDeck}
           onclick={handleSort}
           secondTitle={'Answer'}
           sortByColumn={sortByColumn}
@@ -47,7 +50,7 @@ export const CardsTable = ({ items }: CardsTableProps) => {
         />
       </TableHeader>
       <TableBody>
-        <CardsTableBody items={sortedItems} />
+        <CardsTableBody items={sortedItems} myDeck={myDeck} ratingValue={ratingValue} />
       </TableBody>
     </Table>
   )

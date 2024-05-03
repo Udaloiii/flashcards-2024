@@ -2,8 +2,8 @@ import { Layout } from '@/components/layout/layout'
 import { Page } from '@/components/page/page'
 import { LoginForm } from '@/pages/auth/login-form'
 import { SignUpForm } from '@/pages/auth/sigh-up-form'
+import { Deck } from '@/pages/deck/deck'
 import { DecksList } from '@/pages/decks-list'
-import { MyDeck } from '@/pages/my-deck/my-deck'
 import { PageNotFound } from '@/pages/page-not-found/page-not-found'
 import { Meta, StoryObj } from '@storybook/react'
 
@@ -17,7 +17,26 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const LayoutExample: Story = {
+export const MyDecksPage: Story = {
+  args: {
+    children: (
+      <Page>
+        <DecksList
+          currentPage={1}
+          items={['asd', 'asdd', 'aqw']}
+          myDecks
+          onPageChange={() => {}}
+          pageSize={5}
+          siblingCount={2}
+          totalCount={22}
+        />
+      </Page>
+    ),
+    isLoggedIn: true,
+    userName: 'Eugene',
+  },
+}
+export const OtherDecksPage: Story = {
   args: {
     children: (
       <Page>
@@ -69,12 +88,33 @@ export const LayoutErrorExample: Story = {
   },
 }
 
-export const LayoutMyDeckExample: Story = {
+export const MyDeckExample: Story = {
   args: {
     children: (
       <Page>
-        <MyDeck
+        <Deck
           currentPage={1}
+          deckTitle={'My Deck'}
+          myDeck
+          onPageChange={() => {}}
+          pageSize={5}
+          siblingCount={2}
+          totalCount={20}
+        />
+      </Page>
+    ),
+    isLoggedIn: true,
+    userName: 'Eugene',
+  },
+}
+
+export const OtherDeckExample: Story = {
+  args: {
+    children: (
+      <Page>
+        <Deck
+          currentPage={1}
+          deckTitle={'Friend`s Deck'}
           onPageChange={() => {}}
           pageSize={5}
           siblingCount={2}

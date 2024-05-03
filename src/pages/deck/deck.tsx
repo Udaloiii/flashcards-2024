@@ -11,17 +11,32 @@ import { CardsTable } from '@/components/ui/table/cards-table/cards-table'
 import { Textfield } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
 
-import s from './my-deck.module.scss'
+import s from './deck.module.scss'
 
-type MyDeckProps = ComponentPropsWithoutRef<'div'> & {
-  currentPage: number // текущая страница
-  onPageChange: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
-  pageSize: number //  максимальный объем данных, видимых на одной странице
-  siblingCount: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
-  totalCount: number // общее количество данных, доступных из источника
+type DeckProps = ComponentPropsWithoutRef<'div'> & {
+  currentPage: number
+  deckTitle: string
+  myDeck?: boolean
+  onPageChange: (page: number) => void
+  pageSize: number
+  siblingCount: number
+  totalCount: number
 }
-export const MyDeck = forwardRef<ElementRef<'div'>, MyDeckProps>(
-  ({ className, currentPage, onPageChange, pageSize, siblingCount, totalCount, ...rest }, ref) => {
+export const Deck = forwardRef<ElementRef<'div'>, DeckProps>(
+  (
+    {
+      className,
+      currentPage,
+      deckTitle,
+      myDeck,
+      onPageChange,
+      pageSize,
+      siblingCount,
+      totalCount,
+      ...rest
+    },
+    ref
+  ) => {
     const items = [
       { icon: <PlayCircle />, title: 'Learn' },
       { icon: <Edit />, title: 'Edit' },
@@ -36,15 +51,19 @@ export const MyDeck = forwardRef<ElementRef<'div'>, MyDeckProps>(
         </Typography>
         <div className={s.addCardBlock}>
           <Typography as={'h1'} className={s.title} variant={'h1'}>
-            My Deck
-            <Dropdown dotsTrigger items={items} />
+            {deckTitle}
+            {myDeck && <Dropdown dotsTrigger items={items} />}
           </Typography>
           <Button>
-            <Typography variant={'subtitle2'}>Add New Card</Typography>
+            {myDeck ? (
+              <Typography variant={'subtitle2'}>Add New Card</Typography>
+            ) : (
+              <Typography variant={'subtitle2'}>Learn to Pack</Typography>
+            )}
           </Button>
         </div>
         <Textfield variant={'search'} />
-        <CardsTable items={['asd', 'asd', 'asdasdas', 'asdasd']} />
+        <CardsTable items={['asd', 'asd', 'asdasdas', 'asdasd']} myDeck={myDeck} ratingValue={3} />
         <Pagination
           currentPage={currentPage}
           onPageChange={onPageChange}

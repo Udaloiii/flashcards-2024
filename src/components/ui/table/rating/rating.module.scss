@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: transparent;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--color-warning-300);
+  }
+}
+
+.selected {
+  color: var(--color-warning-300);
+  stroke: none;
+}

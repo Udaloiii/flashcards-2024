@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import img from '@/assets/img/user-avatar.webp'
 import { ControlItems } from '@/components/ui/table/control-items/control-items'
-import { Stars } from '@/components/ui/table/stars/stars'
+import { Rating } from '@/components/ui/table/rating/rating'
 import { TableItem } from '@/components/ui/table/table-item/table-item'
 
 import s from './tableExample.module.scss'
@@ -10,8 +10,9 @@ import s from './tableExample.module.scss'
 type TableProps = {
   items?: string[] // пока так, потом посмотреть что с бека приходит
   myCards?: boolean
+  ratingValue: number
 }
-export const TableExample = ({ items = [], myCards }: TableProps) => {
+export const TableExample = ({ items = [], myCards, ratingValue }: TableProps) => {
   const [sortByColumn, setSortByColumn] = useState<string>('')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
 
@@ -64,8 +65,8 @@ export const TableExample = ({ items = [], myCards }: TableProps) => {
             <TableItem as={'td'} title={el} />
             <TableItem as={'td'} title={el} />
             <TableItem as={'td'} title={el} />
-            <Stars />
-            <ControlItems myCards={myCards} />
+            <Rating value={ratingValue} />
+            <ControlItems myDecks={myCards} />
           </tr>
         ))}
       </tbody>

@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>
 export const TableExam: Story = {
   args: {
     items: ['name 1', 'name 2', 'name 3', 'name 4'],
+    ratingValue: 3,
   },
 }
 export const TableMyPacks: Story = {
@@ -30,5 +31,6 @@ export const TableMyPacks: Story = {
       'name 9',
     ],
     myCards: true,
+    ratingValue: 4,
   },
 }

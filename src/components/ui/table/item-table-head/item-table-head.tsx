@@ -8,6 +8,7 @@ import s from './item-table-head.module.scss'
 type ItemTableHeadProps = {
   firstTitle?: string
   fourthTitle?: string
+  myDeck?: boolean
   onclick?: (value: string) => void
   secondTitle?: string
   sortByColumn?: string
@@ -17,6 +18,7 @@ type ItemTableHeadProps = {
 export const ItemTableHead = ({
   firstTitle = '',
   fourthTitle = '',
+  myDeck,
   onclick,
   secondTitle = '',
   sortByColumn,
@@ -62,8 +64,7 @@ export const ItemTableHead = ({
       <TableHead className={s.tableHead}>
         <Typography variant={'subtitle2'}>{fourthTitle}</Typography>
       </TableHead>
-      <TableHead className={s.tableHead} />
-      {/*<TableHead className={s.tableHead} />*/}
+      {myDeck && <TableHead className={s.tableHead} />}
     </TableRow>
   )
 }

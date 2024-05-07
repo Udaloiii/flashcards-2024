@@ -1,10 +1,12 @@
-import Image from '@/assets/logo/image'
+import Delete from '@/assets/logo/delete'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { AddNewCard } from '@/components/ui/modal/add-new-card/add-new-card'
+import { AddNewPack } from '@/components/ui/modal/add-new-pack/add-new-pack'
+import { DeleteCard } from '@/components/ui/modal/delete-card/delete-card'
+import { LearnCard } from '@/components/ui/modal/learn-card/learn-card'
 import { Modal } from '@/components/ui/modal/modal'
-import { Typography } from '@/components/ui/typography'
 import { Meta, StoryObj } from '@storybook/react'
-
-import icon from '../../../assets/img/user-avatar.webp'
 
 const meta = {
   argTypes: {},
@@ -16,48 +18,56 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const ModalExample: Story = {
+export const CreateNewCard: Story = {
   args: {
-    children:
-      'asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd ',
-    showCloseBtn: true,
-    title: 'Create new pack',
-    titlePrimary: 'Title primary',
-    titleSecondary: 'Title secondary',
+    content: <AddNewCard />,
+    trigger: <Button>Add New Card</Button>,
   },
 }
 
-export const ModalWithOneButton: Story = {
+export const CreateNewPack: Story = {
   args: {
-    children:
-      'asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd ',
-    showCloseBtn: true,
-    title: 'Create new pack',
-    titlePrimary: 'Title primary',
+    content: <AddNewPack />,
+    trigger: <Button>Add New Pack</Button>,
   },
 }
 
-export const ModalCreateNewPack: Story = {
+export const ModalDeleteCard: Story = {
   args: {
-    children: (
-      <>
-        <img alt={'icon'} src={icon} />
-        <p>
-          asdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd
-          asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd
-          asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd
-          asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd
-          asdasdasdasd asd asd asd asd asd asd asd asd asdasdasdasd asd asd asd asd asd asd asd asd
-        </p>
-        <Button fullWidth variant={'secondary'}>
-          <Image />
-          <Typography variant={'subtitle2'}>Change cover</Typography>
-        </Button>
-      </>
+    content: <DeleteCard cardTitle={'Card Title For Delete'} />,
+    trigger: (
+      <div
+        style={{
+          alignItems: 'center',
+          cursor: 'pointer',
+          display: 'flex',
+          gap: '10px',
+          margin: '25px',
+        }}
+      >
+        Delete Card
+        <Delete />
+      </div>
     ),
-    showCloseBtn: true,
-    title: 'Create new pack',
-    titlePrimary: 'Title primary',
-    titleSecondary: 'Title secondary',
+  },
+}
+export const LearnDeckNameCard: Story = {
+  args: {
+    content: (
+      <Card style={{ padding: '24px' }}>
+        <h3 style={{ textAlign: 'center' }}>Learn “Deck Name”</h3>
+        <p>Question: {'from server'}</p>
+        <p>Count of attempts: 10</p>
+        <Button fullWidth>Show Answer</Button>
+      </Card>
+    ),
+    trigger: <Button>Learn “Deck Name”</Button>,
+  },
+}
+
+export const LearnDeckNameAnswerCard: Story = {
+  args: {
+    content: <LearnCard answer={'OFIGENNO!'} attempts={10} question={'Kak delishki'} />,
+    trigger: <Button>Learn “Deck Name”</Button>,
   },
 }

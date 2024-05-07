@@ -4,17 +4,18 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 import s from './radio.module.scss'
 
 type RadioType = {
+  defaultValue?: string
   disabled?: boolean
   items?: string[]
   onChange?: (value: string) => void
 }
-export const Radio = ({ disabled, items }: RadioType) => {
+export const Radio = ({ defaultValue, disabled, items }: RadioType) => {
   // const onChangeHandler = () => onChange('radio-handler called')
   const disableCondition = disabled && s.disable
 
   return (
     <form>
-      <RadioGroup.Root className={s.container} disabled={disabled}>
+      <RadioGroup.Root className={s.container} defaultValue={defaultValue} disabled={disabled}>
         {items?.map((el, index) => (
           <div className={s.wrap} key={index}>
             <div className={`${s.itemWrap} ${disableCondition}`} tabIndex={0}>

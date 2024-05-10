@@ -8,13 +8,14 @@ import s from './control-items.module.scss'
 type ControlItemsProps = {
   cardPage?: boolean
   className?: string
+  disabled?: boolean
   myDecks?: boolean
 }
-export const ControlItems = ({ cardPage, className, myDecks }: ControlItemsProps) => {
+export const ControlItems = ({ cardPage, className, disabled, myDecks }: ControlItemsProps) => {
   return (
     <div className={`${s.container} ${className}`}>
       {!cardPage && (
-        <Button variant={'icon'}>
+        <Button className={`${disabled && s.disabled}`} variant={'icon'}>
           <PlayCircle />
         </Button>
       )}

@@ -11,9 +11,9 @@ type SelectType = {
   disabled?: boolean
   items: string[]
   label?: string
-  onChange?: () => void
+  onChange?: (size: string) => void
   placeholder?: string
-  value?: string
+  value: string
 }
 export const Select = ({
   className,
@@ -25,7 +25,6 @@ export const Select = ({
   placeholder,
   value,
 }: SelectType) => {
-  const onChangeHandler = () => onChange?.()
   const disableCondition = disabled && s.labelDisabled
 
   return (
@@ -39,7 +38,7 @@ export const Select = ({
           {label}
         </Typography>
       )}
-      <RadixSelect.Root disabled={disabled} onValueChange={onChangeHandler} value={value}>
+      <RadixSelect.Root disabled={disabled} onValueChange={onChange} value={value}>
         <RadixSelect.Trigger className={`${s.selectTrigger} ${className}`}>
           <RadixSelect.Value defaultValue={defaultValue} placeholder={placeholder} />
           <RadixSelect.Icon className={s.selectIcon}>
@@ -47,7 +46,7 @@ export const Select = ({
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
         <RadixSelect.Portal>
-          <RadixSelect.Content className={s.selectContent} position={'popper'} side={'bottom'}>
+          <RadixSelect.Content className={s.selectContent} position={'popper'}>
             <RadixSelect.Viewport className={s.selectViewport}>
               {items?.map((el, index) => <SelectItem key={index} value={el} />)}
             </RadixSelect.Viewport>

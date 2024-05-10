@@ -15,12 +15,14 @@ button {
 }
 
 .selectTrigger {
+  cursor: pointer;
+
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: space-between;
 
-  width: 210px;
+  // width: 210px;
   height: 36px;
   padding: 6px 12px;
 
@@ -45,8 +47,9 @@ button {
   }
 
   &[data-state='open'] {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    // border-bottom-right-radius: 0;
+    // border-bottom-left-radius: 0;
+    border-radius: 0;
 
     & .selectIcon {
       transform: rotate(180deg);
@@ -54,7 +57,7 @@ button {
   }
 
   &[data-disabled] {
-    pointer-events: none;
+    // pointer-events: none;
     user-select: none;
     color: var(--color-dark-300);
 
@@ -71,25 +74,43 @@ button {
   transition: 0.3s;
 }
 
+.selectViewport {
+  background-color: var(--color-dark-900);
+  outline: none;
+
+  &:active {
+    border-color: var(--color-dark-100);
+  }
+}
+
 .selectContent {
+  cursor: pointer;
+
   overflow: hidden;
+
   width: var(
     --radix-select-trigger-width
   ); // в доке radix-select (для того, чтобы был на ширину элемента триггера)
 
   background-color: transparent;
   outline: none;
-}
 
-.selectViewport {
-  border: 1px solid var(--color-dark-300);
-  border-top: none;
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  outline: none;
+  &[data-side='bottom'] {
+    & .selectViewport {
+      border: 1px solid var(--color-dark-300);
+      border-top: none;
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+  }
 
-  &:active {
-    border-color: var(--color-dark-100);
+  &[data-side='top'] {
+    & .selectViewport {
+      border: 1px solid var(--color-dark-300);
+      border-bottom: none;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import ErrorPage from '@/assets/logo/error-page'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
@@ -12,7 +14,9 @@ export const PageNotFound = () => {
         Sorry! Page not found!
       </Typography>
       <Button>
-        <Typography variant={'subtitle2'}>Back to home page</Typography>
+        <Typography variant={'subtitle2'}>
+          <Link to={'/'}>Back to home page</Link>
+        </Typography>
       </Button>
     </div>
   )

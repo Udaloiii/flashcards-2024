@@ -8,15 +8,17 @@ import { Typography } from '@/components/ui/typography'
 import s from './pagination.module.scss'
 
 export type PaginationType = {
-  currentPage: number // текущая страница
-  onPageChange: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
-  pageSize: number //  максимальный объем данных, видимых на одной странице
-  siblingCount: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
-  totalCount: number // общее количество данных, доступных из источника
+  changePageSize?: (size: number) => void
+  currentPage?: number // текущая страница
+  onPageChange?: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
+  pageSize?: number //  максимальный объем данных, видимых на одной странице
+  siblingCount?: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
+  totalCount?: number // общее количество данных, доступных из источника
 }
 
 export const Pagination = ({
-  currentPage,
+  changePageSize,
+  currentPage = 1,
   onPageChange,
   pageSize,
   siblingCount = 1,
@@ -34,11 +36,11 @@ export const Pagination = ({
   }
 
   const onNext = () => {
-    onPageChange(currentPage + 1)
+    onPageChange?.(currentPage + 1)
   }
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1)
+    onPageChange?.(currentPage - 1)
   }
 
   const lastPage = paginationRange && paginationRange[paginationRange.length - 1]
@@ -46,6 +48,11 @@ export const Pagination = ({
   const disabledLeftCondition = currentPage === 1 && s.disabled
 
   const disabledRightCondition = currentPage === lastPage && s.disabled
+
+  const onChangeSizeHandler = (value: string) => {
+    onPageChange?.(1)
+    changePageSize?.(Number(value))
+  }
 
   return (
     <div className={s.container}>
@@ -70,9 +77,8 @@ export const Pagination = ({
             <Typography
               as={'li'}
               className={`${s.paginationItem} ${activeCondition}`}
-              // condition={pageNumber === currentPage}
               key={index}
-              onClick={() => onPageChange(Number(pageNumber))}
+              onClick={() => onPageChange?.(Number(pageNumber))}
               tabIndex={0}
               variant={'body2'}
             >
@@ -91,8 +97,10 @@ export const Pagination = ({
         <Select
           className={s.select}
           defaultValue={'10'}
-          items={['10', '20', ' 50']}
-          placeholder={'10'}
+          items={['5', '10', '20']}
+          onChange={onChangeSizeHandler}
+          // placeholder={'10'}
+          value={String(pageSize)}
         />
         на странице
       </Typography>

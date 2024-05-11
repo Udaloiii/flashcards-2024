@@ -3,7 +3,7 @@ export type Author = {
   name: string
 }
 
-export type Deck = {
+export type DeckType = {
   author: Author
   cardsCount: number
   cover?: null | string
@@ -23,7 +23,7 @@ export type Pagination = {
 }
 
 export type GetDeckResponse = {
-  items: Deck[]
+  items: DeckType[]
   maxCardsCount: number
   pagination: Pagination
 }
@@ -36,4 +36,8 @@ export type GetDecksArgs = {
   minCardsCount?: number
   name?: string
   orderBy?: string
+}
+
+export type GetDeckById = {
+  id: string
 }

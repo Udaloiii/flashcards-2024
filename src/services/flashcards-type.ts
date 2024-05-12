@@ -41,3 +41,14 @@ export type GetDecksArgs = {
 export type GetDeckById = {
   id: string
 }
+
+export type CreateDeckArgs = {
+  cover?: string // потом наверное поменять
+  isPrivate?: boolean
+  name: string
+}
+
+export type GetMinMaxResponse = {
+  max: number
+  min: number
+}

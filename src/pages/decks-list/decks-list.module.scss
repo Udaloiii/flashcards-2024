@@ -26,6 +26,10 @@ h1 {
   gap: 10px;
   justify-content: space-between;
   height: 36px;
+
+  input {
+    height: 36px;
+  }
 }
 
 .textfield {
@@ -38,4 +42,6 @@ h1 {
 
 .paginationBlock {
   margin-top: 20px;
+
+  //margin-bottom: 100px;
 }

@@ -1,4 +1,11 @@
-import { DeckType, GetDeckById, GetDeckResponse, GetDecksArgs } from '@/services/flashcards-type'
+import {
+  CreateDeckArgs,
+  DeckType,
+  GetDeckById,
+  GetDeckResponse,
+  GetDecksArgs,
+  GetMinMaxResponse,
+} from '@/services/flashcards-type'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const baseApi = createApi({
@@ -11,6 +18,15 @@ export const baseApi = createApi({
   }),
   endpoints: build => {
     return {
+      createDeck: build.mutation<DeckType, CreateDeckArgs>({
+        query: arg => {
+          return {
+            method: 'POST',
+            params: arg ?? '',
+            url: `v1/decks`,
+          }
+        },
+      }),
       getDeckById: build.query<DeckType, GetDeckById>({
         query: ({ id }) => {
           return {
@@ -22,7 +38,14 @@ export const baseApi = createApi({
         query: arg => {
           return {
             params: arg ?? {},
-            url: `v1/decks`,
+            url: `v2/decks`,
+          }
+        },
+      }),
+      getMinMaxCards: build.query<GetMinMaxResponse, void>({
+        query: () => {
+          return {
+            url: `v2/decks/min-max-cards`,
           }
         },
       }),
@@ -31,4 +54,9 @@ export const baseApi = createApi({
   reducerPath: 'baseApi',
 })
 
-export const { useGetDeckByIdQuery, useGetDecksQuery } = baseApi
+export const {
+  useCreateDeckMutation,
+  useGetDeckByIdQuery,
+  useGetDecksQuery,
+  useGetMinMaxCardsQuery,
+} = baseApi

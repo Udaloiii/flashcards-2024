@@ -6,18 +6,29 @@ import {
   GetDeckResponse,
   GetDecksArgs,
   GetMinMaxResponse,
+  UpdateDeckArgs,
 } from '@/services/flashcards-type'
 
 const decksService = baseApi.injectEndpoints({
   endpoints: build => {
     return {
       createDeck: build.mutation<DeckType, CreateDeckArgs>({
+        invalidatesTags: ['Deck'],
         query: arg => {
           return {
             body: arg,
             method: 'POST',
             params: arg ?? '',
             url: `v1/decks`,
+          }
+        },
+      }),
+      deleteDeck: build.mutation<Omit<DeckType, 'author'>, { id: string }>({
+        invalidatesTags: ['Deck'],
+        query: ({ id }) => {
+          return {
+            method: 'DELETE',
+            url: `v1/decks/${id}`,
           }
         },
       }),
@@ -41,6 +52,16 @@ const decksService = baseApi.injectEndpoints({
         query: () => {
           return {
             url: `v2/decks/min-max-cards`,
+          }
+        },
+      }),
+      updateDeck: build.mutation<DeckType, { data: UpdateDeckArgs; id: string }>({
+        invalidatesTags: ['Deck'],
+        query: ({ data, id }) => {
+          return {
+            body: data,
+            method: 'POST',
+            url: `v1/decks/${id}`,
           }
         },
       }),

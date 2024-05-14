@@ -52,3 +52,9 @@ export type GetMinMaxResponse = {
   max: number
   min: number
 }
+
+export type UpdateDeckArgs = {
+  cover?: string
+  isPrivate?: boolean
+  name?: string
+}

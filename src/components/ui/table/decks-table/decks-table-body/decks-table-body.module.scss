@@ -1,3 +1,16 @@
 .controlItems {
   justify-content: flex-end;
 }
+
+.deckNameWrap {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.icon {
+  width: 118px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}

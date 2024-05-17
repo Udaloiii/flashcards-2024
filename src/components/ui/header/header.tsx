@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import HeaderLogo from '@/assets/logo/header-logo'
 import LogOut from '@/assets/logo/log-out'
 import Person from '@/assets/logo/person'
@@ -22,7 +24,9 @@ export const Header = ({ isLoggedIn, userName }: HeaderProps) => {
   return (
     <header className={s.main}>
       <div className={s.container}>
-        <HeaderLogo />
+        <Link to={'/'}>
+          <HeaderLogo />
+        </Link>
         {isLoggedIn ? (
           <div className={s.userInfo}>
             <Typography variant={'subtitle1'}>{userName}</Typography>

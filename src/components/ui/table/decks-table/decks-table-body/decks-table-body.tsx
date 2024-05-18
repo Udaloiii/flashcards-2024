@@ -5,6 +5,8 @@ import { DeckType } from '@/services/flashcards-type'
 
 import s from './decks-table-body.module.scss'
 
+import icon from '../../../../../assets/img/deck-icon.jpg'
+
 type DecksTableBodyProps = {
   items?: DeckType[]
   myCards?: boolean
@@ -17,7 +19,14 @@ export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
 
         return (
           <TableRow key={ind}>
-            <TableCell>
+            <TableCell className={s.deckNameWrap}>
+              <div className={s.iconWrap}>
+                <img
+                  alt={'image'}
+                  className={`${s.img} ${el.cover && s.cover}`}
+                  src={el.cover || icon}
+                />
+              </div>
               <Typography variant={'body2'}>{el.name}</Typography>
             </TableCell>
             <TableCell>
@@ -34,6 +43,7 @@ export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
                 className={s.controlItems}
                 disabled={el.cardsCount < 1}
                 myDecks={myCards}
+                titleCard={el.name}
               />
             </TableCell>
           </TableRow>

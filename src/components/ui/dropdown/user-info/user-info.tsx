@@ -2,16 +2,18 @@ import { Typography } from '@/components/ui/typography'
 
 import s from './user-info.module.scss'
 type UserInfoProps = {
-  icon: string
+  email?: string
+  icon?: string
+  userName?: string
 }
-export const UserInfo = ({ icon }: UserInfoProps) => {
+export const UserInfo = ({ email, icon, userName }: UserInfoProps) => {
   return (
     <div className={s.container}>
       <img alt={'user'} className={s.img} src={icon} />
       <div className={s.wrap}>
-        <Typography variant={'subtitle2'}>Eugene</Typography>
+        <Typography variant={'subtitle2'}>{userName}</Typography>
         <Typography className={s.email} variant={'caption'}>
-          j&johnson@gmail.com
+          {email}
         </Typography>
       </div>
     </div>

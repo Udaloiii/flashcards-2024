@@ -10,6 +10,7 @@ import { Layout } from '@/components/layout'
 import { Page } from '@/components/page/page'
 import { LoginForm } from '@/pages/auth/login-form'
 import { DecksList } from '@/pages/decks-list'
+import { EditProfile } from '@/pages/edit-profile'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useAuthMeQuery } from '@/services/auth.service'
 
@@ -21,6 +22,14 @@ const privateRoute: RouteObject[] = [
       </Page>
     ),
     path: '/',
+  },
+  {
+    element: (
+      <Page>
+        <EditProfile />
+      </Page>
+    ),
+    path: '/profile',
   },
 ]
 const publicRoute: RouteObject[] = [
@@ -46,7 +55,7 @@ const PrivateRoutes = () => {
   }
 
   return !isError ? (
-    <Layout isLoggedIn userName={data?.name}>
+    <Layout email={data?.email} icon={data?.avatar} isLoggedIn userName={data?.name}>
       <Outlet />
     </Layout>
   ) : (

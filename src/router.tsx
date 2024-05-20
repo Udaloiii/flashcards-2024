@@ -9,6 +9,7 @@ import {
 import { Layout } from '@/components/layout'
 import { Page } from '@/components/page/page'
 import { LoginForm } from '@/pages/auth/login-form'
+import { Deck } from '@/pages/deck'
 import { DecksList } from '@/pages/decks-list'
 import { EditProfile } from '@/pages/edit-profile'
 import { PageNotFound } from '@/pages/page-not-found'
@@ -30,6 +31,14 @@ const privateRoute: RouteObject[] = [
       </Page>
     ),
     path: '/profile',
+  },
+  {
+    element: (
+      <Page>
+        <Deck />
+      </Page>
+    ),
+    path: '/:id',
   },
 ]
 const publicRoute: RouteObject[] = [

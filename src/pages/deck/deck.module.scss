@@ -28,6 +28,34 @@ h1 {
 
 .title {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+}
+
+.dropdownItem {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  padding: 10px;
+
+  white-space: nowrap;
+
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.logo {
+  width: 170px;
+  height: 107px;
+  object-fit: cover;
+  border-radius: 2px;
 }

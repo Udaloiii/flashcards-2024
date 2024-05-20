@@ -9,16 +9,18 @@ import { Textfield } from '@/components/ui/textfield'
 export const AddNewPack = () => {
   return (
     <div>
-      <ModalHeader showCloseBtn title={'Add New Pack'} />
-      <ModalBody>
-        <Textfield label={'Name Pack'} />
-        <Button fullWidth variant={'secondary'}>
-          <Image />
-          Upload Image
-        </Button>
-        <Checkbox label={'Private Pack'} />
-      </ModalBody>
-      <ModalFooter titlePrimary={'Add New Pack'} titleSecondary={'Cancel'} />
+      <ModalHeader showCloseBtn title={'Add New Deck'} />
+      <form>
+        <ModalBody>
+          <Textfield label={'Name Pack'} />
+          <Button fullWidth type={'button'} variant={'secondary'}>
+            <Image />
+            Upload Image
+          </Button>
+          <Checkbox label={'Private Pack'} />
+        </ModalBody>
+      </form>
+      <ModalFooter titlePrimary={'Add New Deck'} titleSecondary={'Cancel'} />
     </div>
   )
 }

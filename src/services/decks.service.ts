@@ -2,10 +2,13 @@ import { baseApi } from '@/services/base-api'
 import {
   CreateDeckArgs,
   DeckType,
+  GetCardResponse,
+  GetCardsInDeckArgs,
   GetDeckById,
   GetDeckResponse,
   GetDecksArgs,
   GetMinMaxResponse,
+  Pagination,
   UpdateDeckArgs,
 } from '@/services/flashcards-type'
 
@@ -29,6 +32,18 @@ const decksService = baseApi.injectEndpoints({
           return {
             method: 'DELETE',
             url: `v1/decks/${id}`,
+          }
+        },
+      }),
+      getCardsInDeck: build.query<
+        { items: GetCardResponse[] } & { pagination: Pagination },
+        { body?: GetCardsInDeckArgs; id: string }
+      >({
+        providesTags: ['Deck'],
+        query: arg => {
+          return {
+            params: arg.body ?? {},
+            url: `v1/decks/${arg.id}/cards`,
           }
         },
       }),
@@ -72,6 +87,7 @@ const decksService = baseApi.injectEndpoints({
 export const {
   useCreateDeckMutation,
   useDeleteDeckMutation,
+  useGetCardsInDeckQuery,
   useGetDeckByIdQuery,
   useGetDecksQuery,
   useGetMinMaxCardsQuery,

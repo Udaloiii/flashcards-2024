@@ -26,7 +26,7 @@ export type Pagination = {
 
 export type GetDeckResponse = {
   items: DeckType[]
-  maxCardsCount: number
+  // maxCardsCount: number // устаревший запрос
   pagination: Pagination
 }
 
@@ -59,6 +59,14 @@ export type UpdateDeckArgs = {
   cover?: string
   isPrivate?: boolean
   name?: string
+}
+
+export type GetCardsInDeckArgs = {
+  answer?: string
+  currentPage?: number
+  itemsPerPage?: number
+  orderBy?: string
+  question?: string
 }
 
 // auth-types

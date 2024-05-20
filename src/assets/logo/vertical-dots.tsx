@@ -4,12 +4,13 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     fill={'none'}
     height={24}
     ref={ref}
+    viewBox={'0 0 24 24'}
     width={24}
     xmlns={'http://www.w3.org/2000/svg'}
     {...props}
   >
     <circle cx={12} cy={12} r={8.5} stroke={'currentColor'} />
-    <g clipPath={'url(#a)'} fill={'currentColor'}>
+    <g fill={'currentColor'}>
       <path
         d={
           'M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM12 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM12 16.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z'

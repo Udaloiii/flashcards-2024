@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { ControlItems } from '@/components/ui/table/control-items/control-items'
 import { TableCell, TableRow } from '@/components/ui/table/table'
 import { Typography } from '@/components/ui/typography'
@@ -20,14 +22,18 @@ export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
         return (
           <TableRow key={ind}>
             <TableCell className={s.deckNameWrap}>
-              <div className={s.iconWrap}>
-                <img
-                  alt={'image'}
-                  className={`${s.img} ${el.cover && s.cover}`}
-                  src={el.cover || icon}
-                />
-              </div>
-              <Typography variant={'body2'}>{el.name}</Typography>
+              <Link className={s.link} to={`/${el.id}`}>
+                <div className={s.iconWrap}>
+                  <img
+                    alt={'image'}
+                    className={`${s.img} ${el.cover && s.cover}`}
+                    src={el.cover || icon}
+                  />
+                </div>
+                <Typography className={s.name} variant={'body2'}>
+                  {el.name}
+                </Typography>
+              </Link>
             </TableCell>
             <TableCell>
               <Typography variant={'body2'}>{el.cardsCount}</Typography>

@@ -31,7 +31,7 @@ export const Pagination = ({
     totalCount,
   })
 
-  if (currentPage === 0 || (paginationRange && paginationRange.length < 1)) {
+  if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
     return null
   }
 

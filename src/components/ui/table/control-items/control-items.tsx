@@ -2,6 +2,8 @@ import Delete from '@/assets/logo/delete'
 import Edit from '@/assets/logo/edit'
 import PlayCircle from '@/assets/logo/play-circle'
 import { Button } from '@/components/ui/button'
+import { Modal } from '@/components/ui/modal'
+import { DeleteCard } from '@/components/ui/modal/delete-card/delete-card'
 
 import s from './control-items.module.scss'
 
@@ -10,8 +12,15 @@ type ControlItemsProps = {
   className?: string
   disabled?: boolean
   myDecks?: boolean
+  titleCard?: string
 }
-export const ControlItems = ({ cardPage, className, disabled, myDecks }: ControlItemsProps) => {
+export const ControlItems = ({
+  cardPage,
+  className,
+  disabled,
+  myDecks,
+  titleCard,
+}: ControlItemsProps) => {
   return (
     <div className={`${s.container} ${className}`}>
       {!cardPage && (
@@ -21,12 +30,22 @@ export const ControlItems = ({ cardPage, className, disabled, myDecks }: Control
       )}
       {myDecks && (
         <>
-          <Button variant={'icon'}>
-            <Edit />
-          </Button>
-          <Button variant={'icon'}>
-            <Delete />
-          </Button>
+          <Modal
+            content={'asd'}
+            trigger={
+              <Button variant={'icon'}>
+                <Edit />
+              </Button>
+            }
+          ></Modal>
+          <Modal
+            content={<DeleteCard cardTitle={titleCard} />}
+            trigger={
+              <Button variant={'icon'}>
+                <Delete />
+              </Button>
+            }
+          ></Modal>
         </>
       )}
     </div>

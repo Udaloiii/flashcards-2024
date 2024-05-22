@@ -12,6 +12,7 @@ import { LoginForm } from '@/pages/auth/login-form'
 import { Deck } from '@/pages/deck'
 import { DecksList } from '@/pages/decks-list'
 import { EditProfile } from '@/pages/edit-profile'
+import { LearnPage } from '@/pages/learn-page/learn-page'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useAuthMeQuery } from '@/services/auth.service'
 
@@ -39,6 +40,14 @@ const privateRoute: RouteObject[] = [
       </Page>
     ),
     path: '/:id',
+  },
+  {
+    element: (
+      <Page>
+        <LearnPage />
+      </Page>
+    ),
+    path: '/:id/learn',
   },
 ]
 const publicRoute: RouteObject[] = [

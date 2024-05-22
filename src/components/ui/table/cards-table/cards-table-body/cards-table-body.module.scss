@@ -4,3 +4,29 @@
     justify-content: flex-end;
   }
 }
+
+.question {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  img {
+    width: 118px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+}
+
+.answer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  img {
+    width: 118px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+}

@@ -5,7 +5,7 @@ h1 {
 .myDeckContainer {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 35px;
   width: 100%;
 }
 
@@ -32,11 +32,6 @@ h1 {
   align-items: center;
 }
 
-.trigger {
-  display: flex;
-  align-items: center;
-}
-
 .dropdownItem {
   display: flex;
   gap: 15px;
@@ -58,4 +53,8 @@ h1 {
   height: 107px;
   object-fit: cover;
   border-radius: 2px;
+}
+
+.paginationBlock {
+  margin-top: 20px;
 }

@@ -1,0 +1,24 @@
+.container {
+  align-self: flex-start;
+}
+
+.backWrap {
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

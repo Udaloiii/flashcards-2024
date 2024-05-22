@@ -19,7 +19,7 @@ const decksService = baseApi.injectEndpoints({
         invalidatesTags: ['Deck'],
         query: arg => {
           return {
-            body: arg,
+            // body: arg,
             method: 'POST',
             params: arg ?? '',
             url: `v1/decks`,
@@ -70,6 +70,24 @@ const decksService = baseApi.injectEndpoints({
           }
         },
       }),
+      learnCard: build.query<GetCardResponse, { id: string; previousCardId?: string }>({
+        query: arg => {
+          return {
+            params: arg.previousCardId ?? {},
+            url: `/v1/decks/${arg.id}/learn`,
+          }
+        },
+      }),
+      saveGradeCard: build.mutation<GetCardResponse, { cardId: string; grade: number }>({
+        invalidatesTags: ['Deck'],
+        query: arg => {
+          return {
+            method: 'POST',
+            params: arg,
+            url: `/v1/decks/${arg.cardId}/learn`,
+          }
+        },
+      }),
       updateDeck: build.mutation<DeckType, { data: UpdateDeckArgs; id: string }>({
         invalidatesTags: ['Deck'],
         query: ({ data, id }) => {
@@ -91,5 +109,7 @@ export const {
   useGetDeckByIdQuery,
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
+  useLearnCardQuery,
+  useSaveGradeCardMutation,
   useUpdateDeckMutation,
 } = decksService

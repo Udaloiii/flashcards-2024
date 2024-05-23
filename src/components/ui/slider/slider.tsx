@@ -1,41 +1,87 @@
-import { useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 import * as RadixSlider from '@radix-ui/react-slider'
 
 import s from './slider.module.scss'
 
 type SliderProps = {
-  onChange?: (value: number[]) => void
+  maxValue: number
+  minValue?: number
+  onChange: (value: number[]) => void
   step?: number
   value: number[]
 }
-export const Slider = ({ step = 1, value }: SliderProps) => {
-  const [arrValue, setArrValue] = useState(value)
-  const onChangeHandler = (e: number[]) => {
-    setArrValue(e)
+export const Slider = ({
+  maxValue,
+  minValue = 0,
+  onChange,
+  step = 1,
+  value,
+  ...rest
+}: SliderProps) => {
+  const [inputValue, setInputValue] = useState(value)
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.name === 'min' && Number(e.currentTarget.value)) {
+      setInputValue([Number(e.currentTarget.value), inputValue[1]])
+    } else if (e.currentTarget.name === 'max' && Number(e.currentTarget.value)) {
+      setInputValue([inputValue[0], Number(e.currentTarget.value)])
+    }
+  }
+
+  const onEnterPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      if (e.currentTarget.name === 'min' && Number(e.currentTarget.value) > inputValue[1]) {
+        onChange?.([inputValue[1], Number(e.currentTarget.value)] ?? [0, 0])
+        setInputValue([inputValue[1], Number(e.currentTarget.value)])
+      } else if (e.currentTarget.name === 'max' && Number(e.currentTarget.value) < inputValue[0]) {
+        onChange?.([Number(e.currentTarget.value), inputValue[0]] ?? [0, 0])
+        setInputValue([Number(e.currentTarget.value), inputValue[0]] ?? [0, 0])
+      } else {
+        onChange?.(inputValue ?? [0, 0])
+      }
+      e.currentTarget.blur()
+    }
+  }
+  const handler = (value: number[]) => {
+    onChange?.(value)
+    setInputValue(value)
   }
 
   return (
     <div className={s.container}>
-      <div className={s.value}>{arrValue[0]}</div>
-      {/*<SliderInput maxValue={100} onChange={setArrValue} value={arrValue[0]} />*/}
-      {/* потом сделать чтобы через инпут тоже можно было менять слайдер*/}
+      <input
+        className={s.value}
+        name={'min'}
+        onChange={onChangeHandler}
+        onKeyDown={onEnterPressHandler}
+        style={{ textAlign: 'center' }}
+        value={inputValue[0]}
+      />
       <RadixSlider.Root
         className={s.root}
-        defaultValue={value}
-        max={100}
+        max={maxValue}
         min={0}
-        onValueChange={onChangeHandler}
+        onValueChange={handler}
         step={step}
+        value={value}
+        {...rest}
       >
         <RadixSlider.Track className={s.sliderTrack}>
           <RadixSlider.Range className={s.sliderRange} />
         </RadixSlider.Track>
-        <RadixSlider.Thumb aria-label={'Volume'} className={s.sliderThumb} />
-        <RadixSlider.Thumb aria-label={'Volume'} className={s.sliderThumb} />
+        {value?.map((_, index) => {
+          return <RadixSlider.Thumb aria-label={'Volume'} className={s.sliderThumb} key={index} />
+        })}
       </RadixSlider.Root>
-      <div className={s.value}>{arrValue[1]}</div>
-      {/*<SliderInput value={arrValue[1]} />*/}
+      <input
+        className={s.value}
+        name={'max'}
+        onChange={onChangeHandler}
+        onKeyDown={onEnterPressHandler}
+        style={{ textAlign: 'center' }}
+        value={inputValue[1]}
+      />
     </div>
   )
 }

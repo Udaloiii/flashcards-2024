@@ -11,7 +11,7 @@ export type PaginationType = {
   changePageSize?: (size: number) => void
   currentPage?: number // текущая страница
   onPageChange?: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
-  pageSize?: number //  максимальный объем данных, видимых на одной странице
+  pageSize: number //  максимальный объем данных, видимых на одной странице
   siblingCount?: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
   totalCount?: number // общее количество данных, доступных из источника
 }
@@ -31,9 +31,9 @@ export const Pagination = ({
     totalCount,
   })
 
-  if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
+  if (currentPage === 0 || (paginationRange && paginationRange?.length < 2 && pageSize <= 5)) {
     return null
-  }
+  } // pageSize < 5 убирает баг с переключением селекта (на тех, где items меньше 20, если выбрать 20 то пропадает пагинация с селектом)
 
   const onNext = () => {
     onPageChange?.(currentPage + 1)

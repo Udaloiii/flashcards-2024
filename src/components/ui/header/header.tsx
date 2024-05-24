@@ -29,15 +29,7 @@ export const Header = ({ email, icon, isLoggedIn, userName }: HeaderProps) => {
         {isLoggedIn ? (
           <div className={s.userInfo}>
             <Typography variant={'subtitle1'}>{userName}</Typography>
-            <Dropdown
-              trigger={
-                <img
-                  alt={'user'}
-                  src={icon}
-                  style={{ borderRadius: '50%', height: '50px', width: '50px' }}
-                />
-              }
-            >
+            <Dropdown trigger={<img alt={'user'} className={s.trigger} src={icon} />}>
               <UserInfo email={email} icon={icon} userName={userName} />
               <DropdownSeparator />
               <Link to={'/profile'}>

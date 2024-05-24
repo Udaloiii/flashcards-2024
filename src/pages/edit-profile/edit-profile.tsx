@@ -7,22 +7,19 @@ import { Card } from '@/components/ui/card'
 import { EditableText } from '@/components/ui/editable-span/editable-text'
 import { useEditableSpan } from '@/components/ui/editable-span/hook/useEditableSpan'
 import { Typography } from '@/components/ui/typography'
+import { useAuthMeQuery, useLogOutMutation } from '@/services/auth.service'
 
 import s from './edit-profile.module.scss'
 
-type EditProfileProps = {
-  email: string
-  icon?: string
-  name: string
-}
-export const EditProfile = ({ email, icon, name }: EditProfileProps) => {
+export const EditProfile = () => {
+  const { data, isError, isLoading } = useAuthMeQuery()
+  const [logOut] = useLogOutMutation()
+
   const { changeOn, setChangeOn, toggleMode } = useEditableSpan()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleButtonClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click()
-    }
+    fileInputRef.current?.click()
   }
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,14 +31,27 @@ export const EditProfile = ({ email, icon, name }: EditProfileProps) => {
     }
   }
 
+  if (isLoading) {
+    return <div style={{ display: 'flex', justifyContent: 'center' }}>LOADING...</div>
+  }
+
+  if (isError) {
+    return (
+      <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'space-between' }}>
+        Error!!!
+      </div>
+    )
+  }
+
   return (
-    <Card className={s.container}>
+    <Card as={'form'} className={s.container} onSubmit={() => {}}>
+      <Typography variant={'body2'} />
       <Typography as={'h1'} variant={'h1'}>
         Personal Information
       </Typography>
       <div className={s.avatarBlock}>
-        <img alt={'user'} className={s.avatar} src={icon} />
-        <Button onClick={handleButtonClick} variant={'icon'}>
+        <img alt={'user'} className={s.avatar} src={data?.avatar} />
+        <Button onClick={handleButtonClick} type={'button'} variant={'icon'}>
           <Edit />
         </Button>
         <input
@@ -58,7 +68,7 @@ export const EditProfile = ({ email, icon, name }: EditProfileProps) => {
           changeOn={changeOn}
           label={'Nickname'}
           setChangeOn={setChangeOn}
-          title={name}
+          title={data?.name || ''}
           toggleMode={toggleMode}
           trigger={<Edit />}
         />
@@ -66,9 +76,9 @@ export const EditProfile = ({ email, icon, name }: EditProfileProps) => {
       {!changeOn && (
         <>
           <Typography className={s.email} variant={'body2'}>
-            {email}
+            {data?.email}
           </Typography>
-          <Button variant={'secondary'}>
+          <Button onClick={() => logOut()} type={'button'} variant={'secondary'}>
             <LogOut />
             <Typography variant={'subtitle2'}>Logout</Typography>
           </Button>

@@ -22,15 +22,19 @@ export const Slider = ({
   const [inputValue, setInputValue] = useState(value)
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.name === 'min' && Number(e.currentTarget.value)) {
+    if (e.currentTarget.name === 'min') {
       setInputValue([Number(e.currentTarget.value), inputValue[1]])
-    } else if (e.currentTarget.name === 'max' && Number(e.currentTarget.value)) {
+    } else if (e.currentTarget.name === 'max') {
       setInputValue([inputValue[0], Number(e.currentTarget.value)])
     }
   }
 
   const onEnterPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (
+      e.key === 'Enter' &&
+      Number(e.currentTarget.value) >= 0 &&
+      Number(e.currentTarget.value) <= maxValue
+    ) {
       if (e.currentTarget.name === 'min' && Number(e.currentTarget.value) > inputValue[1]) {
         onChange?.([inputValue[1], Number(e.currentTarget.value)] ?? [0, 0])
         setInputValue([inputValue[1], Number(e.currentTarget.value)])

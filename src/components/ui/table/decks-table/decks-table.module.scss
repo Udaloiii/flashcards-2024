@@ -1,3 +1,22 @@
 .container {
   //max-width: 1000px;
 }
+
+.itemTable {
+  th:first-child {
+    width: 450px;
+  }
+
+  th:nth-child(2) {
+    width: 150px;
+  }
+
+  th:nth-child(3) {
+    width: 250px;
+  }
+
+  th:last-child {
+    cursor: auto;
+    width: 80px;
+  }
+}

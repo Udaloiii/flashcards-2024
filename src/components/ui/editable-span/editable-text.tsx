@@ -25,7 +25,7 @@ export const EditableText = ({
   return changeOn ? (
     <div className={s.changeEmail}>
       <Textfield autoFocus className={s.textfield} label={label} />
-      <Button fullWidth onClick={() => setChangeOn?.(false)}>
+      <Button fullWidth onClick={() => setChangeOn?.(false)} type={'button'}>
         <Typography variant={'subtitle2'}>Save Changes</Typography>
       </Button>
     </div>
@@ -34,7 +34,7 @@ export const EditableText = ({
       {trigger ? <span>{title}</span> : <span onClick={toggleMode}>{title}</span>}
 
       {trigger && (
-        <Button onClick={toggleMode} variant={'icon'}>
+        <Button onClick={toggleMode} type={'button'} variant={'icon'}>
           {trigger}
         </Button>
       )}

@@ -4,7 +4,7 @@ import { ModalHeader } from '@/components/ui/modal/modal-header/modal-header'
 import { Typography } from '@/components/ui/typography'
 
 type DeleteCardProps = {
-  cardTitle: string
+  cardTitle?: string
 }
 export const DeleteCard = ({ cardTitle }: DeleteCardProps) => {
   return (

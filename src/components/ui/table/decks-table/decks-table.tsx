@@ -1,51 +1,55 @@
-import { useState } from 'react'
-
 import { DecksTableBody } from '@/components/ui/table/decks-table/decks-table-body/decks-table-body'
-import { DecksTableHead } from '@/components/ui/table/decks-table/decks-table-head/decks-table-head'
+import { ItemTableHead } from '@/components/ui/table/item-table-head/item-table-head'
 import { Table, TableBody, TableHeader } from '@/components/ui/table/table'
+import { DeckType } from '@/services/flashcards-type'
 
 import s from './decks-table.module.scss'
 
 type DecksTableProps = {
   className?: string
-  items: string[]
+  items?: DeckType[]
   myCards?: boolean
 }
-export const DecksTable = ({ className, items, myCards }: DecksTableProps) => {
-  const [sortByColumn, setSortByColumn] = useState<string>('')
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
-
-  const handleSort = (columnName: string) => {
-    if (sortByColumn === columnName) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
-    } else {
-      setSortByColumn(columnName)
-      setSortDirection('asc')
-    }
-  }
-  const sortedItems = [...items].sort((a, b) => {
-    if (sortByColumn === 'Name') {
-      return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-    } else if (sortByColumn === 'Last updated') {
-      return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-    } else if (sortByColumn === 'Cards') {
-      return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-    }
-
-    return 0
-  })
+export const DecksTable = ({ className, items = [], myCards }: DecksTableProps) => {
+  // const [sortByColumn, setSortByColumn] = useState<string>('')
+  // const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
+  //
+  // const handleSort = (columnName: string) => {
+  //   if (sortByColumn === columnName) {
+  //     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+  //   } else {
+  //     setSortByColumn(columnName)
+  //     setSortDirection('asc')
+  //   }
+  // }
+  // const sortedItems = [...items].sort((a, b) => {
+  //   if (sortByColumn === 'Name') {
+  //     return sortDirection === 'asc'
+  //       ? a.author.name.localeCompare(b.author.name)
+  //       : b.author.name.localeCompare(a.author.name)
+  //   } else if (sortByColumn === 'Last updated') {
+  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
+  //   } else if (sortByColumn === 'Cards') {
+  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
+  //   }
+  //
+  //   return 0
+  // })
 
   return (
     <Table className={`${s.container} ${className}`}>
       <TableHeader>
-        <DecksTableHead
-          onclick={handleSort}
-          sortByColumn={sortByColumn}
-          sortDirection={sortDirection}
+        <ItemTableHead
+          className={s.itemTable}
+          firstTitle={'Name'}
+          fourthTitle={'Created By'}
+          myDeck
+          secondTitle={'Cards'}
+          thirdTitle={'Last Updated'}
         />
       </TableHeader>
       <TableBody>
-        <DecksTableBody items={sortedItems} myCards={myCards} />
+        <DecksTableBody items={items} myCards={myCards} />
       </TableBody>
     </Table>
   )

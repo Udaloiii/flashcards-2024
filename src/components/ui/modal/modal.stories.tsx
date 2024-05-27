@@ -4,8 +4,8 @@ import { Card } from '@/components/ui/card'
 import { AddNewCard } from '@/components/ui/modal/add-new-card/add-new-card'
 import { AddNewPack } from '@/components/ui/modal/add-new-pack/add-new-pack'
 import { DeleteCard } from '@/components/ui/modal/delete-card/delete-card'
-import { LearnCard } from '@/components/ui/modal/learn-card/learn-card'
 import { Modal } from '@/components/ui/modal/modal'
+import { LearnCard } from '@/pages/learn-page/learn-card/learn-card'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

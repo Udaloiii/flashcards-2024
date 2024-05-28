@@ -22,13 +22,13 @@ export const MyDecksPage: Story = {
     children: (
       <Page>
         <DecksList
-          currentPage={1}
-          items={['asd', 'asdd', 'aqw']}
-          myDecks
-          onPageChange={() => {}}
-          pageSize={5}
-          siblingCount={2}
-          totalCount={22}
+        // currentPage={1}
+        // items={['asd', 'asdd', 'aqw']}
+        // myDecks
+        // onPageChange={() => {}}
+        // pageSize={5}
+        // siblingCount={2}
+        // totalCount={22}
         />
       </Page>
     ),
@@ -41,12 +41,12 @@ export const OtherDecksPage: Story = {
     children: (
       <Page>
         <DecksList
-          currentPage={1}
-          items={['asd', 'asdd', 'aqw']}
-          onPageChange={() => {}}
-          pageSize={5}
-          siblingCount={2}
-          totalCount={22}
+        // currentPage={1}
+        // items={['asd', 'asdd', 'aqw']}
+        // onPageChange={() => {}}
+        // pageSize={5}
+        // siblingCount={2}
+        // totalCount={22}
         />
       </Page>
     ),
@@ -93,13 +93,13 @@ export const MyDeckExample: Story = {
     children: (
       <Page>
         <Deck
-          currentPage={1}
-          deckTitle={'My Deck'}
-          myDeck
-          onPageChange={() => {}}
-          pageSize={5}
-          siblingCount={2}
-          totalCount={20}
+        // currentPage={1}
+        // deckTitle={'My Deck'}
+        // myDeck
+        // onPageChange={() => {}}
+        // pageSize={5}
+        // siblingCount={2}
+        // totalCount={20}
         />
       </Page>
     ),
@@ -113,12 +113,12 @@ export const OtherDeckExample: Story = {
     children: (
       <Page>
         <Deck
-          currentPage={1}
-          deckTitle={'Friend`s Deck'}
-          onPageChange={() => {}}
-          pageSize={5}
-          siblingCount={2}
-          totalCount={20}
+        // currentPage={1}
+        // deckTitle={'Friend`s Deck'}
+        // onPageChange={() => {}}
+        // pageSize={5}
+        // siblingCount={2}
+        // totalCount={20}
         />
       </Page>
     ),

@@ -6,6 +6,7 @@ import { Typography } from '@/components/ui/typography'
 import s from './item-table-head.module.scss'
 
 type ItemTableHeadProps = {
+  className?: string
   firstTitle?: string
   fourthTitle?: string
   myDeck?: boolean
@@ -16,6 +17,7 @@ type ItemTableHeadProps = {
   thirdTitle?: string
 }
 export const ItemTableHead = ({
+  className,
   firstTitle = '',
   fourthTitle = '',
   myDeck,
@@ -28,7 +30,7 @@ export const ItemTableHead = ({
   const sortIconCondition = sortDirection === 'desc' && s.sortUp
 
   return (
-    <TableRow className={s.container}>
+    <TableRow className={`${s.container} ${className}`}>
       <TableHead className={s.tableHead} onClick={() => onclick?.(firstTitle)}>
         <Typography variant={'subtitle2'}>{firstTitle}</Typography>
         {sortByColumn === firstTitle && (

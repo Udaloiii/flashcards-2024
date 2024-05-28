@@ -2,11 +2,15 @@
   background-color: var(--color-dark-500);
 
   th:first-child {
-    width: 350px;
+    width: 400px;
   }
 
   th:nth-child(2) {
     width: 350px;
+  }
+
+  th:nth-child(3) {
+    width: 150px;
   }
 
   th:last-child {

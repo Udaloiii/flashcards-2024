@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { ControlledCheckbox } from '@/components/controlled/controlled-checkbox'
 import { ControlledTextfield } from '@/components/controlled/controlled-textfield'
@@ -6,24 +7,33 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 import { loginSchema } from '@/pages/auth/login-form/login-schema'
+import { useLogInMutation } from '@/services/auth.service'
+import { LoginType } from '@/services/flashcards-type'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
 import s from './login-form.module.scss'
 
-type FormValues = z.infer<typeof loginSchema> // тяну тип сразу из loginSchema
+// type FormValues = z.infer<typeof loginSchema> // тяну тип сразу из loginSchema (убрал и заюзал из глоб.типов)
 
 export const LoginForm = () => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormValues>({
+  } = useForm<LoginType>({
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data)
+  const navigate = useNavigate()
+
+  const [logIn, _] = useLogInMutation()
+  const onSubmit = async (data: LoginType) => {
+    try {
+      await logIn(data)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

@@ -59,7 +59,6 @@ export const Slider = ({
         name={'min'}
         onChange={onChangeHandler}
         onKeyDown={onEnterPressHandler}
-        style={{ textAlign: 'center' }}
         value={inputValue[0]}
       />
       <RadixSlider.Root
@@ -83,7 +82,6 @@ export const Slider = ({
         name={'max'}
         onChange={onChangeHandler}
         onKeyDown={onEnterPressHandler}
-        style={{ textAlign: 'center' }}
         value={inputValue[1]}
       />
     </div>

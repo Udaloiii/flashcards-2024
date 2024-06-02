@@ -5,12 +5,12 @@ import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/ui/modal'
 import { AddNewPack } from '@/components/ui/modal/add-new-pack/add-new-pack'
 import { Pagination } from '@/components/ui/pagination/pagination'
-import { Slider } from '@/components/ui/slider'
 import { TabSwitcher } from '@/components/ui/tab-switcher'
 import { DecksTable } from '@/components/ui/table/decks-table/decks-table'
 import { Textfield } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
 import { useDebounce } from '@/hooks/useDebounce'
+import { FilterCountSlider } from '@/pages/decks-list/filter-count-slider/filter-count-slider'
 import { useAuthMeQuery } from '@/services/auth.service'
 import { useGetDecksQuery, useGetMinMaxCardsQuery } from '@/services/decks.service'
 
@@ -89,7 +89,7 @@ export const DecksList = () => {
             { title: 'My Cards', value: user?.id ?? '' },
           ]}
         />
-        <Slider
+        <FilterCountSlider
           maxValue={minMaxCards?.max ?? 100}
           onChange={handleSliderChange}
           value={cardsCount ?? [0, minMaxCards?.max ?? 100]}

@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider, SliderValue } from '@/components/ui/slider'
 
@@ -50,6 +50,10 @@ export const FilterCountSlider = ({
     onChange?.(value)
     setInputValue(value)
   }
+
+  useEffect(() => {
+    setInputValue(value)
+  }, [value])
 
   return (
     <div className={s.container}>

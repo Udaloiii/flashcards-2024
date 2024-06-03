@@ -26,6 +26,7 @@ export const DecksList = () => {
   const [pageSize, setPageSize] = useState(10)
 
   const [author, setAuthor] = useState('')
+  const [searchValue, setSearchValue] = useState('') // value для поиска в инпуте
 
   const { data, error, isLoading } = useGetDecksQuery(
     {
@@ -34,6 +35,7 @@ export const DecksList = () => {
       itemsPerPage: pageSize,
       maxCardsCount: Number(useDebounce(cardsCount?.[1] ?? 0, 1000)),
       minCardsCount: Number(useDebounce(cardsCount?.[0] ?? 100, 1000)),
+      name: String(useDebounce(searchValue ?? '', 800)),
     },
     {
       skip: !minMaxCards,
@@ -43,6 +45,11 @@ export const DecksList = () => {
   const handleSliderChange = (value: number[]) => {
     setCardsCount(value)
     setCurrPage(1)
+  }
+
+  const clearFilterHandler = () => {
+    setSearchValue('')
+    minMaxCards && setCardsCount([minMaxCards?.min, minMaxCards?.max])
   }
 
   useEffect(() => {
@@ -80,7 +87,12 @@ export const DecksList = () => {
         />
       </div>
       <div className={s.changeCardBlock}>
-        <Textfield className={s.textfield} variant={'search'} />
+        <Textfield
+          className={s.textfield}
+          onChangeValue={setSearchValue}
+          value={searchValue}
+          variant={'search'}
+        />
         <TabSwitcher
           defaultValue={''}
           onValueChange={setAuthor}
@@ -94,7 +106,7 @@ export const DecksList = () => {
           onChange={handleSliderChange}
           value={cardsCount ?? [0, minMaxCards?.max ?? 100]}
         />
-        <Button className={s.clearButton} variant={'secondary'}>
+        <Button className={s.clearButton} onClick={clearFilterHandler} variant={'secondary'}>
           <Delete />
           <Typography variant={'subtitle2'}>Clear Filter</Typography>
         </Button>

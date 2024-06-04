@@ -11,11 +11,11 @@ import s from './textfield.module.scss'
 export type InputProps = {
   error?: null | string
   label?: string
+  onChangeValue?: (value: string) => void
   variant?: 'password' | 'search' | 'text'
 } & ComponentPropsWithoutRef<'input'>
 export const Textfield = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, disabled, error, label, value, variant = 'text', ...rest }, ref) => {
-    const [localValue, setLocalValue] = useState(value)
+  ({ className, disabled, error, label, onChangeValue, value, variant = 'text', ...rest }, ref) => {
     const [show, setShow] = useState(false)
     const [inputType, setInputType] = useState(variant)
     const showPasswordHandler = () => {
@@ -31,7 +31,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
 
     // handlers
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
-      setLocalValue(e.currentTarget.value)
+      onChangeValue?.(e.currentTarget.value)
 
     return (
       <Typography as={'div'} className={`${s.container} ${className}`} variant={'body1'}>
@@ -54,7 +54,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
             placeholder={variant}
             ref={ref}
             type={inputType}
-            value={localValue}
+            value={value}
             {...rest}
           />
           {error && (

@@ -1,0 +1,21 @@
+.emptyDeck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.message {
+  color: var(--color-dark-100);
+}
+
+.myDeck {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}

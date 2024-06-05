@@ -38,6 +38,8 @@
   }
 
   &:disabled {
+    pointer-events: none;
+    user-select: none;
     color: var(--color-light-900);
     background-color: var(--color-primary-900);
   }

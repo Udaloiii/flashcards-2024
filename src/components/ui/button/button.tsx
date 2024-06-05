@@ -11,6 +11,7 @@ type ButtonProps = {
 export const Button = ({
   children,
   className,
+  disabled,
   fullWidth,
   onSort,
   variant = 'primary',
@@ -19,6 +20,7 @@ export const Button = ({
   return (
     <button
       className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`}
+      disabled={disabled}
       {...rest}
     >
       {children}

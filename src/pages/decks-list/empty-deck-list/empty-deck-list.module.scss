@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+
+  svg {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+.title {
+  color: var(--color-dark-100);
+}

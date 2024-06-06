@@ -4,22 +4,25 @@ import PlayCircle from '@/assets/logo/play-circle'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/ui/modal'
 import { DeleteCard } from '@/components/ui/modal/delete-card/delete-card'
+import { DeleteDeck } from '@/components/ui/modal/delete-deck/delete-deck'
 
 import s from './control-items.module.scss'
 
 type ControlItemsProps = {
   cardPage?: boolean
   className?: string
+  deck?: boolean // для отображения удаления колоды или карточки
+  deckTitle?: string
   disabled?: boolean
   myDecks?: boolean
-  titleCard?: string
 }
 export const ControlItems = ({
   cardPage,
   className,
+  deck,
+  deckTitle,
   disabled,
   myDecks,
-  titleCard,
 }: ControlItemsProps) => {
   return (
     <div className={`${s.container} ${className}`}>
@@ -39,7 +42,7 @@ export const ControlItems = ({
             }
           ></Modal>
           <Modal
-            content={<DeleteCard cardTitle={titleCard} />}
+            content={deck ? <DeleteDeck deckTitle={deckTitle} /> : <DeleteCard />}
             trigger={
               <Button variant={'icon'}>
                 <Delete />

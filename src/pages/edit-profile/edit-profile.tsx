@@ -45,7 +45,6 @@ export const EditProfile = () => {
 
   return (
     <Card as={'form'} className={s.container} onSubmit={() => {}}>
-      <Typography variant={'body2'} />
       <Typography as={'h1'} variant={'h1'}>
         Personal Information
       </Typography>

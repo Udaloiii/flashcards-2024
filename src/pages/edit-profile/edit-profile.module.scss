@@ -1,6 +1,8 @@
 h1,
-h2 {
+h2,
+form {
   all: unset;
+  box-sizing: border-box;
 }
 
 .container {
@@ -43,6 +45,10 @@ h2 {
   gap: 10px;
   justify-content: center;
   width: 100%;
+
+  span {
+    text-wrap: nowrap;
+  }
 
   svg {
     width: 16px;

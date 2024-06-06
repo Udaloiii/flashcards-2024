@@ -46,6 +46,17 @@ a {
   align-items: center;
 }
 
+.userName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  svg {
+    width: 100%;
+  }
+}
+
 .trigger {
   width: 36px;
   height: 36px;

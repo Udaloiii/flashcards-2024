@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import HeaderLogo from '@/assets/logo/header-logo'
+import HorizontalLine from '@/assets/logo/horizontal-line'
 import LogOut from '@/assets/logo/log-out'
 import Person from '@/assets/logo/person'
 import { Button } from '@/components/ui/button'
@@ -28,7 +29,10 @@ export const Header = ({ email, icon, isLoggedIn, userName }: HeaderProps) => {
         </Link>
         {isLoggedIn ? (
           <div className={s.userInfo}>
-            <Typography variant={'subtitle1'}>{userName}</Typography>
+            <div className={s.userName}>
+              <Typography variant={'subtitle1'}>{userName}</Typography>
+              <HorizontalLine />
+            </div>
             <Dropdown trigger={<img alt={'user'} className={s.trigger} src={icon} />}>
               <UserInfo email={email} icon={icon} userName={userName} />
               <DropdownSeparator />

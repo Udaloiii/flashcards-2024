@@ -20,7 +20,7 @@ export const EmptyDeck = ({ myDeck }: EmptyDeckProps) => {
         </div>
       ) : (
         <Typography className={s.message} variant={'body1'}>
-          This deck is empty, please include a deck that contains cards
+          This deck is empty for now, but maybe someday...
         </Typography>
       )}
     </div>

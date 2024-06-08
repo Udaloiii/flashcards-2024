@@ -12,6 +12,7 @@ import { Pagination } from '@/components/ui/pagination/pagination'
 import { CardsTable } from '@/components/ui/table/cards-table/cards-table'
 import { Textfield } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
+import { EmptyDeck } from '@/pages/deck/empty-deck/empty-deck'
 import { useAuthMeQuery } from '@/services/auth.service'
 import { useGetCardsInDeckQuery, useGetDeckByIdQuery } from '@/services/decks.service'
 
@@ -54,10 +55,10 @@ export const Deck = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'
           <Typography as={'h1'} className={s.title} variant={'h1'}>
             {deck?.name}
             {myCards && (
-              <Dropdown trigger={<VerticalDots />}>
+              <Dropdown disabled={data?.items.length === 0} trigger={<VerticalDots />}>
                 <Link to={`/${id}/learn`}>
                   <DropdownItem className={s.dropdownItem}>
-                    <Button variant={'icon'}>
+                    <Button disabled={data?.items.length === 0} variant={'icon'}>
                       <PlayCircle />
                     </Button>
                     <Typography variant={'caption'}>Learn</Typography>
@@ -80,29 +81,39 @@ export const Deck = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'
               </Dropdown>
             )}
           </Typography>
-          <Button>
-            {myCards ? (
-              <Typography variant={'subtitle2'}>Add New Card</Typography>
-            ) : (
+          {myCards ? (
+            data &&
+            data?.items.length > 0 && (
+              <Button>
+                <Typography variant={'subtitle2'}>Add New Card</Typography>
+              </Button>
+            )
+          ) : (
+            <Button disabled={data?.items.length === 0}>
               <Link to={`/${id}/learn`}>
                 <Typography variant={'subtitle2'}>Learn to Pack</Typography>
               </Link>
-            )}
-          </Button>
+            </Button>
+          )}
         </div>
         {deck?.cover && <img alt={'logo'} className={s.logo} src={deck?.cover} />}
-        <Textfield variant={'search'} />
-        <CardsTable items={data?.items} myDeck={myCards} titleCard={deck?.name} />
-        <div>
-          <Pagination
-            changePageSize={setPageSize}
-            currentPage={currPage}
-            onPageChange={setCurrPage}
-            pageSize={pageSize}
-            // siblingCount={siblingCount}
-            totalCount={data?.pagination.totalItems}
-          />
-        </div>
+        <Textfield disabled={data?.items.length === 0} variant={'search'} />
+        {data?.items && data?.items.length > 0 ? (
+          <>
+            <CardsTable items={data?.items} myDeck={myCards} titleCard={deck?.name} />
+            <div>
+              <Pagination
+                changePageSize={setPageSize}
+                currentPage={currPage}
+                onPageChange={setCurrPage}
+                pageSize={pageSize}
+                totalCount={data?.pagination.totalItems}
+              />
+            </div>
+          </>
+        ) : (
+          <EmptyDeck myDeck={myCards} />
+        )}
       </div>
     )
   }

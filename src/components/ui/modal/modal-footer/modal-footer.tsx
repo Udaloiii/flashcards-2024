@@ -4,20 +4,19 @@ import * as RadixModal from '@radix-ui/react-dialog'
 import s from './modal-footer.module.scss'
 
 type ModalHeaderProps = {
+  onClick?: () => void
   titlePrimary?: string
   titleSecondary?: string
 }
-export const ModalFooter = ({ titlePrimary, titleSecondary }: ModalHeaderProps) => {
+export const ModalFooter = ({ onClick, titlePrimary, titleSecondary }: ModalHeaderProps) => {
   return (
     <footer className={s.container}>
       <RadixModal.Close>
         {titleSecondary && <Button variant={'secondary'}>{titleSecondary}</Button>}
       </RadixModal.Close>
-      <RadixModal.Close>
-        <Button className={s.primaryButton} variant={'primary'}>
-          {titlePrimary}
-        </Button>
-      </RadixModal.Close>
+      <Button className={s.primaryButton} onClick={onClick} variant={'primary'}>
+        {titlePrimary}
+      </Button>
     </footer>
   )
 }

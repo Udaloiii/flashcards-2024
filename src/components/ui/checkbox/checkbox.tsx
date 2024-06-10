@@ -12,12 +12,11 @@ export type CheckboxProps = {
   checked?: boolean
   disabled?: boolean
   label?: string
-  onValueChange?: () => void
+  onValueChange?: (checked: boolean) => void
 }
 export const Checkbox = ({ checked, disabled, label, onValueChange }: CheckboxProps) => {
   const id = useId()
-  // const [check, setCheck] = useState(checked)
-  // const checkHandler = () => setCheck(prevState => !prevState)
+
   const disableCondition = disabled && s.disabled
 
   return (

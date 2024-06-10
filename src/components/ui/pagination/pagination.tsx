@@ -31,9 +31,10 @@ export const Pagination = ({
     totalCount,
   })
 
-  if (currentPage === 0 || (paginationRange && paginationRange?.length < 2 && pageSize <= 5)) {
+  // if (currentPage === 0 || (paginationRange && paginationRange?.length < 2 && pageSize <= 5))
+  if (totalCount && totalCount <= 5) {
     return null
-  } // pageSize < 5 убирает баг с переключением селекта (на тех, где items меньше 20, если выбрать 20 то пропадает пагинация с селектом)
+  } // поменял на если всех items меньше или = 5 то не показывать
 
   const onNext = () => {
     onPageChange?.(currentPage + 1)

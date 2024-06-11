@@ -19,9 +19,9 @@ const decksService = baseApi.injectEndpoints({
         invalidatesTags: ['Deck'],
         query: arg => {
           return {
-            // body: arg,
+            body: arg,
             method: 'POST',
-            params: arg ?? '',
+            // params: arg ?? {},
             url: `v1/decks`,
           }
         },
@@ -72,6 +72,7 @@ const decksService = baseApi.injectEndpoints({
         },
       }),
       learnCard: build.query<GetCardResponse, { id: string; previousCardId?: string }>({
+        providesTags: ['Deck'],
         query: arg => {
           return {
             params: arg.previousCardId ?? {},
@@ -83,8 +84,9 @@ const decksService = baseApi.injectEndpoints({
         invalidatesTags: ['Deck'],
         query: arg => {
           return {
+            body: arg,
             method: 'POST',
-            params: arg,
+            // params: arg,
             url: `/v1/decks/${arg.cardId}/learn`,
           }
         },

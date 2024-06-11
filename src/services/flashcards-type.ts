@@ -45,7 +45,8 @@ export type GetDeckById = {
 }
 
 export type CreateDeckArgs = {
-  cover?: string // потом наверное поменять
+  // cover?: string // потом наверное поменять
+  cover?: File | null
   isPrivate?: boolean
   name: string
 }

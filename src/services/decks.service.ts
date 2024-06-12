@@ -18,10 +18,21 @@ const decksService = baseApi.injectEndpoints({
       createDeck: build.mutation<DeckType, CreateDeckArgs>({
         invalidatesTags: ['Deck'],
         query: arg => {
+          const formData = new FormData()
+
+          formData.append('name', arg.name)
+          if (arg.isPrivate) {
+            formData.append('isPrivate', arg.isPrivate.toString())
+          }
+          if (arg.cover) {
+            formData.append('cover', arg.cover)
+          } else if (arg.cover === null) {
+            formData.append('cover', '')
+          }
+
           return {
-            body: arg,
+            body: formData,
             method: 'POST',
-            // params: arg ?? {},
             url: `v1/decks`,
           }
         },

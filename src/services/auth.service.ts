@@ -1,5 +1,5 @@
 import { baseApi } from '@/services/base-api'
-import { LoginType, SignUpArg, User } from '@/services/flashcards-type'
+import { LoginResponse, LoginType, SignUpArg, User } from '@/services/flashcards-type'
 
 export const authService = baseApi.injectEndpoints({
   endpoints: build => {
@@ -12,8 +12,17 @@ export const authService = baseApi.injectEndpoints({
           }
         },
       }),
-      logIn: build.mutation<void, LoginType>({
+      logIn: build.mutation<LoginResponse, LoginType>({
         invalidatesTags: ['Auth'],
+        async onQueryStarted(_, { queryFulfilled }) {
+          const { data } = await queryFulfilled
+
+          if (!data) {
+            return
+          }
+          localStorage.setItem('accessToken', data.accessToken)
+          localStorage.setItem('refreshToken', data.refreshToken)
+        },
         query: arg => {
           return {
             body: arg,
@@ -81,7 +90,7 @@ export const authService = baseApi.injectEndpoints({
         query: arg => {
           return {
             body: arg,
-            method: 'POST',
+            method: 'PATCH',
             url: `/v1/auth/me`,
           }
         },

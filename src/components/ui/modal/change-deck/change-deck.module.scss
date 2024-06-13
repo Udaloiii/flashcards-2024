@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.buttonUpload {
+  position: relative;
+  margin-bottom: 30px;
+
+  button {
+    position: absolute;
+  }
+}
+
+.checkbox {
+  // margin-top: 50px;
+}
+
+.previewImage {
+  height: 400px;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.buttonBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -50px;
+}

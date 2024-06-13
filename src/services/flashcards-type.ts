@@ -56,17 +56,29 @@ export type GetMinMaxResponse = {
   min: number
 }
 
-export type UpdateDeckArgs = {
-  cover?: string
-  isPrivate?: boolean
-  name?: string
-}
+// export type UpdateDeckArgs = {
+//   cover?: string
+//   isPrivate?: boolean
+//   name?: string
+// }
 
+export type OrderBySort =
+  | 'answer-asc'
+  | 'answer-desc'
+  | 'created-asc'
+  | 'created-desc'
+  | 'grade-asc'
+  | 'grade-desc'
+  | 'question-asc'
+  | 'question-desc'
+  | 'updated-asc'
+  | 'updated-desc'
+  | null
 export type GetCardsInDeckArgs = {
   answer?: string
   currentPage?: number
   itemsPerPage?: number
-  orderBy?: string
+  orderBy?: OrderBySort
   question?: string
 }
 
@@ -120,4 +132,9 @@ export type UpdateCardRequest = {
   question?: string
   questionImg?: string
   questionVideo?: string
+}
+
+export type LoginResponse = {
+  accessToken: string
+  refreshToken: string
 }

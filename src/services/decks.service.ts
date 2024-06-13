@@ -9,7 +9,6 @@ import {
   GetDecksArgs,
   GetMinMaxResponse,
   Pagination,
-  UpdateDeckArgs,
 } from '@/services/flashcards-type'
 
 const decksService = baseApi.injectEndpoints({
@@ -102,12 +101,27 @@ const decksService = baseApi.injectEndpoints({
           }
         },
       }),
-      updateDeck: build.mutation<DeckType, { data: UpdateDeckArgs; id: string }>({
+      updateDeck: build.mutation<DeckType, { data: CreateDeckArgs; id: string }>({
         invalidatesTags: ['Deck'],
         query: ({ data, id }) => {
+          const formData = new FormData()
+
+          if (data.name) {
+            formData.append('name', data.name)
+          }
+
+          if (data.isPrivate) {
+            formData.append('isPrivate', data.isPrivate.toString())
+          }
+          if (data.cover) {
+            formData.append('cover', data.cover)
+          } else if (data.cover === null) {
+            formData.append('cover', '')
+          }
+
           return {
-            body: data,
-            method: 'POST',
+            body: formData,
+            method: 'PATCH',
             url: `v1/decks/${id}`,
           }
         },

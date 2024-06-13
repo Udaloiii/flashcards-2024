@@ -2,7 +2,7 @@ import Delete from '@/assets/logo/delete'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { AddNewCard } from '@/components/ui/modal/add-new-card/add-new-card'
-import { AddNewPack } from '@/components/ui/modal/add-new-pack/add-new-pack'
+import { AddNewDeck } from '@/components/ui/modal/add-new-deck/add-new-deck'
 import { DeleteCard } from '@/components/ui/modal/delete-card/delete-card'
 import { Modal } from '@/components/ui/modal/modal'
 import { LearnCard } from '@/pages/learn-page/learn-card/learn-card'
@@ -20,21 +20,21 @@ type Story = StoryObj<typeof meta>
 
 export const CreateNewCard: Story = {
   args: {
-    content: <AddNewCard />,
+    children: <AddNewCard />,
     trigger: <Button>Add New Card</Button>,
   },
 }
 
 export const CreateNewPack: Story = {
   args: {
-    content: <AddNewPack />,
+    children: <AddNewDeck />,
     trigger: <Button>Add New Pack</Button>,
   },
 }
 
 export const ModalDeleteCard: Story = {
   args: {
-    content: <DeleteCard cardTitle={'Card Title For Delete'} />,
+    children: <DeleteCard />,
     trigger: (
       <div
         style={{
@@ -53,7 +53,7 @@ export const ModalDeleteCard: Story = {
 }
 export const LearnDeckNameCard: Story = {
   args: {
-    content: (
+    children: (
       <Card style={{ padding: '24px' }}>
         <h3 style={{ textAlign: 'center' }}>Learn “Deck Name”</h3>
         <p>Question: {'from server'}</p>
@@ -67,7 +67,7 @@ export const LearnDeckNameCard: Story = {
 
 export const LearnDeckNameAnswerCard: Story = {
   args: {
-    content: <LearnCard answer={'OFIGENNO!'} attempts={10} question={'Kak delishki'} />,
+    children: <LearnCard />,
     trigger: <Button>Learn “Deck Name”</Button>,
   },
 }

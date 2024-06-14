@@ -12,7 +12,11 @@ export const ModalFooter = ({ onClick, titlePrimary, titleSecondary }: ModalHead
   return (
     <footer className={s.container}>
       <RadixModal.Close>
-        {titleSecondary && <Button variant={'secondary'}>{titleSecondary}</Button>}
+        {titleSecondary && (
+          <Button type={'button'} variant={'secondary'}>
+            {titleSecondary}
+          </Button>
+        )}
       </RadixModal.Close>
       <Button className={s.primaryButton} onClick={onClick} variant={'primary'}>
         {titlePrimary}

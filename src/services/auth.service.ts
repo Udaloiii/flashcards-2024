@@ -85,11 +85,22 @@ export const authService = baseApi.injectEndpoints({
           }
         },
       }),
-      updateUser: build.mutation<User, { avatar?: string; name: string }>({
+      updateUser: build.mutation<User, { avatar?: File | null; name?: string }>({
         invalidatesTags: ['Auth'],
         query: arg => {
+          const formData = new FormData()
+
+          if (arg.name) {
+            formData.append('name', arg.name)
+          }
+          if (arg.avatar) {
+            formData.append('avatar', arg.avatar)
+          } else if (arg.avatar === null) {
+            formData.append('avatar', '')
+          }
+
           return {
-            body: arg,
+            body: formData,
             method: 'PATCH',
             url: `/v1/auth/me`,
           }

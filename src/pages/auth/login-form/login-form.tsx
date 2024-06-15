@@ -47,6 +47,7 @@ export const LoginForm = () => {
           error={errors.email?.message}
           label={'Email'}
           name={'email'}
+          placeholder={'email'}
         />
         <ControlledTextfield
           control={control}

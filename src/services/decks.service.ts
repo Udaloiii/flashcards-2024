@@ -1,5 +1,6 @@
 import { baseApi } from '@/services/base-api'
 import {
+  CreateCardRequest,
   CreateDeckArgs,
   DeckType,
   GetCardResponse,
@@ -14,6 +15,19 @@ import {
 const decksService = baseApi.injectEndpoints({
   endpoints: build => {
     return {
+      createCard: build.mutation<
+        Omit<GetCardResponse, 'grade'>,
+        { body: CreateCardRequest; deckId: string }
+      >({
+        invalidatesTags: ['Deck'],
+        query: arg => {
+          return {
+            body: arg.body,
+            method: 'POST',
+            url: `/v1/decks/${arg.deckId}/cards`,
+          }
+        },
+      }),
       createDeck: build.mutation<DeckType, CreateDeckArgs>({
         invalidatesTags: ['Deck'],
         query: arg => {
@@ -131,6 +145,7 @@ const decksService = baseApi.injectEndpoints({
 })
 
 export const {
+  useCreateCardMutation,
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetCardsInDeckQuery,

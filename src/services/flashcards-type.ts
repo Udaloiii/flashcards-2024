@@ -56,12 +56,6 @@ export type GetMinMaxResponse = {
   min: number
 }
 
-// export type UpdateDeckArgs = {
-//   cover?: string
-//   isPrivate?: boolean
-//   name?: string
-// }
-
 export type OrderBySort =
   | 'answer-asc'
   | 'answer-desc'
@@ -125,12 +119,21 @@ export type GetCardResponse = {
   userId: string
 }
 
+export type CreateCardRequest = {
+  answer: string
+  answerImg?: File | null
+  answerVideo?: string
+  question: string
+  questionImg?: File | null
+  questionVideo?: string
+}
+
 export type UpdateCardRequest = {
   answer?: string
-  answerImg?: string
+  answerImg?: File | null
   answerVideo?: string
   question?: string
-  questionImg?: string
+  questionImg?: File | null
   questionVideo?: string
 }
 

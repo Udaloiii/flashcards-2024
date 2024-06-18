@@ -9,11 +9,11 @@ import s from './pagination.module.scss'
 
 export type PaginationType = {
   changePageSize?: (size: number) => void
-  currentPage?: number // текущая страница
+  currentPage: number // текущая страница
   onPageChange?: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
   pageSize: number //  максимальный объем данных, видимых на одной странице
   siblingCount?: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
-  totalCount?: number // общее количество данных, доступных из источника
+  totalCount: number // общее количество данных, доступных из источника
 }
 
 export const Pagination = ({

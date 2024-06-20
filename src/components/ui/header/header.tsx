@@ -20,6 +20,11 @@ type HeaderProps = {
 }
 export const Header = ({ email, icon, isLoggedIn, userName }: HeaderProps) => {
   const [logOut] = useLogOutMutation()
+  const logOutHandler = () => {
+    logOut()
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+  }
 
   return (
     <header className={s.main}>
@@ -33,20 +38,32 @@ export const Header = ({ email, icon, isLoggedIn, userName }: HeaderProps) => {
               <Typography variant={'subtitle1'}>{userName}</Typography>
               <HorizontalLine />
             </div>
-            <Dropdown trigger={<img alt={'user'} className={s.trigger} src={icon} />}>
-              <UserInfo email={email} icon={icon} userName={userName} />
+            <Dropdown
+              trigger={
+                icon ? (
+                  <img alt={'user'} className={s.trigger} src={icon} />
+                ) : (
+                  <div className={`${s.trigger} ${s.defaultAvatar}`}>
+                    <Typography variant={'body2'}>{userName?.slice(0, 1)}</Typography>
+                  </div>
+                )
+              }
+            >
+              <DropdownItem>
+                <UserInfo email={email} icon={icon} userName={userName} />
+              </DropdownItem>
               <DropdownSeparator />
-              <Link to={'/profile'}>
-                <DropdownItem className={s.dropdownItem}>
+              <DropdownItem className={s.dropdownItem}>
+                <Link to={'/profile'}>
                   <Button variant={'icon'}>
                     <Person />
                   </Button>
                   <Typography variant={'caption'}>My Profile</Typography>
-                </DropdownItem>
-              </Link>
+                </Link>
+              </DropdownItem>
               <DropdownSeparator />
               <DropdownItem className={s.dropdownItem}>
-                <Button onClick={() => logOut()} variant={'icon'}>
+                <Button onClick={logOutHandler} variant={'icon'}>
                   <LogOut />
                   <Typography variant={'caption'}>Sign Out</Typography>
                 </Button>

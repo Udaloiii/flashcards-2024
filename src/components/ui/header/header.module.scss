@@ -63,6 +63,16 @@ a {
   border-radius: 50%;
 }
 
+.defaultAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-light-900);
+
+  border: 1px solid var(--color-dark-500);
+}
+
 .dropdownItem {
   display: flex;
   gap: 15px;

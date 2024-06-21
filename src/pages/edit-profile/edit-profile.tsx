@@ -1,5 +1,6 @@
-import { ChangeEvent, useRef } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 
+import Close from '@/assets/logo/close'
 import Edit from '@/assets/logo/edit'
 import LogOut from '@/assets/logo/log-out'
 import { Button } from '@/components/ui/button'
@@ -7,29 +8,45 @@ import { Card } from '@/components/ui/card'
 import { EditableText } from '@/components/ui/editable-span/editable-text'
 import { useEditableSpan } from '@/components/ui/editable-span/hook/useEditableSpan'
 import { Typography } from '@/components/ui/typography'
-import { useAuthMeQuery, useLogOutMutation } from '@/services/auth.service'
+import { useAuthMeQuery, useLogOutMutation, useUpdateUserMutation } from '@/services/auth.service'
 
 import s from './edit-profile.module.scss'
 
 export const EditProfile = () => {
+  const [cover, setCover] = useState<File | null>(null)
+
   const { data, isError, isLoading } = useAuthMeQuery()
   const [logOut] = useLogOutMutation()
+  const [updateUser] = useUpdateUserMutation()
 
   const { changeOn, setChangeOn, toggleMode } = useEditableSpan()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  const logOutHandler = () => {
+    logOut()
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+  }
   const handleButtonClick = () => {
     fileInputRef.current?.click()
   }
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0]
-
-    if (file) {
-      // Обработка выбранного файла, пока заглушка
-      console.log('Выбран файл:', file)
+    if (event.currentTarget.files?.[0]) {
+      setCover(event.currentTarget.files[0])
     }
   }
+
+  const removeAvatar = () => {
+    setCover(null)
+    updateUser({ avatar: cover })
+  }
+
+  useEffect(() => {
+    if (cover) {
+      updateUser({ avatar: cover })
+    }
+  }, [cover, updateUser])
 
   if (isLoading) {
     return <div style={{ display: 'flex', justifyContent: 'center' }}>LOADING...</div>
@@ -49,8 +66,29 @@ export const EditProfile = () => {
         Personal Information
       </Typography>
       <div className={s.avatarBlock}>
-        <img alt={'user'} className={s.avatar} src={data?.avatar} />
-        <Button onClick={handleButtonClick} type={'button'} variant={'icon'}>
+        {data?.avatar ? (
+          <div>
+            <img alt={'user'} className={s.avatar} src={data?.avatar} />
+            <Button
+              className={s.removeAvatar}
+              onClick={removeAvatar}
+              type={'button'}
+              variant={'icon'}
+            >
+              <Close />
+            </Button>
+          </div>
+        ) : (
+          <div className={s.defaultAvatar}>
+            <Typography variant={'h2'}>{data?.name.slice(0, 1)}</Typography>
+          </div>
+        )}
+        <Button
+          className={s.changeAvatar}
+          onClick={handleButtonClick}
+          type={'button'}
+          variant={'icon'}
+        >
           <Edit />
         </Button>
         <input
@@ -77,7 +115,7 @@ export const EditProfile = () => {
           <Typography className={s.email} variant={'body2'}>
             {data?.email}
           </Typography>
-          <Button onClick={() => logOut()} type={'button'} variant={'secondary'}>
+          <Button onClick={logOutHandler} type={'button'} variant={'secondary'}>
             <LogOut />
             <Typography variant={'subtitle2'}>Logout</Typography>
           </Button>

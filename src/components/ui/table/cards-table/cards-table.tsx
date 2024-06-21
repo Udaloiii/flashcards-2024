@@ -10,9 +10,8 @@ import s from './cards-table.module.scss'
 type CardsTableProps = {
   items?: GetCardResponse[]
   myDeck?: boolean
-  titleCard?: string
 }
-export const CardsTable = ({ items, myDeck, titleCard }: CardsTableProps) => {
+export const CardsTable = ({ items, myDeck }: CardsTableProps) => {
   const [sortByColumn, setSortByColumn] = useState<string>('')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
 
@@ -50,7 +49,7 @@ export const CardsTable = ({ items, myDeck, titleCard }: CardsTableProps) => {
         />
       </TableHeader>
       <TableBody>
-        <CardsTableBody items={items} myDeck={myDeck} titleCard={titleCard} />
+        <CardsTableBody items={items} myDeck={myDeck} />
       </TableBody>
     </Table>
   )

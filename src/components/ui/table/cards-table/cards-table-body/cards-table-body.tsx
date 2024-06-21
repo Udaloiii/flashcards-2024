@@ -9,16 +9,8 @@ import s from './cards-table-body.module.scss'
 type DecksTableBodyProps = {
   items?: GetCardResponse[]
   myDeck?: boolean
-  titleCard?: string
 }
-export const CardsTableBody = ({ items, myDeck, titleCard }: DecksTableBodyProps) => {
-  // const { id } = useParams() // чтобы достать id из url
-  // const { isLoading } = useGetDeckByIdQuery({ id: id ?? '' })
-  //
-  // if (isLoading) {
-  //   return <div style={{ display: 'flex', justifyContent: 'center' }}>LOADING...</div>
-  // }
-
+export const CardsTableBody = ({ items, myDeck }: DecksTableBodyProps) => {
   return (
     <>
       {items?.map((el, ind) => {
@@ -56,7 +48,15 @@ export const CardsTableBody = ({ items, myDeck, titleCard }: DecksTableBodyProps
             </TableCell>
             {myDeck && (
               <TableCell className={s.container}>
-                <ControlItems cardPage myDecks={myDeck} titleCard={titleCard} />
+                <ControlItems
+                  answerImg={el.answerImg}
+                  cardAnswer={el.answer}
+                  cardId={el.id}
+                  cardPage
+                  cardQuestion={el.question}
+                  myDecks={myDeck}
+                  questionImg={el.questionImg}
+                />
               </TableCell>
             )}
           </TableRow>

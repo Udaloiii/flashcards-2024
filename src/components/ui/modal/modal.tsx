@@ -15,7 +15,7 @@ type ModalProps = {
 export const Modal = ({ children, onOpenChange, open, title, trigger }: ModalProps) => {
   return (
     <RadixModal.Root onOpenChange={onOpenChange} open={open}>
-      <RadixModal.Trigger>{trigger}</RadixModal.Trigger>
+      <RadixModal.Trigger asChild>{trigger}</RadixModal.Trigger>
       <RadixModal.Portal>
         <RadixModal.Overlay className={s.dialogOverlay} />
         <RadixModal.Content className={s.dialogContent}>

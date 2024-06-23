@@ -4,7 +4,9 @@ import LogOut from '@/assets/logo/log-out'
 import Person from '@/assets/logo/person'
 import PlayCircle from '@/assets/logo/play-circle'
 import VerticalDots from '@/assets/logo/vertical-dots'
+import { Card } from '@/components/ui/card'
 import { Dropdown, DropdownItem, DropdownSeparator } from '@/components/ui/dropdown/dropdown'
+import { Modal } from '@/components/ui/modal'
 import { Meta, StoryObj } from '@storybook/react'
 
 import userIcon from '../../../assets/img/user-avatar.webp'
@@ -75,5 +77,90 @@ export const DropdownWithDots: Story = {
       </>
     ),
     trigger: <VerticalDots />,
+  },
+}
+
+export const DropdownWithDotsModals: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownItem>
+          <Modal
+            trigger={
+              <div
+                style={{ alignItems: 'flex-end', display: 'flex', gap: '20px', padding: '10px' }}
+              >
+                <PlayCircle />
+                <div>Learn</div>
+              </div>
+            }
+          >
+            <Card
+              style={{
+                display: 'flex',
+                height: '300px',
+                justifyContent: 'center',
+                padding: '10px',
+              }}
+            >
+              Learn deck
+            </Card>
+          </Modal>
+        </DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem>
+          <Modal
+            trigger={
+              <div
+                style={{ alignItems: 'flex-end', display: 'flex', gap: '20px', padding: '10px' }}
+              >
+                <Edit />
+                <div>Edit</div>
+              </div>
+            }
+          >
+            <Card
+              style={{
+                display: 'flex',
+                height: '300px',
+                justifyContent: 'center',
+                padding: '10px',
+              }}
+            >
+              Change deck
+            </Card>
+          </Modal>
+        </DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem>
+          <Modal
+            trigger={
+              <div
+                style={{ alignItems: 'flex-end', display: 'flex', gap: '20px', padding: '10px' }}
+              >
+                <Delete />
+                <div>Delete</div>
+              </div>
+            }
+          >
+            <Card
+              style={{
+                display: 'flex',
+                height: '300px',
+                justifyContent: 'center',
+                padding: '10px',
+              }}
+            >
+              Delete deck
+            </Card>
+          </Modal>
+        </DropdownItem>
+      </>
+    ),
+    trigger: (
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <VerticalDots />
+      </div>
+    ),
   },
 }

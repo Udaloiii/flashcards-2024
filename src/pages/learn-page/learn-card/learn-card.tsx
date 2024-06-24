@@ -59,10 +59,7 @@ export const LearnCard = ({ className, id }: LearnCardProps) => {
       <Typography as={'h1'} className={s.title} variant={'h1'}>
         Learn {dataDeck?.name}
       </Typography>
-      <Typography variant={'subtitle1'}>
-        Question:
-        {newData?.question || data?.question}
-      </Typography>
+      <Typography variant={'subtitle1'}>Question: {newData?.question || data?.question}</Typography>
       {finalData?.questionImg && (
         <img
           alt={'question-img'}
@@ -71,8 +68,7 @@ export const LearnCard = ({ className, id }: LearnCardProps) => {
         />
       )}
       <Typography as={'p'} className={s.attempts} variant={'body2'}>
-        Count of attempts:
-        {finalData?.shots}
+        Count of attempts: {finalData?.shots}
       </Typography>
       {!showAnswer ? (
         <Button fullWidth onClick={() => setShowAnswer(prevState => !prevState)}>
@@ -81,10 +77,7 @@ export const LearnCard = ({ className, id }: LearnCardProps) => {
       ) : (
         <>
           <br />
-          <Typography variant={'subtitle1'}>
-            Answer:
-            {finalData?.answer}
-          </Typography>
+          <Typography variant={'subtitle1'}>Answer: {finalData?.answer}</Typography>
           {finalData?.answerImg && (
             <img
               alt={'answer-img'}
@@ -93,7 +86,7 @@ export const LearnCard = ({ className, id }: LearnCardProps) => {
             />
           )}
           <Typography variant={'subtitle1'}>Rate Yourself:</Typography>
-          <form>
+          <form className={s.formContainer}>
             <Radio defaultValue={arrOfRadioGroup[0].value} onChange={setRadioValue}>
               {arrOfRadioGroup.map((el, ind) => {
                 return <RadioItem key={ind} label={el.name} value={el.value} />

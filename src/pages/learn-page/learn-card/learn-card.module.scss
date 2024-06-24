@@ -16,3 +16,9 @@ p {
 .attempts {
   color: var(--color-dark-100);
 }
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

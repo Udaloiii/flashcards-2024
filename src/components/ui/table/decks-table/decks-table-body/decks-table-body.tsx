@@ -48,8 +48,11 @@ export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
               <ControlItems
                 className={s.controlItems}
                 deck
+                deckId={el.id}
+                deckImage={el.cover}
                 deckTitle={el.name}
                 disabled={el.cardsCount < 1}
+                isPrivate={el.isPrivate}
                 myDecks={myCards}
               />
             </TableCell>

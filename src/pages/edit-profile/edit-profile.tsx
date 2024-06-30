@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EditableText } from '@/components/ui/editable-span/editable-text'
 import { useEditableSpan } from '@/components/ui/editable-span/hook/useEditableSpan'
+import { Loader } from '@/components/ui/loader/loader'
 import { Typography } from '@/components/ui/typography'
 import { useAuthMeQuery, useLogOutMutation, useUpdateUserMutation } from '@/services/auth.service'
 
@@ -17,7 +18,7 @@ export const EditProfile = () => {
 
   const { data, isError, isLoading } = useAuthMeQuery()
   const [logOut] = useLogOutMutation()
-  const [updateUser] = useUpdateUserMutation()
+  const [updateUser, otherData] = useUpdateUserMutation()
 
   const { changeOn, setChangeOn, toggleMode } = useEditableSpan()
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -48,8 +49,8 @@ export const EditProfile = () => {
     }
   }, [cover, updateUser])
 
-  if (isLoading) {
-    return <div style={{ display: 'flex', justifyContent: 'center' }}>LOADING...</div>
+  if (isLoading || otherData.isLoading) {
+    return <Loader />
   }
 
   if (isError) {

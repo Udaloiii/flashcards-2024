@@ -15,7 +15,20 @@ export type InputProps = {
   variant?: 'password' | 'search' | 'text'
 } & ComponentPropsWithoutRef<'input'>
 export const Textfield = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, disabled, error, label, onChangeValue, value, variant = 'text', ...rest }, ref) => {
+  (
+    {
+      className,
+      disabled,
+      error,
+      label,
+      onChangeValue,
+      placeholder,
+      value,
+      variant = 'text',
+      ...rest
+    },
+    ref
+  ) => {
     const [show, setShow] = useState(false)
     const [inputType, setInputType] = useState(variant)
     const showPasswordHandler = () => {
@@ -51,7 +64,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(
             className={`${s.input} ${iconStyleCondition} ${errCondition}`}
             disabled={disabled}
             onChange={onChangeHandler}
-            placeholder={variant}
+            placeholder={placeholder ?? variant}
             ref={ref}
             type={inputType}
             value={value}

@@ -13,7 +13,7 @@ export const authService = baseApi.injectEndpoints({
         },
       }),
       logIn: build.mutation<LoginResponse, LoginType>({
-        invalidatesTags: ['Auth'],
+        // invalidatesTags: ['Auth'],
         async onQueryStarted(_, { queryFulfilled }) {
           const { data } = await queryFulfilled
 
@@ -36,7 +36,7 @@ export const authService = baseApi.injectEndpoints({
         query: () => {
           return {
             method: 'POST',
-            url: '/v1/auth/logout',
+            url: '/v2/auth/logout',
           }
         },
       }),

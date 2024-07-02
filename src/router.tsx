@@ -66,13 +66,17 @@ const publicRoute: RouteObject[] = [
 ]
 
 const PrivateRoutes = () => {
-  const { data, isError, isLoading } = useAuthMeQuery()
+  const token = localStorage.getItem('accessToken') // для того, чтобы не слать me-запрос, если нет токена
+  const { data, isLoading } = useAuthMeQuery(undefined, {
+    skip: !token,
+  })
+  const accessToken = localStorage.getItem('accessToken')
 
   if (isLoading) {
     return null
   }
 
-  return !isError ? (
+  return accessToken ? (
     <Layout email={data?.email} icon={data?.avatar} isLoggedIn userName={data?.name}>
       <Outlet />
     </Layout>
@@ -81,7 +85,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const route = createBrowserRouter([
+export const route = createBrowserRouter([
   {
     children: privateRoute,
     element: <PrivateRoutes />,

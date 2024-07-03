@@ -1,8 +1,10 @@
-import { ReactNode } from 'react'
+import { ChangeEvent, ReactNode } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { useEditableSpan } from '@/components/ui/editable-span/hook/useEditableSpan'
 import { Textfield } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
+import { useUpdateUserMutation } from '@/services/auth.service'
 
 import s from './editable-text.module.scss'
 
@@ -22,10 +24,36 @@ export const EditableText = ({
   toggleMode,
   trigger,
 }: EditableSpanProps) => {
+  const [updateUser] = useUpdateUserMutation()
+  const { error, setError, setValue, value } = useEditableSpan()
+  const updateUserHandler = () => {
+    if (value.trim() !== '' && value.length <= 30) {
+      updateUser({ name: value })
+      setValue('')
+      setChangeOn(false)
+    } else {
+      setError('Value equals the empty string or name is longer 30 characters')
+    }
+  }
+
+  const onChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
+    if (error) {
+      setError(null)
+    }
+    setValue(event.currentTarget.value)
+  }
+
   return changeOn ? (
     <div className={s.changeEmail}>
-      <Textfield autoFocus className={s.textfield} label={label} />
-      <Button fullWidth onClick={() => setChangeOn?.(false)} type={'button'}>
+      <Textfield
+        autoFocus
+        className={s.textfield}
+        error={error}
+        label={label}
+        onChange={onChangeValue}
+        value={value}
+      />
+      <Button fullWidth onClick={updateUserHandler} type={'button'}>
         <Typography variant={'subtitle2'}>Save Changes</Typography>
       </Button>
     </div>

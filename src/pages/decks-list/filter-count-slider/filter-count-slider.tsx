@@ -58,6 +58,7 @@ export const FilterCountSlider = ({
   return (
     <div className={s.container}>
       <input
+        autoComplete={'off'}
         className={s.value}
         name={'min'}
         onChange={onChangeHandler}

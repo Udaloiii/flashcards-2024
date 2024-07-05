@@ -19,10 +19,26 @@ const decksService = baseApi.injectEndpoints({
         Omit<GetCardResponse, 'grade'>,
         { body: CreateCardRequest; deckId: string }
       >({
-        invalidatesTags: ['Deck'],
+        invalidatesTags: ['Deck', 'Card'],
         query: arg => {
+          const formData = new FormData()
+
+          formData.append('answer', arg.body.answer)
+          formData.append('question', arg.body.question)
+
+          if (arg.body.answerImg) {
+            formData.append('answerImg', arg.body.answerImg)
+          } else if (arg.body.answerImg === null) {
+            formData.append('answerImg', '')
+          }
+          if (arg.body.questionImg) {
+            formData.append('questionImg', arg.body.questionImg)
+          } else if (arg.body.questionImg === null) {
+            formData.append('questionImg', '')
+          }
+
           return {
-            body: arg.body,
+            body: formData,
             method: 'POST',
             url: `/v1/decks/${arg.deckId}/cards`,
           }
@@ -63,7 +79,7 @@ const decksService = baseApi.injectEndpoints({
         { items: GetCardResponse[] } & { pagination: Pagination },
         { body?: GetCardsInDeckArgs; id: string }
       >({
-        providesTags: ['Deck'],
+        providesTags: ['Card'],
         query: arg => {
           return {
             params: arg.body ?? {},
@@ -72,6 +88,7 @@ const decksService = baseApi.injectEndpoints({
         },
       }),
       getDeckById: build.query<DeckType, GetDeckById>({
+        providesTags: ['Deck'],
         query: ({ id }) => {
           return {
             url: `v1/decks/${id}`,
@@ -129,8 +146,6 @@ const decksService = baseApi.injectEndpoints({
           }
           if (data.cover) {
             formData.append('cover', data.cover)
-          } else if (data.cover === null) {
-            formData.append('cover', '')
           }
 
           return {

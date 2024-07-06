@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import Image from '@/assets/logo/image'
@@ -11,6 +12,7 @@ import { ModalHeader } from '@/components/ui/modal/modal-header/modal-header'
 import { Typography } from '@/components/ui/typography'
 import { useCreateCardMutation } from '@/services/decks.service'
 import { CreateCardRequest } from '@/services/flashcards-type'
+import { setIsLoading } from '@/store/app-reducer'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -20,6 +22,7 @@ type AddNewCardProps = {
   onOpenChange?: (open: boolean) => void
 }
 export const AddNewCard = ({ onOpenChange }: AddNewCardProps) => {
+  const dispatch = useDispatch()
   const { id } = useParams() // чтобы достать id из url
 
   // для связки button-input
@@ -39,7 +42,7 @@ export const AddNewCard = ({ onOpenChange }: AddNewCardProps) => {
   const [coverAnswer, setCoverAnswer] = useState<File | null>(null) // картинка ответа
   const [previewAnswer, setPreviewAnswer] = useState<string>('') // картинка для отображения
 
-  const [addCard] = useCreateCardMutation()
+  const [addCard, otherData] = useCreateCardMutation()
 
   const addCardSchema = z.object({
     answer: z
@@ -90,6 +93,12 @@ export const AddNewCard = ({ onOpenChange }: AddNewCardProps) => {
       return () => URL.revokeObjectURL(newPreview)
     }
   }, [coverAnswer, coverQuestion])
+
+  if (otherData.isLoading) {
+    dispatch(setIsLoading({ isLoading: true }))
+  } else {
+    dispatch(setIsLoading({ isLoading: false }))
+  }
 
   return (
     <div className={s.container}>

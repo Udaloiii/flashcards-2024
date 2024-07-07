@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
 import Image from '@/assets/logo/image'
 import { ControlledCheckbox, ControlledTextfield } from '@/components/controlled'
@@ -9,6 +10,7 @@ import { ModalFooter } from '@/components/ui/modal/modal-footer/modal-footer'
 import { ModalHeader } from '@/components/ui/modal/modal-header/modal-header'
 import { useCreateDeckMutation } from '@/services/decks.service'
 import { CreateDeckArgs } from '@/services/flashcards-type'
+import { setInfoMessage } from '@/store/app-reducer'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -18,6 +20,7 @@ type AddNewPackProps = {
   onOpenChange?: (open: boolean) => void
 }
 export const AddNewDeck = ({ onOpenChange }: AddNewPackProps) => {
+  const dispatch = useDispatch()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const handleButtonClick = () => {
     fileInputRef.current?.click()
@@ -45,6 +48,7 @@ export const AddNewDeck = ({ onOpenChange }: AddNewPackProps) => {
     addDeck({ ...data, cover })
     reset()
     onOpenChange?.(false)
+    dispatch(setInfoMessage({ message: 'Deck added' }))
   })
 
   const removePreviewCover = () => {

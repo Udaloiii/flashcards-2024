@@ -12,7 +12,7 @@ import { ModalHeader } from '@/components/ui/modal/modal-header/modal-header'
 import { Typography } from '@/components/ui/typography'
 import { useCreateCardMutation } from '@/services/decks.service'
 import { CreateCardRequest } from '@/services/flashcards-type'
-import { setIsLoading } from '@/store/app-reducer'
+import { setInfoMessage, setIsLoading } from '@/store/app-reducer'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -68,6 +68,7 @@ export const AddNewCard = ({ onOpenChange }: AddNewCardProps) => {
     })
     reset()
     onOpenChange?.(false)
+    dispatch(setInfoMessage({ message: 'Card added' }))
   })
 
   const removePreviewCoverAnswer = () => {

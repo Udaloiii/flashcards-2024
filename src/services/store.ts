@@ -1,5 +1,7 @@
 import { baseApi } from '@/services/base-api'
 import { appReducer } from '@/store/app-reducer'
+import { cardsListReducer } from '@/store/cards-list-reducer'
+import { decksListReducer } from '@/store/decks-list-reducer'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({
@@ -7,6 +9,8 @@ export const store = configureStore({
   reducer: {
     app: appReducer,
     [baseApi.reducerPath]: baseApi.reducer,
+    cardsList: cardsListReducer,
+    decksList: decksListReducer,
   },
 })
 

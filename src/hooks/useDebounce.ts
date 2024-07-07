@@ -8,9 +8,7 @@ export function useDebounce(value: number | string, delay: number) {
       setDebouncedValue(value)
     }, delay)
 
-    return () => {
-      clearTimeout(handler)
-    }
+    return () => clearTimeout(handler)
   }, [value, delay])
 
   return debouncedValue

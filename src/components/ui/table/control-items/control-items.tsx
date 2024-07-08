@@ -48,13 +48,12 @@ export const ControlItems = ({
   // для открытия модалки
   const [openEdit, setOpenEdit] = useState(false)
   const [openDelete, setOpenDelete] = useState(false)
-  // const [openLearn, setOpenLearn] = useState(false)
 
   return (
     <div className={`${s.container} ${className}`}>
       {!cardPage && deck && (
-        <Link to={`/${deckId}/learn`}>
-          <Button className={`${disabled && s.disabled}`} variant={'icon'}>
+        <Link className={`${disabled && s.disabled}`} to={`/${deckId}/learn`}>
+          <Button variant={'icon'}>
             <PlayCircle />
           </Button>
         </Link>

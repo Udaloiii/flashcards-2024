@@ -1,29 +1,32 @@
+import { useDispatch } from 'react-redux'
+
 import ArrowBack from '@/assets/logo/arrow-back'
 import ArrowForward from '@/assets/logo/arrow-forward'
 import { Button } from '@/components/ui/button'
 import { DOTS, usePagination } from '@/components/ui/pagination/usePagination'
 import { Select } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
+import { setCurrPageCards, setPageSizeCards } from '@/store/cards-list-reducer'
+import { setCurrPage, setPageSize } from '@/store/decks-list-reducer'
 
 import s from './pagination.module.scss'
 
 export type PaginationType = {
-  changePageSize?: (size: number) => void
+  cardsList?: boolean // для отображения пагинации в deck (по умолчанию пагинация в decks-list)
   currentPage: number // текущая страница
-  onPageChange?: (page: number) => void // функция обратного вызова, вызываемая с обновленным значением страницы при изменении страницы
   pageSize: number //  максимальный объем данных, видимых на одной странице
   siblingCount?: number //представляет минимальное количество кнопок страницы, отображаемых с каждой стороны кнопки текущей страницы. По умолчанию 1
   totalCount: number // общее количество данных, доступных из источника
 }
 
 export const Pagination = ({
-  changePageSize,
+  cardsList,
   currentPage = 1,
-  onPageChange,
   pageSize,
   siblingCount = 1,
   totalCount,
 }: PaginationType) => {
+  const dispatch = useDispatch()
   const paginationRange = usePagination({
     currentPage,
     pageSize,
@@ -31,17 +34,20 @@ export const Pagination = ({
     totalCount,
   })
 
-  // if (currentPage === 0 || (paginationRange && paginationRange?.length < 2 && pageSize <= 5))
   if (totalCount && totalCount <= 5) {
     return null
   } // поменял на если всех items меньше или = 5 то не показывать
 
   const onNext = () => {
-    onPageChange?.(currentPage + 1)
+    cardsList
+      ? dispatch(setCurrPageCards({ currPage: currentPage + 1 }))
+      : dispatch(setCurrPage({ currPage: currentPage + 1 }))
   }
 
   const onPrevious = () => {
-    onPageChange?.(currentPage - 1)
+    cardsList
+      ? dispatch(setCurrPageCards({ currPage: currentPage - 1 }))
+      : dispatch(setCurrPage({ currPage: currentPage - 1 }))
   }
 
   const lastPage = paginationRange && paginationRange[paginationRange.length - 1]
@@ -50,9 +56,20 @@ export const Pagination = ({
 
   const disabledRightCondition = currentPage === lastPage && s.disabled
 
+  const onChangePageHandler = (pageNumber: number | string) => {
+    cardsList
+      ? dispatch(setCurrPageCards({ currPage: Number(pageNumber) }))
+      : dispatch(setCurrPage({ currPage: Number(pageNumber) }))
+  }
+
   const onChangeSizeHandler = (value: string) => {
-    onPageChange?.(1)
-    changePageSize?.(Number(value))
+    if (cardsList) {
+      dispatch(setCurrPageCards({ currPage: 1 }))
+      dispatch(setPageSizeCards({ pageSize: Number(value) }))
+    } else {
+      dispatch(setCurrPage({ currPage: 1 }))
+      dispatch(setPageSize({ pageSize: Number(value) }))
+    }
   }
 
   return (
@@ -79,7 +96,7 @@ export const Pagination = ({
               as={'li'}
               className={`${s.paginationItem} ${activeCondition}`}
               key={index}
-              onClick={() => onPageChange?.(Number(pageNumber))}
+              onClick={() => onChangePageHandler(pageNumber)}
               tabIndex={0}
               variant={'body2'}
             >

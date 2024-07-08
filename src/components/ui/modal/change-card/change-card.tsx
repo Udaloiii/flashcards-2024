@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
 import Image from '@/assets/logo/image'
 import { ControlledTextfield } from '@/components/controlled'
@@ -10,6 +11,7 @@ import { ModalHeader } from '@/components/ui/modal/modal-header/modal-header'
 import { Typography } from '@/components/ui/typography'
 import { useUpdateCardMutation } from '@/services/cards.service'
 import { UpdateCardRequest } from '@/services/flashcards-type'
+import { setInfoMessage, setIsLoading } from '@/store/app-reducer'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -31,6 +33,8 @@ export const ChangeCard = ({
   question,
   questionImg = '',
 }: ChangeDeckProps) => {
+  const dispatch = useDispatch()
+
   // для связки button-input
   const fileInputAnswerRef = useRef<HTMLInputElement>(null)
   const fileInputQuestionRef = useRef<HTMLInputElement>(null)
@@ -48,7 +52,7 @@ export const ChangeCard = ({
   const [coverAnswer, setCoverAnswer] = useState<File | null>(null) // картинка ответа
   const [previewAnswer, setPreviewAnswer] = useState<string>(answerImg) // картинка для отображения
 
-  const [updateCard] = useUpdateCardMutation()
+  const [updateCard, otherData] = useUpdateCardMutation()
 
   const changeCardSchema = z.object({
     answer: z
@@ -76,6 +80,7 @@ export const ChangeCard = ({
     updateCard({ body: newData, id: cardId })
     reset()
     onOpenChange?.(false)
+    dispatch(setInfoMessage({ message: 'Card updated' }))
   })
 
   const removePreviewQuestion = () => {
@@ -101,6 +106,12 @@ export const ChangeCard = ({
       return () => URL.revokeObjectURL(newPreview)
     }
   }, [coverAnswer, coverQuestion])
+
+  if (otherData.isLoading) {
+    dispatch(setIsLoading({ isLoading: true }))
+  } else {
+    dispatch(setIsLoading({ isLoading: false }))
+  }
 
   return (
     <div>

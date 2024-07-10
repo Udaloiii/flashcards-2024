@@ -44,7 +44,7 @@ export const Header = ({ email, icon, isLoggedIn, userName }: HeaderProps) => {
                   <img alt={'user'} className={s.trigger} src={icon} />
                 ) : (
                   <div className={`${s.trigger} ${s.defaultAvatar}`}>
-                    <Typography variant={'body2'}>{userName?.slice(0, 1)}</Typography>
+                    <Typography variant={'body1'}>{userName?.slice(0, 1)}</Typography>
                   </div>
                 )
               }

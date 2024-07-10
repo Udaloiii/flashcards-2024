@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import {
   Navigate,
   Outlet,
@@ -8,6 +9,7 @@ import {
 
 import { Layout } from '@/components/layout'
 import { Page } from '@/components/page/page'
+import { Snackbar } from '@/components/ui/snackbar/snackbar'
 import { LoginForm } from '@/pages/auth/login-form'
 import { Deck } from '@/pages/deck'
 import { DecksList } from '@/pages/decks-list'
@@ -15,6 +17,9 @@ import { EditProfile } from '@/pages/edit-profile'
 import { LearnPage } from '@/pages/learn-page/learn-page'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useAuthMeQuery } from '@/services/auth.service'
+import { RootState } from '@/services/store'
+
+import { Loader } from './components/ui/loader/loader'
 
 const privateRoute: RouteObject[] = [
   {
@@ -66,18 +71,21 @@ const publicRoute: RouteObject[] = [
 ]
 
 const PrivateRoutes = () => {
+  const isLoading = useSelector<RootState, boolean>(state => state.app.isLoading)
   const token = localStorage.getItem('accessToken') // для того, чтобы не слать me-запрос, если нет токена
-  const { data, isLoading } = useAuthMeQuery(undefined, {
+  const { data, isLoading: authIsLoading } = useAuthMeQuery(undefined, {
     skip: !token,
   })
   const accessToken = localStorage.getItem('accessToken')
 
-  if (isLoading) {
+  if (authIsLoading) {
     return null
   }
 
   return accessToken ? (
     <Layout email={data?.email} icon={data?.avatar} isLoggedIn userName={data?.name}>
+      {isLoading && <Loader />}
+      <Snackbar />
       <Outlet />
     </Layout>
   ) : (

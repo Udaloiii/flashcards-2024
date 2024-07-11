@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ControlItems } from '@/components/ui/table/control-items/control-items'
 import { TableCell, TableRow } from '@/components/ui/table/table'
 import { Typography } from '@/components/ui/typography'
+import { useAuthMeQuery } from '@/services/auth.service'
 import { DeckType } from '@/services/flashcards-type'
 
 import s from './decks-table-body.module.scss'
@@ -11,9 +12,12 @@ import icon from '../../../../../assets/img/deck-icon.jpg'
 
 type DecksTableBodyProps = {
   items?: DeckType[]
-  myCards?: boolean
+  myDecks?: boolean
 }
-export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
+export const DecksTableBody = ({ items, myDecks }: DecksTableBodyProps) => {
+  const { data } = useAuthMeQuery()
+  const userId = data?.id ?? '' // достал id для отображения редактирования и удаления своих колод
+
   return (
     <>
       {items?.map((el, ind) => {
@@ -53,7 +57,7 @@ export const DecksTableBody = ({ items, myCards }: DecksTableBodyProps) => {
                 deckTitle={el.name}
                 disabled={el.cardsCount < 1}
                 isPrivate={el.isPrivate}
-                myDecks={myCards}
+                myDecks={myDecks ?? el.userId === userId}
               />
             </TableCell>
           </TableRow>

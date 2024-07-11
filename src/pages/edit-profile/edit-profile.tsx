@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Close from '@/assets/logo/close'
 import Edit from '@/assets/logo/edit'
@@ -7,13 +8,15 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EditableText } from '@/components/ui/editable-span/editable-text'
 import { useEditableSpan } from '@/components/ui/editable-span/hook/useEditableSpan'
-import { Loader } from '@/components/ui/loader/loader'
 import { Typography } from '@/components/ui/typography'
 import { useAuthMeQuery, useLogOutMutation, useUpdateUserMutation } from '@/services/auth.service'
+import { setInfoMessage, setIsLoading } from '@/store/app-reducer'
 
 import s from './edit-profile.module.scss'
 
 export const EditProfile = () => {
+  const dispatch = useDispatch()
+
   const [cover, setCover] = useState<File | null>(null)
 
   const { data, isError, isLoading } = useAuthMeQuery()
@@ -38,19 +41,28 @@ export const EditProfile = () => {
     }
   }
 
-  const removeAvatar = () => {
+  const removeAvatar = async () => {
     setCover(null)
-    updateUser({ avatar: cover })
+    await updateUser({ avatar: null })
+    dispatch(setInfoMessage({ message: 'Avatar deleted' }))
   }
 
   useEffect(() => {
     if (cover) {
-      updateUser({ avatar: cover })
+      const asyncFunction = async () => {
+        await updateUser({ avatar: cover })
+      }
+
+      asyncFunction()
+        .then(() => dispatch(setInfoMessage({ message: 'Avatar changed' })))
+        .catch(() => dispatch(setInfoMessage({ message: 'Avatar could not be changed' })))
     }
   }, [cover, updateUser])
 
   if (isLoading || otherData.isLoading) {
-    return <Loader />
+    dispatch(setIsLoading({ isLoading: true }))
+  } else {
+    dispatch(setIsLoading({ isLoading: false }))
   }
 
   if (isError) {

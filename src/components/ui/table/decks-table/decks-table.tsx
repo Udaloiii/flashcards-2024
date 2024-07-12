@@ -8,9 +8,9 @@ import s from './decks-table.module.scss'
 type DecksTableProps = {
   className?: string
   items?: DeckType[]
-  myCards?: boolean
+  myDecks?: boolean
 }
-export const DecksTable = ({ className, items = [], myCards }: DecksTableProps) => {
+export const DecksTable = ({ className, items = [], myDecks }: DecksTableProps) => {
   // const [sortByColumn, setSortByColumn] = useState<string>('')
   // const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
   //
@@ -49,7 +49,7 @@ export const DecksTable = ({ className, items = [], myCards }: DecksTableProps) 
         />
       </TableHeader>
       <TableBody>
-        <DecksTableBody items={items} myCards={myCards} />
+        <DecksTableBody items={items} myDecks={myDecks} />
       </TableBody>
     </Table>
   )

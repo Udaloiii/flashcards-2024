@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
 import Image from '@/assets/logo/image'
 import { ControlledCheckbox, ControlledTextfield } from '@/components/controlled'
@@ -9,35 +10,42 @@ import { ModalFooter } from '@/components/ui/modal/modal-footer/modal-footer'
 import { ModalHeader } from '@/components/ui/modal/modal-header/modal-header'
 import { useUpdateDeckMutation } from '@/services/decks.service'
 import { CreateDeckArgs } from '@/services/flashcards-type'
+import { setInfoMessage, setIsLoading } from '@/store/app-reducer'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './change-deck.module.scss'
 
 type ChangeDeckProps = {
+  closeDropdown?: (open: boolean) => void
   deckId?: string
-  image?: string
+  image?: null | string
+  isOpenDropdown?: boolean
   isPrivate?: boolean
   onOpenChange?: (open: boolean) => void
   title?: string
 }
 export const ChangeDeck = ({
+  closeDropdown,
   deckId = '',
   image = '',
+  isOpenDropdown,
   isPrivate = false,
   onOpenChange,
   title = '',
 }: ChangeDeckProps) => {
+  const dispatch = useDispatch()
+
   const fileInputRef = useRef<HTMLInputElement>(null)
   const handleButtonClick = () => {
     fileInputRef.current?.click()
   }
   const [cover, setCover] = useState<File | null>(null) // картинка
-  const [previewCover, setPreviewCover] = useState<string>(image) // картинка для отображения
+  const [previewCover, setPreviewCover] = useState<null | string>(image) // картинка для отображения
 
-  const [updateDeck] = useUpdateDeckMutation()
+  const [updateDeck, otherData] = useUpdateDeckMutation()
 
-  const addDeckSchema = z.object({
+  const changeDeckSchema = z.object({
     isPrivate: z.boolean(),
     name: z
       .string()
@@ -51,7 +59,7 @@ export const ChangeDeck = ({
     reset,
   } = useForm<CreateDeckArgs>({
     defaultValues: { isPrivate, name: title },
-    resolver: zodResolver(addDeckSchema),
+    resolver: zodResolver(changeDeckSchema),
   })
 
   const updateDeckHandler = handleSubmit(data => {
@@ -59,7 +67,9 @@ export const ChangeDeck = ({
 
     updateDeck({ data: newData, id: deckId })
     reset()
+    closeDropdown?.(false)
     onOpenChange?.(false)
+    dispatch(setInfoMessage({ message: 'Deck updated' }))
   })
 
   const removePreviewCover = () => {
@@ -76,12 +86,26 @@ export const ChangeDeck = ({
     }
   }, [cover])
 
+  if (isOpenDropdown) {
+    closeDropdown?.(false)
+  }
+  if (otherData.isLoading) {
+    dispatch(setIsLoading({ isLoading: true }))
+  } else {
+    dispatch(setIsLoading({ isLoading: false }))
+  }
+
   return (
     <div>
       <ModalHeader showCloseBtn title={'Edit Deck'} />
       <form onSubmit={updateDeckHandler}>
         <ModalBody className={s.container}>
-          <ControlledTextfield control={control} error={errors.name?.message} name={'name'} />
+          <ControlledTextfield
+            autoComplete={'off'}
+            control={control}
+            error={errors.name?.message}
+            name={'name'}
+          />
           {previewCover && <img alt={'deck-image'} className={s.previewImage} src={previewCover} />}
           {previewCover && (
             <div className={s.buttonBlock}>

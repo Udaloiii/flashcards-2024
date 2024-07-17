@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
@@ -8,14 +8,14 @@ type DropdownProps = {
   children: ReactNode
   className?: string
   disabled?: boolean
-  onOpenChange?: (open: boolean) => void // для контроля
-  open?: boolean // для контроля
   trigger?: ReactNode
-}
+} & ComponentPropsWithoutRef<typeof DropdownMenu.Root>
 export const Dropdown = ({
   children,
   className,
+  defaultOpen,
   disabled,
+  modal,
   onOpenChange,
   open,
   trigger,
@@ -23,12 +23,21 @@ export const Dropdown = ({
   const disable = disabled && s.disabled
 
   return (
-    <DropdownMenu.Root onOpenChange={onOpenChange} open={open}>
-      <DropdownMenu.Trigger className={`${s.trigger} ${className} ${disable}`}>
+    <DropdownMenu.Root
+      defaultOpen={defaultOpen}
+      modal={modal}
+      onOpenChange={onOpenChange}
+      open={open}
+    >
+      <DropdownMenu.Trigger asChild className={`${s.trigger} ${className} ${disable}`}>
         {trigger}
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className={s.content}>
+        <DropdownMenu.Content
+          className={s.content}
+          // forceMount
+          // onClick={event => event.stopPropagation()}
+        >
           <div className={s.triangle}></div>
           {children}
         </DropdownMenu.Content>
@@ -40,10 +49,20 @@ export const Dropdown = ({
 type DropdownItemProps = {
   children?: ReactNode
   className?: string
-}
+} & ComponentPropsWithoutRef<typeof DropdownMenu.Item>
 
-export const DropdownItem = ({ children, className }: DropdownItemProps) => {
-  return <DropdownMenu.Item className={`${s.item} ${className}`}>{children}</DropdownMenu.Item>
+export const DropdownItem = ({ children, className, onSelect, ...rest }: DropdownItemProps) => {
+  return (
+    <DropdownMenu.Item
+      asChild
+      className={`${s.item} ${className}`}
+      onClick={event => event.stopPropagation()}
+      onSelect={onSelect}
+      {...rest}
+    >
+      {children}
+    </DropdownMenu.Item>
+  )
 }
 
 export const DropdownSeparator = () => {

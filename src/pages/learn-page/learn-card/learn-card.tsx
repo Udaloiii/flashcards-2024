@@ -17,7 +17,6 @@ type LearnCardProps = {
   id?: string
 }
 
-// export type RadioValue = '1' | '2' | '3' | '4' | '5'
 type RadioItems = {
   name: string
   value: string // потому что radio принимает value в качестве string

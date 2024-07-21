@@ -44,7 +44,14 @@ export const DropdownWithUserImg: Story = {
       <img
         alt={'icon'}
         src={userIcon}
-        style={{ borderRadius: '50%', height: '50px', width: '50px' }}
+        style={{
+          borderRadius: '50%',
+          height: '50px',
+          left: '50%',
+          position: 'relative',
+          transform: 'translateX(-50%)',
+          width: '50px',
+        }}
       />
     ),
   },
@@ -76,7 +83,11 @@ export const DropdownWithDots: Story = {
         </DropdownItem>
       </>
     ),
-    trigger: <VerticalDots />,
+    trigger: (
+      <div style={{ left: '50%', position: 'absolute', transform: 'translateX(-50%)' }}>
+        <VerticalDots />
+      </div>
+    ),
   },
 }
 

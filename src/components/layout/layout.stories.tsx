@@ -21,15 +21,7 @@ export const MyDecksPage: Story = {
   args: {
     children: (
       <Page>
-        <DecksList
-        // currentPage={1}
-        // items={['asd', 'asdd', 'aqw']}
-        // myDecks
-        // onPageChange={() => {}}
-        // pageSize={5}
-        // siblingCount={2}
-        // totalCount={22}
-        />
+        <DecksList />
       </Page>
     ),
     isLoggedIn: true,
@@ -40,14 +32,7 @@ export const OtherDecksPage: Story = {
   args: {
     children: (
       <Page>
-        <DecksList
-        // currentPage={1}
-        // items={['asd', 'asdd', 'aqw']}
-        // onPageChange={() => {}}
-        // pageSize={5}
-        // siblingCount={2}
-        // totalCount={22}
-        />
+        <DecksList />
       </Page>
     ),
     isLoggedIn: true,
@@ -92,15 +77,7 @@ export const MyDeckExample: Story = {
   args: {
     children: (
       <Page>
-        <Deck
-        // currentPage={1}
-        // deckTitle={'My Deck'}
-        // myDeck
-        // onPageChange={() => {}}
-        // pageSize={5}
-        // siblingCount={2}
-        // totalCount={20}
-        />
+        <Deck />
       </Page>
     ),
     isLoggedIn: true,
@@ -112,14 +89,7 @@ export const OtherDeckExample: Story = {
   args: {
     children: (
       <Page>
-        <Deck
-        // currentPage={1}
-        // deckTitle={'Friend`s Deck'}
-        // onPageChange={() => {}}
-        // pageSize={5}
-        // siblingCount={2}
-        // totalCount={20}
-        />
+        <Deck />
       </Page>
     ),
     isLoggedIn: true,

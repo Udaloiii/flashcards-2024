@@ -122,7 +122,7 @@ const decksService = baseApi.injectEndpoints({
         },
       }),
       saveGradeCard: build.mutation<GetCardResponse, { cardId: string; grade: number }>({
-        invalidatesTags: ['Deck'],
+        invalidatesTags: ['Deck', 'Card'],
         query: arg => {
           return {
             body: arg,

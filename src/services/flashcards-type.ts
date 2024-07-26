@@ -45,7 +45,6 @@ export type GetDeckById = {
 }
 
 export type CreateDeckArgs = {
-  // cover?: string // потом наверное поменять
   cover?: File | null
   isPrivate?: boolean
   name: string
@@ -56,7 +55,7 @@ export type GetMinMaxResponse = {
   min: number
 }
 
-export type OrderBySort =
+export type OrderByCardsSort =
   | 'answer-asc'
   | 'answer-desc'
   | 'created-asc'
@@ -68,11 +67,27 @@ export type OrderBySort =
   | 'updated-asc'
   | 'updated-desc'
   | null
+
+export type OrderByDecksSort =
+  | 'author.name-asc'
+  | 'author.name-desc'
+  | 'cardsCount-asc'
+  | 'cardsCount-desc'
+  | 'created-asc'
+  | 'created-desc'
+  | 'name-asc'
+  | 'name-desc'
+  | 'updated-asc'
+  | 'updated-desc'
+  | null
+
+export type SortDirection = 'asc' | 'desc'
+
 export type GetCardsInDeckArgs = {
   answer?: string
   currentPage?: number
   itemsPerPage?: number
-  orderBy?: OrderBySort
+  orderBy?: OrderByCardsSort
   question?: string
 }
 

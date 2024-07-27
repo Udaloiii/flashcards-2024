@@ -44,3 +44,7 @@
 .sortUp {
   transform: rotate(180deg) translateY(50%) !important;
 }
+
+.sortLastCell {
+  cursor: pointer !important;
+}

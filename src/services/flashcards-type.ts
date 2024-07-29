@@ -37,7 +37,7 @@ export type GetDecksArgs = {
   maxCardsCount?: number
   minCardsCount?: number
   name?: string
-  orderBy?: string
+  orderBy?: OrderByDecksSort
 }
 
 export type GetDeckById = {
@@ -80,8 +80,6 @@ export type OrderByDecksSort =
   | 'updated-asc'
   | 'updated-desc'
   | null
-
-export type SortDirection = 'asc' | 'desc'
 
 export type GetCardsInDeckArgs = {
   answer?: string

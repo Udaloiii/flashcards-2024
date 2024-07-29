@@ -1,51 +1,50 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { CardsTableBody } from '@/components/ui/table/cards-table/cards-table-body/cards-table-body'
 import { ItemTableHead } from '@/components/ui/table/item-table-head/item-table-head'
 import { Table, TableBody, TableHeader } from '@/components/ui/table/table'
-import { GetCardResponse } from '@/services/flashcards-type'
+import { GetCardResponse, OrderByCardsSort } from '@/services/flashcards-type'
+import { RootState } from '@/services/store'
+import { setOrderByCards } from '@/store/cards-list-reducer'
 
 import s from './cards-table.module.scss'
 
 type CardsTableProps = {
-  items?: GetCardResponse[]
+  items: GetCardResponse[]
   myDeck?: boolean
 }
 export const CardsTable = ({ items, myDeck }: CardsTableProps) => {
-  const [sortByColumn, setSortByColumn] = useState<string>('')
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
+  const sortedBy = useSelector<RootState, OrderByCardsSort>(state => state.cardsList.sortBy)
 
-  const handleSort = (columnName: string) => {
-    if (sortByColumn === columnName) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+  const dispatch = useDispatch()
+
+  const handleSortCards = (columnName: OrderByCardsSort) => {
+    if (sortedBy === columnName) {
+      const columnNameWithoutDirection = columnName?.split('-')[0] // question || answer и т.д.
+      const direction = columnName?.split('-')[1] // desc или asc
+      const condition = direction === 'asc' ? 'desc' : 'asc'
+
+      dispatch(
+        setOrderByCards({
+          orderBy: `${columnNameWithoutDirection}-${condition}` as OrderByCardsSort,
+        })
+      )
     } else {
-      setSortByColumn(columnName)
-      setSortDirection('asc')
+      dispatch(setOrderByCards({ orderBy: columnName }))
     }
   }
-  // const sortedItems = [...items].sort((a, b) => {
-  //   if (sortByColumn === 'Question') {
-  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-  //   } else if (sortByColumn === 'Last Updated') {
-  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-  //   } else if (sortByColumn === 'Answer') {
-  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-  //   }
-  //
-  //   return 0
-  // })
 
   return (
     <Table className={s.container}>
       <TableHeader>
         <ItemTableHead
-          firstTitle={'Question'}
-          fourthTitle={'Grade'}
+          firstTitle={'question-desc'}
+          fourthTitle={'grade-desc'}
           myDeck={myDeck}
-          onclick={handleSort}
-          secondTitle={'Answer'}
-          sortByColumn={sortByColumn}
-          sortDirection={sortDirection}
+          secondTitle={'answer-desc'}
+          sortBy={sortedBy}
+          sortCards={handleSortCards}
+          thirdTitle={'updated-desc'}
         />
       </TableHeader>
       <TableBody>

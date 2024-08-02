@@ -1,7 +1,11 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import { DecksTableBody } from '@/components/ui/table/decks-table/decks-table-body/decks-table-body'
 import { ItemTableHead } from '@/components/ui/table/item-table-head/item-table-head'
 import { Table, TableBody, TableHeader } from '@/components/ui/table/table'
-import { DeckType } from '@/services/flashcards-type'
+import { DeckType, OrderByDecksSort } from '@/services/flashcards-type'
+import { RootState } from '@/services/store'
+import { setOrderByDecks } from '@/store/decks-list-reducer'
 
 import s from './decks-table.module.scss'
 
@@ -11,41 +15,37 @@ type DecksTableProps = {
   myDecks?: boolean
 }
 export const DecksTable = ({ className, items = [], myDecks }: DecksTableProps) => {
-  // const [sortByColumn, setSortByColumn] = useState<string>('')
-  // const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
-  //
-  // const handleSort = (columnName: string) => {
-  //   if (sortByColumn === columnName) {
-  //     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
-  //   } else {
-  //     setSortByColumn(columnName)
-  //     setSortDirection('asc')
-  //   }
-  // }
-  // const sortedItems = [...items].sort((a, b) => {
-  //   if (sortByColumn === 'Name') {
-  //     return sortDirection === 'asc'
-  //       ? a.author.name.localeCompare(b.author.name)
-  //       : b.author.name.localeCompare(a.author.name)
-  //   } else if (sortByColumn === 'Last updated') {
-  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-  //   } else if (sortByColumn === 'Cards') {
-  //     return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
-  //   }
-  //
-  //   return 0
-  // })
+  const sortedBy = useSelector<RootState, OrderByDecksSort>(state => state.decksList.sortBy)
+  const dispatch = useDispatch()
+
+  const handleSortDecks = (columnName: OrderByDecksSort) => {
+    if (sortedBy === columnName) {
+      const columnNameWithoutDirection = columnName?.split('-')[0] // question || answer и т.д.
+      const direction = columnName?.split('-')[1] // desc или asc
+      const condition = direction === 'asc' ? 'desc' : 'asc'
+
+      dispatch(
+        setOrderByDecks({
+          orderBy: `${columnNameWithoutDirection}-${condition}` as OrderByDecksSort,
+        })
+      )
+    } else {
+      dispatch(setOrderByDecks({ orderBy: columnName }))
+    }
+  }
 
   return (
     <Table className={`${s.container} ${className}`}>
       <TableHeader>
         <ItemTableHead
           className={s.itemTable}
-          firstTitle={'Name'}
-          fourthTitle={'Created By'}
+          firstTitle={'name-desc'}
+          fourthTitle={'created-desc'}
           myDeck
-          secondTitle={'Cards'}
-          thirdTitle={'Last Updated'}
+          secondTitle={'cardsCount-desc'}
+          sortBy={sortedBy}
+          sortDecks={handleSortDecks}
+          thirdTitle={'updated-desc'}
         />
       </TableHeader>
       <TableBody>

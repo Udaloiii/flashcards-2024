@@ -127,7 +127,6 @@ const decksService = baseApi.injectEndpoints({
           return {
             body: arg,
             method: 'POST',
-            // params: arg,
             url: `/v1/decks/${arg.cardId}/learn`,
           }
         },

@@ -23,7 +23,7 @@ import { EmptyDeck } from '@/pages/deck/empty-deck/empty-deck'
 import { EmptyDeckList } from '@/pages/decks-list/empty-deck-list/empty-deck-list'
 import { useAuthMeQuery } from '@/services/auth.service'
 import { useGetCardsInDeckQuery, useGetDeckByIdQuery } from '@/services/decks.service'
-import { OrderBySort } from '@/services/flashcards-type'
+import { OrderByCardsSort } from '@/services/flashcards-type'
 import { RootState } from '@/services/store'
 import { setIsLoading } from '@/store/app-reducer'
 
@@ -33,14 +33,12 @@ export const Deck = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'
   ({ className, ...rest }, ref) => {
     const currPage = useSelector<RootState, number>(state => state.cardsList.currPage)
     const pageSize = useSelector<RootState, number>(state => state.cardsList.pageSize)
+    const sortedBy = useSelector<RootState, OrderByCardsSort>(state => state.cardsList.sortBy)
     const dispatch = useDispatch()
 
     // для поиска по вопросу
     const [question, setQuestion] = useState<null | string>(null) // добавил null для отображения EmptyDeck
     // добавил костыль typeof question(null) === 'object' для первичного отображения EmptyDeck
-    // для orderBy
-    // @ts-ignore
-    const [orderBy, setOrderBy] = useState<OrderBySort>(null)
 
     const [openDropdown, setOpenDropdown] = useState(false)
     //для модалки на add new card
@@ -63,7 +61,7 @@ export const Deck = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'
         answer: '',
         currentPage: currPage,
         itemsPerPage: pageSize,
-        orderBy: orderBy,
+        orderBy: sortedBy,
         question: String(useDebounce(question ?? '', 600)),
       },
       id: id ?? '',

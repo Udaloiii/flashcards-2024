@@ -13,6 +13,20 @@ type Story = StoryObj<typeof meta>
 
 export const DecksTableExample: Story = {
   args: {
-    items: ['name 1', 'name 2', 'name 3', 'name 4', 'name 5', 'name 6', 'name 7', 'name 8'],
+    items: [
+      {
+        author: {
+          id: 'asda',
+          name: 'Name',
+        },
+        cardsCount: 5,
+        created: 'asd',
+        id: 'asd',
+        isPrivate: true,
+        name: 'asdas',
+        updated: 'asd',
+        userId: 'asd',
+      },
+    ],
   },
 }

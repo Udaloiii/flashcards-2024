@@ -17,6 +17,7 @@ export const SelectExample: Story = {
     items: ['apple', 'banana', 'cherry'],
     label: 'Some label',
     placeholder: 'Choice your favorite fruits',
+    value: 'asd',
   },
 }
 
@@ -32,6 +33,7 @@ export const SelectExampleMore: Story = {
       'lemo asd asdas da sdasdasdasd asdasd n',
     ],
     placeholder: 'change some one',
+    value: 'asd',
   },
 }
 
@@ -42,5 +44,6 @@ export const SelectDisable: Story = {
     items: ['apple', 'banana', 'cherry', 'potato', 'ginger', 'lemon'],
     label: 'Some label',
     placeholder: 'change some one',
+    value: 'asd',
   },
 }

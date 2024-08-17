@@ -18,78 +18,79 @@ export const TabSwitcherExample: Story = {
     children: (
       <>
         <TabContent value={'asd'}>
-          <DecksTable items={['some', '25', '25.05.2025', 'Some']} myCards />
+          <DecksTable
+            items={[
+              {
+                author: {
+                  id: 'asda',
+                  name: 'Name',
+                },
+                cardsCount: 5,
+                created: 'asd',
+                id: 'asd',
+                isPrivate: true,
+                name: 'asdas',
+                updated: 'asd',
+                userId: 'asd',
+              },
+            ]}
+          />
         </TabContent>
         <TabContent value={'dsa'}>
-          <DecksTable items={['some', '25', '25.05.2025', 'Some']} />
+          <DecksTable
+            items={[
+              {
+                author: {
+                  id: 'asda',
+                  name: 'Name',
+                },
+                cardsCount: 4,
+                created: 'asd',
+                id: 'asd',
+                isPrivate: true,
+                name: 'asdas',
+                updated: 'asd',
+                userId: 'asd',
+              },
+            ]}
+          />
         </TabContent>
         <TabContent value={'aaa'}>
           <DecksTable
             items={[
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
+              {
+                author: {
+                  id: 'asda',
+                  name: 'Name',
+                },
+                cardsCount: 3,
+                created: 'asd',
+                id: 'asd',
+                isPrivate: true,
+                name: 'asdas',
+                updated: 'asd',
+                userId: 'asd',
+              },
             ]}
           />
         </TabContent>
         <TabContent value={'dda'}>
           <DecksTable
             items={[
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
-              'some',
-              '25',
-              '25.05.2025',
-              'Some',
+              {
+                author: {
+                  id: 'asda',
+                  name: 'Name',
+                },
+                cardsCount: 10,
+                created: 'asd',
+                id: 'asd',
+                isPrivate: true,
+                name: 'asdas',
+                updated: 'asd',
+                userId: 'asd',
+              },
             ]}
-            myCards
           />
         </TabContent>
       </>

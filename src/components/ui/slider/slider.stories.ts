@@ -13,6 +13,8 @@ type Story = StoryObj<typeof meta>
 
 export const SliderExample: Story = {
   args: {
+    maxValue: 100,
+    onChange: () => {},
     value: [0, 50],
   },
 }
